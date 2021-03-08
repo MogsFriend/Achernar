@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="./css/xivicon.css" rel="stylesheet">
+        <style>
+            * {font-family:'Noto Sans JP', 'Noto Sans KR'; font-size:12px; font-weight:300;}
+            i {display:block; color:#FFF; height:28px; line-height:30px; width:28px; text-align:center;}
+            .xiv-Gla:before{content:'\f001';}
+            .xiv-Pgl:before{content:'\f002';}
+            .xiv-Mrd:before{content:'\f003';}
+            .xiv-Lnc:before{content:'\f004';}
+            .xiv-Arc:before{content:'\f005';}
+            .xiv-Cnj:before{content:'\f006';}
+            .xiv-Thm:before{content:'\f007';}
+            .xiv-Crp:before{content:'\f008';}
+            .xiv-Bsm:before{content:'\f009';}
+            .xiv-Arm:before{content:'\f010';}
+            .xiv-Gsm:before{content:'\f011';}
+            .xiv-Ltw:before{content:'\f012';}
+            .xiv-Wvr:before{content:'\f013';}
+            .xiv-Alc:before{content:'\f014';}
+            .xiv-Cul:before{content:'\f015';}
+            .xiv-Min:before{content:'\f016';}
+            .xiv-Btn:before{content:'\f017';}
+            .xiv-Fsh:before{content:'\f018';}
+            .xiv-Pld:before{content:'\f019';}
+            .xiv-Mnk:before{content:'\f020';}
+            .xiv-War:before{content:'\f021';}
+            .xiv-Drg:before{content:'\f022';}
+            .xiv-Brd:before{content:'\f023';}
+            .xiv-Whm:before{content:'\f024';}
+            .xiv-Blm:before{content:'\f025';}
+            .xiv-Acn:before{content:'\f026';}
+            .xiv-Smn:before{content:'\f027';}
+            .xiv-Sch:before{content:'\f028';}
+            .xiv-Rog:before{content:'\f029';}
+            .xiv-Nin:before{content:'\f030';}
+            .xiv-Mch:before{content:'\f031';}
+            .xiv-Drk:before{content:'\f032';}
+            .xiv-Ast:before{content:'\f033';}
+            .xiv-Sam:before{content:'\f034';}
+            .xiv-Rdm:before{content:'\f035';}
+            .xiv-Blu:before{content:'\f036';}
+            .xiv-Gnb:before{content:'\f037';}
+            .xiv-Dnc:before{content:'\f038';}
+            :root
+            {
+                --color-header: rgba(0,0,0,.5);
+                --color-bg-me: #404040;
+                --color-bg-bar: rgba(0,0,0,.5);
+                --color-bg-icon: #000;
+                --color-text: #FFF;
+                --color-common: #FFF;
+                --color-cdhit: rgb(192,0,192);
+                --color-dhit:rgb(255,128,255);
+                --color-chit: rgb(0,0,192);
+                --color-dps: #804040;
+                --color-tanker: #404080;
+                --color-healer: #408040;
+                --color-dps-bright:#F0A0A0;
+                --color-tanker-bright:#A0A0F0;
+                --color-healer-bright:#A0F0A0;
+                --color-maxhittext:#F0A0A0;
+                --color-dps-back: rgba(128, 64, 64, .75);
+                --color-dps-back-end: rgba(128, 64, 64, .25);
+                --color-tanker-back: rgba(64, 64, 128, .75);
+                --color-tanker-back-end: rgba(64, 64, 128, .25);
+                --color-healer-back: rgba(64, 128, 64, .75);
+                --color-healer-back-end: rgba(64, 128, 64, .25);
+                --color-me-back: rgba(128, 128, 128, .75);
+                --color-me-back-end: rgba(128, 128, 128, .25);
+                --color-glow: rgba(255,128,0,1);
+                --color-glow-5: rgba(255,128,0,.5);
+            }
+            
+            .xiv-lb_icon {background:url(./images/lbicon.svg) no-repeat; background-size: 24px 24px; background-position:50% 50%;}
+
+            html, body {margin:0; padding:2px; border:0; overflow:hidden}
+            .header {height: 32px; background:var(--color-header); border-radius:3px; color:var(--color-text); line-height:32px; padding:0px 8px; clip-path:url(#header_path)}
+            .content {display:flex; flex-direction: column; margin-top:2px; width:100%; padding:2px; transition:.5s;}
+            .content>div {height:28px; display:flex; margin-bottom:2px; position:relative; padding-right:8px; transition:.5s;}
+            .content>div>div {margin-right:2px; color:var(--color-text); line-height:14px; position:relative; text-overflow:ellipsis}
+            .content>div>div:last-child {margin:0;}
+
+            .content>div>.tableitems {flex-grow:1; display:flex; flex-direction: column; display:relative;}
+            .content>div>.tableitems::before {clip-path:url(#coverright); background:var(--color-dps); content:""; height:28px; width:50px; display:block; position:absolute; left:-29px;}
+            .content>div>.tableitems::after {content:attr(data-perc); display:block; position:absolute; left:-4px; top:16px; text-shadow:1px 1px 0px #000; font-size:10px; text-align:right; width:22px;}
+
+            .content>.tanker>.tableitems::before {background-color:var(--color-tanker);}
+            .content>.healer>.tableitems::before {background-color:var(--color-healer);}
+            .content>.me>.tableitems::before {background-color:var(--color-bg-me);}
+
+            .content>div>.tableitems>div {flex-grow:1; display:flex; display:relative; height:14px}
+            .content>div>.tableitems>div>div[title] {padding:0px 4px}
+            .content>div>.tableitems>div>div[title]::after {content:attr(title); font-size:9px; margin-left:4px;}
+            .content>div>.tableitems>.upline>.name {flex-grow:1; padding-left:16px;}
+            .content>div>.tableitems>.downline {text-align:right; padding-right:8px;}
+            .content>div>.tableitems>div>.maxhit {color:var(--color-maxhittext); flex-grow:1; text-align:right;}
+            .content>div>.tableitems>div>.maxhit::after {display:none;}
+            .content>div>.tableitems>div>.maxhit::before {content:attr(title); font-size:9px; margin-right:4px;}
+
+            .content>div>.guage {position:Absolute; left:32px; right:4px; top:0; bottom:0; z-index:-1; overflow:hidden}
+            .content>div>.guage::before {content:""; display:block; height:28px; width:4096px; background:var(--color-bg-bar); position:absolute; right:0; top:0; clip-path:url(#barclip);}
+            .content>div>.guage::after {content:attr(data-perc); position:absolute; right:var(--perc); bottom:0; line-height:10px; font-size:9px; z-index:2;}
+            .content>div>.guage>.guage-process {height:28px; width:4096px; position:absolute; right:0; top:0; clip-path:url(#barclip); transition:.5s;}
+            .content>div>.guage>.guage-process::after {content:""; height:28px; width:var(--dwidth); position:absolute; top:0px; right:0px; display:block; background:linear-gradient(to left, var(--color-dps-back) 0%, var(--color-dps-back-end) 100%);}
+            .content>.tanker>.guage>.guage-process::after {background:linear-gradient(to left, var(--color-tanker-back) 0%, var(--color-tanker-back-end) 100%);}
+            .content>.healer>.guage>.guage-process::after {background:linear-gradient(to left, var(--color-healer-back) 0%, var(--color-healer-back-end) 100%);}
+            .content>.me>.guage>.guage-process::after {background:linear-gradient(to left, var(--color-me-back) 0%, var(--color-me-back-end) 100%);}
+
+            .content>div>.jobicon {display:block; position:relative; min-width:28px; filter:drop-shadow(0px 0px 1px var(--color-glow))drop-shadow(0px 0px 1px var(--color-glow))}
+            .content>div>.jobicon>.cover {height:28px; width:28px; position:absolute; z-index:1;}
+            
+            .content>div>.jobicon>.cover::after {content:""; height:28px; width:28px; display:block; clip-path:url(#cover); background:conic-gradient(from 0deg, var(--color-cdhit) 0%, var(--color-cdhit) var(--cdhit, 0%), var(--color-dhit) var(--cdhit, 0%), var(--color-dhit) var(--dhit, 0%), var(--color-chit) var(--dhit, 0%), var(--color-chit) var(--chit, 0%), var(--color-common) var(--chit, 0%), var(--color-common) 100%); position:absolute; left:0; top:0;}
+            .content>div>.jobicon>i {position:absolute; line-height:30px; width:28px; height:28px; left:0px; font-size:24px; padding-top:1px; clip-path:url(#coverbg)}
+            .content>div>.jobicon::before {clip-path:url(#coverbg); background-color:var(--color-bg-icon)}
+
+            .resizer {position:fixed; right:1px; bottom:1px; width:16px; height:16px; clip-path:url()}
+            .inactive {opacity:.25;}
+        </style>
+    </head>
+    <body>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="position:absolute;">
+            <clippath id="cover">
+                <path d="M14,0C6.268,0,0,6.268,0,14c0,7.732,6.268,14,14,14s14-6.268,14-14C28,6.268,21.731,0,14,0z M14,26 c-6.627,0-12-5.372-12-12C2,7.373,7.373,2,14,2c6.626,0,12,5.373,12,12C26,20.627,20.625,26,14,26z"/>
+            </clippath>
+            <clippath id="iconinner">
+                <path d="M14,1C6.82,1,1,6.82,1,14s5.82,13,13,13s13-5.82,13-13S21.18,1,14,1z M14,25C7.925,25,3,20.075,3,14S7.925,3,14,3 s11,4.925,11,11S20.075,25,14,25z"/>
+            </clippath>
+            <clippath id="coverbg">
+                <circle cx="14" cy="14" r="13"/>
+            </clippath>
+            <clippath id="coverright">
+                <path d="M46,18h-9.285L39,14L31,0h-9.26C26.663,2.729,30,7.973,30,14s-3.337,11.271-8.261,14H46c0.553,0,1-0.447,1-1
+                v-8C47,18.448,46.553,18,46,18z"/>
+            </clippath>
+            <clippath id="coverrightorg">
+                <path d="M31,0h-9.26C26.663,2.728,30,7.973,30,14s-3.337,11.271-8.261,14H31l8-14L31,0z"/>
+            </clippath>
+            <clippath id="barclip">
+                <polygon points="0,0 4088,0 4096,14 4088,28 0,28 "/>
+            </clippath>
+            <clippath id="resizer">
+                <polygon points="16,1 1,16 4,16 16,4 "/>
+                <polygon points="16,6 6,16 9,16 16,9 "/>
+                <polygon points="16,11 11,16 14,16 16,14 "/>
+            </clippath>
+            <clippath id="header_path"></clippath>
+        </svg>
+        <div class="resizer"></div>
+        <div class="header">
+            <div class="titlename"></div>
+        </div>
+        <div class="content"></div>
+        <script>
+            class FWebSocket
+            {
+                constructor(uri)
+                {
+                    this.uri = uri;
+                    this.url = uri;
+                    this.id  = null;
+                    this.activate = false;
+                    let self = this;
+
+                    document.addEventListener('onBroadcastMessage', function( callback )
+                    {
+                        self.onBroadcastMessage(callback);
+                    });
+
+                    document.addEventListener('onRecvMessage', function( callback )
+                    {
+                        self.onRecvMessage(callback);
+                    });
+
+                    window.addEventListener('message', function(e)
+                    {
+                        if (e.data.type === 'onBroadcastMessage') self.onBroadcastMessage( e.data );
+                    });
+
+                    window.addEventListener("unload", function()
+                    {
+                        self.close();
+                    }, false);
+
+                    this.connect();
+                }
+                connect()
+                {
+                    let self = this;
+                    if (typeof this.ws != "undefined" && this.ws != null) this.close();
+                    this.activate = true;
+                    var url_string = window.location.href;
+                    var url = new URL(url_string);
+                    var c = url.searchParams.get("HOST_PORT");
+                    console.log(c);
+                    if (c)
+                    {
+                        if (window.location.href.indexOf("fake") > -1)
+                        {
+                            this.uri = c;
+                        }
+                        else this.uri = this.uri.replace("localhost:20000", c);
+                    }
+                    this.ws = new WebSocket(this.uri);
+                    this.ws.onopen = function(event) { self.onopen(event); }
+                    this.ws.onmessage = function(event) { self.onmessage(event); }
+                    this.ws.onclose = function(event) { self.onclose(event); }
+                    this.ws.onerror = function(event) { self.onerror(event); }
+                }
+                close()
+                {
+                    this.activate = false;
+                    if (typeof this.ws != "undefined" && this.ws != null) this.ws.close();
+                }
+                onopen(event) { }
+                onclose(event)
+                {
+                    this.ws = null;
+                    if (this.activate)
+                    {
+                        let self = this;
+                        setTimeout(function() {self.connect(); }, 2000);
+                    }
+                }
+                onmessage(event) { }
+                onerror(event) { console.log(event); }
+                send(data) { this.ws.send(data); }
+                onRecvMessage(data) { }
+                onBroadcastMessage(data) { }
+            }
+
+            const
+                healer = ["Cnj", "Whm", "Sch", "Ast"],
+                tanker = ["Gla", "Gld", "Mrd", "Pld", "War", "Drk", "Gnb"],
+                intValues = ["DURATION","DPS","DPS-k","DPS-m","ENCDPS","ENCDPS-k","ENCDPS-m","ENCHPS","ENCHPS-k","ENCHPS-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","CritDirectHitCount","DirectHitCount","MAXHIT","MAXHEAL","TOHIT","crithits","absorbHeal","critheals","damage","damageShield","damagetaken","deaths","healed","heals","healstaken","hitfailed","hits","kills","cures","misses","overHeal","powerdrain","powerheal","swings","threatdelta"],
+                floatValues = ["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","Last10DPS","Last30DPS","Last60DPS","Last180DPS"],
+                percentValues = ["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%"],
+                f = new FWebSocket("ws://localhost:20000/MiniParse");            
+            f.onmessage = (e) => { dataProcess(e.data); }
+
+            function redrawHeader(elem)
+            {
+                let width = elem.clientWidth;
+                let height = elem.clientHeight;
+                let w_a = width - 4;
+                let w_c = height - 4;
+                let svg_line = "0,4 4,0 $A,0 $B,4 $B,$C $A,$D 4,$D 0,$C 0,4".replace(/\$A/ig, w_a).replace(/\$B/ig, width).replace(/\$C/ig, w_c).replace(/\$D/ig, height);
+                let poly = document.createElementNS('http://www.w3.org/2000/svg', "polygon");
+                poly.setAttribute("points", svg_line);
+                document.querySelector("#header_path").innerHTML = "";
+                document.querySelector("#header_path").append(poly);
+            }
+
+            document.addEventListener("resize", (e) => {redrawHeader(document.querySelector(".header"))});
+            redrawHeader(document.querySelector(".header"));
+
+            let sortkey = "encdps";
+            let sortkeyperc = "damage%";
+            let tick = 0;
+            let ticker = setInterval(() => {
+                if (tick > 30) document.querySelector(".content").classList.add("inactive");
+                else
+                {
+                    document.querySelector(".content").classList.remove("inactive");
+                    tick++;
+                }
+            }, 1000);
+
+            function onOverlayDataUpdate(e)
+            {
+                dataProcess(JSON.stringify({"msgtype":"CombatData", "msg":e}));
+            }
+
+            function personClassCheck(person, className, filter, matrix)
+            {
+                const e = document.querySelector(filter.replace(/%PERSON_LDASH%/ig, person.name.replace("'", "_")).replace(/%PERSON%/ig, person.name));
+                if (matrix) e.classList.add(className);
+                else e.classList.remove(className);
+            }
+
+            function buildElement(tag, className, parent)
+            {
+                const e = document.createElement(tag);
+                if (className != "") e.classList.add(className);
+                if (parent != undefined && parent != null) parent.append(e);
+                return e;
+            }
+
+            function initCombatent(person)
+            {
+                var url_string = window.location.href;
+                var url = new URL(url_string);
+                var c = url.searchParams.get("name");
+                /* elements */
+                const 
+                job_ico_class = "xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job),
+                container          = buildElement("div", ""               , document.querySelector(".content")),
+                    jobicon        = buildElement("div", "jobicon"        , container),
+                    /**/cover      = buildElement("div", "cover"          , jobicon),
+                    /**/icon       = buildElement(  "i", job_ico_class, jobicon),
+                    tableitems     = buildElement("div", "tableitems"     , container),
+                    /**/upline     = buildElement("div", "upline"         , tableitems),
+                    /*    */name   = buildElement("div", "name"           , upline),
+                    /**/downline   = buildElement("div", "downline"       , tableitems),
+                    backguage      = buildElement("div", "guage"          , container),
+                    /**/barprocess = buildElement("div", "guage-process"  , backguage),
+                    /*    */encdps = buildElement("div", "encdps"         , upline),
+                    /*    */maxhit = buildElement("div", "maxhit"         , downline);
+
+                container.setAttribute("data-name", person.name.replace("'", "_"));
+                encdps.setAttribute("title", "dps");
+                if (c != undefined && c == "hide" && person.name != "YOU") name.style.filter = "blur(3px)";
+            }
+
+            function dataProcess(data)
+            {
+                if (data == ".") return; // ping
+                tick = 0;
+                let raw = null;
+                try
+                {
+                    raw = JSON.parse(data, (k,v) =>
+                    {
+                        if (intValues.filter(x => x == k).length > 0) return v == "0" ? 0 : (isNaN(parseInt(v)) ? 0 : parseInt(v));
+                        else if (floatValues.filter(x => x == k).length > 0) return (v == "0" || v == "0.00") ? 0 : (isNaN(parseFloat(v)) ? 0 : parseFloat(v));
+                        else if (percentValues.filter(x => x == k).length > 0) return (v == "0" ? 0 : parseInt(v)) * 0.01;
+                        else return v;
+                    });
+                }
+                catch (err)
+                {
+                    return err;
+                }
+
+                let combatant = [];
+                if (raw.msgtype == "CombatData")
+                {
+                    let rawCombatants = raw.msg.Combatant;
+                    let combatants = [];
+                    let idx = 1;
+
+                    for(const item of Object.values(rawCombatants)) combatants.push(item);
+                    try { document.querySelector(".titlename").innerHTML = raw.msg.Encounter.CurrentZoneName + " " + raw.msg.Encounter.duration; } catch (ex) { }
+
+                    combatants.sort((a, b) => b[sortkey] - a[sortkey]);
+
+                    for(const combatant of combatants)
+                    {
+                        combatant.max = combatants[0][sortkey];
+                        combatant.rank = idx++;
+                    }
+
+                    document.querySelectorAll(".content>div").forEach((elem) =>
+                    {
+                        if (combatants.filter(x => x.name.replace("'", "_") == elem.getAttribute("data-name")).length <= 0) elem.remove();
+                    });
+
+                    for(const person of combatants)
+                    {
+                        let container = document.querySelector(".content>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
+                        if (container == null)
+                        {
+                            initCombatent(person);
+                        }
+
+                        container = document.querySelector(".content>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
+
+                        let
+                            cdhit = (person.CritDirectHitPct * 100),
+                            dhit =  (person.DirectHitPct * 100),
+                            chit =  (person["crithit%"] * 100),
+                            rp = 100 - (person[sortkey] / person.max * 100);
+
+                        container.querySelector(".name").innerHTML = person.name;
+
+                        personClassCheck(person, "tanker", ".content>div[data-name=\"%PERSON_LDASH%\"]", tanker.filter((x) => x == person.Job).length > 0);
+                        personClassCheck(person, "healer", ".content>div[data-name=\"%PERSON_LDASH%\"]", healer.filter((x) => x == person.Job).length > 0);
+                        personClassCheck(person, "me", ".content>div[data-name=\"%PERSON_LDASH%\"]", person.name == "YOU");
+
+                        container.setAttribute("style", "order:" + person.rank);
+                        container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + ((cdhit / 2) + dhit) + "%; --chit:" + (dhit + chit) + "%");
+                        container.querySelector(".tableitems").setAttribute("data-perc", (person[sortkeyperc] * 100).toFixed(0) + "%");
+                        container.querySelector(".tableitems").setAttribute("style", "--perc:" + (rp > 90 ? 90 : rp) + "%");
+                        container.querySelector(".guage").setAttribute("data-width", (rp > 90 ? 90 : rp));
+                        container.querySelector(".guage-process").setAttribute("style", "right:" + (container.querySelector(".guage").offsetWidth * (rp > 90 ? 90 : rp) * 0.01).toFixed(0) + "px; --dwidth:" + (container.querySelector(".guage").offsetWidth - Math.floor(container.querySelector(".guage").offsetWidth * (rp > 90 ? 90 : rp) * 0.01)) + "px");
+                        container.querySelector(".jobicon>i").classList.add("xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job));
+                        container.querySelector(".jobicon>i").setAttribute("title", "CDHit: " + cdhit + "%, DHit: " + dhit + "%, CHit: " + chit + "%");
+                        container.querySelector(".encdps").innerHTML = person.encdps.toFixed(2);
+                        container.querySelector(".maxhit").innerHTML = person.maxhit.split('-')[1];
+                        container.querySelector(".maxhit").setAttribute("title", person.maxhit.split('-')[0]);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
