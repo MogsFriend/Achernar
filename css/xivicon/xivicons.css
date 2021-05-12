@@ -1,0 +1,21 @@
+@charset "utf-8";
+@font-face
+{
+    font-family: 'xivicons';
+    src: url('./xivicons.eot');
+    src: url('./xivicons.eot?#iefix') format('embedded-opentype'),
+    url('./xivicons.woff') format('woff'),
+    url('./xivicons.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+[class*='xiv-']:before
+{
+    display: inline-block;
+    font-family: 'xivicons';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
