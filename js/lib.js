@@ -200,7 +200,7 @@ _ = function(e, c = window)
     else console.warn("No Matched Element");
     return null;
 },
-version = {major:0, minor:1, patch:1, label:"beta", patchname:"Bayer designation"},
+version = {major:0, minor:1, patch:2, label:"beta", patchname:"Bayer designation"},
 svglib = {
     "cover":[
         {
@@ -429,43 +429,9 @@ elementBuilder = {
             /*    */maxhit =       downline.new("div", "maxvalue"),
             backguage =                item.new("div", "guage"),
             /**/barprocess =      backguage.new("div", "guage-process");
-        
         item.classList.add("tanker");
         name.innerHTML = "Laniakea Supercluster";
-        // backguage.setAttribute("data-process", "50");
-        // barprocess.setAttribute("style", "--dwidth:50%");
-        // barprocess.css({"right":"50%"});
         return item;
-    }
-}
-
-function createColorEditor(parent, role_tag)
-{
-    let p = _(parent);
-    let list = ["color-role-c", "color-role-a", "color-role-b", "color-role-d"];
-    for(let v of list)
-    {
-        let color_list = p.new("div", "color-list");
-        let color_name = color_list.new("div", "color-name");
-        let color_edit = color_list.new("div", "color-editor");
-        let color_box = color_edit.new("div", "color-box");
-        let color_value = color_box.new("div", "color-value");
-
-        // 기본값 설정
-        color_value.setAttribute("style", "--background:var(--color-" + role_tag + v.replace("color-role", "") + ");");
-
-        color_edit.addEventListener("click", (e) =>
-        {
-            let c_style = getComputedStyle(color_value);
-            _(".colorpicker").display("block");
-            
-            let width = _(".colorpicker").getBoundingClientRect().width;
-            let height = _(".colorpicker").getBoundingClientRect().height;
-
-            _(".colorpicker").css({"top":"calc(50% - " + (height / 2) + "px)", "left":"calc(50% - " + (width / 2) + "px)"});
-            // console.log(c_style.backgroundColor);
-        });
-        color_name.innerHTML = lang.get(v);
     }
 }
 
@@ -493,42 +459,6 @@ function createPreview(target, role, job)
     rcase.append(s);
 
     _("." + target).append(rcase);
-}
-
-function buildElement(tag, className, parent)
-{
-    const e = document.createElement(tag);
-    if (className != "") e.classList.add(className);
-    if (parent != undefined && parent != null) parent.append(e);
-    return e;
-}
-
-function initCombatent(person)
-{
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var c = url.searchParams.get("name");
-    /* elements */
-    const 
-    job_ico_class = "xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job),
-    container          = buildElement("div", ""               , document.querySelector(".content")),
-        jobicon        = buildElement("div", "jobicon"        , container),
-        /**/cover      = buildElement("div", "cover"          , jobicon),
-        /**/icon       = buildElement(  "i", job_ico_class, jobicon),
-        tableitems     = buildElement("div", "tableitems"     , container),
-        /**/upline     = buildElement("div", "upline"         , tableitems),
-        /*    */name   = buildElement("div", "name"           , upline),
-        /**/downline   = buildElement("div", "downline"       , tableitems),
-        backguage      = buildElement("div", "guage"          , container),
-        /**/barprocess = buildElement("div", "guage-process"  , backguage),
-
-        /*    */encdps = buildElement("div", "encdps"         , upline),
-        /*    */maxhit = buildElement("div", "maxhit"         , downline);
-
-    container.setAttribute("data-name", person.name.replace("'", "_"));
-    encdps.setAttribute("title", "dps");
-
-    if (c != undefined && c == "hide" && person.name != "YOU") name.style.filter = "blur(3px)";
 }
 
 document.addEventListener("DOMContentLoaded", () =>
