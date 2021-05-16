@@ -24,104 +24,129 @@ i {display:block; color:#FFF; height:28px; line-height:30px; width:28px; text-al
     --apptheme-slide-border: #53555C;
     --apptheme-slide-icon: #797B80;
     --apptheme-slide-fore: #FFFFFF;
-    --color-resizer: rgba(255,255,255,.2);
+    
     --color-timer-color: #FFF;
     --color-bg-bar: rgba(0,0,0,.5);
     --color-bg-icon: #000;
     --color-text: #F0F0F0;
     --color-common: #F0F0F0;
     --color-maxhittext:#FFF020;
+    --color-glow: rgba(255,128,0,1);
+    --color-glow-5: rgba(255,128,0,.5);
+    
     --color-cdhit: rgb(192,0,192);
     --color-dhit:rgb(255,128,255);
     --color-chit: rgb(0,0,192);
-    --color-glow: rgba(255,128,0,1);
-    --color-glow-5: rgba(255,128,0,.5);    
+    --color-shadow: rgba(0,0,0,0.5);
+    --color-textshadow: rgba(0,0,0,1);
     --color-header: linear-gradient(to top, rgba(0,0,0,.5) 0%, rgba(0,0,0,.75) 100%);
-    
+    --color-resizer: rgba(255,255,255,.2);
+
     --color-role-pld-a: rgba(160, 196, 204, .75);
     --color-role-pld-b: rgba(160, 196, 204, .5);
     --color-role-pld-c: rgba(160, 196, 204, .25);
     --color-role-pld-d: rgba(160, 196, 204);
+    
     --color-role-war-a: rgba(196, 96, 96, .75);
     --color-role-war-b: rgba(196, 96, 96, .5);
     --color-role-war-c: rgba(196, 96, 96, .25);
     --color-role-war-d: rgba(196, 96, 96);
+
     --color-role-drk-a: rgba(160, 96, 128, .75);
     --color-role-drk-b: rgba(160, 96, 128, .5);
     --color-role-drk-c: rgba(160, 96, 128, .25);
     --color-role-drk-d: rgba(160, 96, 128);
+
     --color-role-gnb-a: rgba(196, 160, 96, .75);
     --color-role-gnb-b: rgba(196, 160, 96, .5);
     --color-role-gnb-c: rgba(196, 160, 96, .25);
     --color-role-gnb-d: rgba(196, 160, 96);
+
     --color-role-whm-a: rgba(196, 172, 144, .75);
     --color-role-whm-b: rgba(196, 172, 144, .5);
     --color-role-whm-c: rgba(196, 172, 144, .25);
     --color-role-whm-d: rgba(196, 172, 144);
+
     --color-role-sch-a: rgba(72, 64, 196, .75);
     --color-role-sch-b: rgba(72, 64, 196, .5);
     --color-role-sch-c: rgba(72, 64, 196, .25);
     --color-role-sch-d: rgba(72, 64, 196);
+
     --color-role-ast-a: rgba(196, 144, 96, .75);
     --color-role-ast-b: rgba(196, 144, 96, .5);
     --color-role-ast-c: rgba(196, 144, 96, .25);
     --color-role-ast-d: rgba(196, 144, 96);
+
     --color-role-mnk-a: rgba(196, 160, 64, .75);
     --color-role-mnk-b: rgba(196, 160, 64, .5);
     --color-role-mnk-c: rgba(196, 160, 64, .25);
     --color-role-mnk-d: rgba(196, 160, 64);
+
     --color-role-drg-a: rgba(72, 96, 192, .75);
     --color-role-drg-b: rgba(72, 96, 192, .5);
     --color-role-drg-c: rgba(72, 96, 192, .25);
     --color-role-drg-d: rgba(72, 96, 192);
+
     --color-role-nin-a: rgba(128, 128, 144, .75);
     --color-role-nin-b: rgba(128, 128, 144, .5);
     --color-role-nin-c: rgba(196, 96, 128, .25);
     --color-role-nin-d: rgba(128, 128, 144);
+
     --color-role-sam-a: rgba(196, 196, 172, .75);
     --color-role-sam-b: rgba(196, 196, 172, .5);
     --color-role-sam-c: rgba(196, 96, 64, .25);
     --color-role-sam-d: rgba(196, 196, 172);
+
     --color-role-brd-a: rgba(128, 196, 64, .75);
     --color-role-brd-b: rgba(128, 196, 64, .5);
     --color-role-brd-c: rgba(128, 196, 64, .25);
     --color-role-brd-d: rgba(128, 196, 64);
+
     --color-role-mch-a: rgba(64, 160, 160, .75);
     --color-role-mch-b: rgba(64, 160, 160, .5);
     --color-role-mch-c: rgba(64, 160, 160, .25);
     --color-role-mch-d: rgba(64, 160, 160);
+
     --color-role-dnc-a: rgba(192, 144, 144, .75);
     --color-role-dnc-b: rgba(192, 144, 144, .5);
     --color-role-dnc-c: rgba(192, 144, 144, .25);
     --color-role-dnc-d: rgba(192, 144, 144);
+
     --color-role-blm-a: rgba(96, 64, 144, .75);
     --color-role-blm-b: rgba(96, 64, 144, .5);
     --color-role-blm-c: rgba(96, 64, 144, .25);
     --color-role-blm-d: rgba(96, 64, 144);
+
     --color-role-smn-a: rgba(64, 160, 48, .75);
     --color-role-smn-b: rgba(64, 160, 48, .5);
     --color-role-smn-c: rgba(64, 160, 64, .25);
     --color-role-smn-d: rgba(64, 160, 48);
+
     --color-role-rdm-a: rgba(196, 32, 128, .75);
     --color-role-rdm-b: rgba(196, 32, 128, .5);
     --color-role-rdm-c: rgba(160, 32, 96, .25);
     --color-role-rdm-d: rgba(160, 32, 96);
+
     --color-role-blu-a: rgba(64, 128, 196, .75);
     --color-role-blu-b: rgba(64, 128, 196, .5);
     --color-role-blu-c: rgba(64, 128, 196, .25);
     --color-role-blu-d: rgba(64, 128, 196);
+
     --color-role-dps-a: rgba(128, 64, 64, .75);
     --color-role-dps-b: rgba(128, 64, 64, .5);
     --color-role-dps-c: rgba(128, 64, 64, .25);
     --color-role-dps-d: #804040;
+
     --color-role-tanker-a: rgba(64, 64, 128, .75);
     --color-role-tanker-b: rgba(64, 64, 128, .5);
     --color-role-tanker-c: rgba(64, 64, 128, .25);
     --color-role-tanker-d: #404080;
+
     --color-role-healer-a: rgba(64, 128, 64, .75);
     --color-role-healer-b: rgba(64, 128, 64, .5);
     --color-role-healer-c: rgba(64, 128, 64, .25);
     --color-role-healer-d: #408040;
+
     --color-role-me-a: rgba(160, 192, 160, .75);
     --color-role-me-b: rgba(160, 192, 160, .5);
     --color-role-me-c: rgba(160, 192, 160, .25);
@@ -193,8 +218,8 @@ html, body {margin:0; padding:0; border:0; overflow:hidden}
 }
 
 div.main-list-area {display:flex; flex-direction: column; margin-top:1px; width:100%; padding:2px; transition:.5s;}
-div.main-list-area>div {height:28px; display:flex; margin-bottom:2px; position:relative; padding-right:8px; transition:.5s; filter:drop-shadow(0px 1px 1px rgba(0,0,0,0.5));}
-div.main-list-area>div * {text-shadow:0px 1px 1px rgba(0,0,0,1), 0px 1px 1px rgba(0,0,0,1);}
+div.main-list-area>div {height:28px; display:flex; margin-bottom:2px; position:relative; padding-right:8px; transition:.5s; filter:drop-shadow(0px 1px 1px var(--color-shadow));}
+div.main-list-area>div * {text-shadow:0px 1px 1px var(--color-textshadow), 0px 1px 1px var(--color-textshadow);}
 div.main-list-area>div>div {margin-right:2px; color:var(--color-text); line-height:14px; position:relative; text-overflow:ellipsis}
 div.main-list-area>div>div:last-child {margin:0;}
 

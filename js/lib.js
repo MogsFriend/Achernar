@@ -1,4 +1,205 @@
-const lang = new function()
+class FWebSocket
+{
+    constructor(uri)
+    {
+        this.uri = uri;
+        this.url = uri;
+        this.id  = null;
+        this.activate = false;
+        let self = this;
+        document.addEventListener('onBroadcastMessage', function( callback )
+        {
+            self.onBroadcastMessage(callback);
+        });
+        document.addEventListener('onRecvMessage', function( callback )
+        {
+            self.onRecvMessage(callback);
+        });
+        window.addEventListener('message', function(e)
+        {
+            if (e.data.type === 'onBroadcastMessage') self.onBroadcastMessage( e.data );
+        });
+        window.addEventListener("unload", function()
+        {
+            self.close();
+        }, false);
+        this.connect();
+    }
+    connect()
+    {
+        let self = this;
+        if (typeof this.ws != "undefined" && this.ws != null) this.close();
+        this.activate = true;
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("HOST_PORT");
+        if (c)
+        {
+            if (window.location.href.indexOf("fake") > -1)
+            {
+                this.uri = c;
+            }
+            else this.uri = this.uri.replace("localhost:20000", c);
+        }
+        this.ws = new WebSocket(this.uri);
+        this.ws.onopen = function(event) { self.onopen(event); }
+        this.ws.onmessage = function(event) { self.onmessage(event); }
+        this.ws.onclose = function(event) { self.onclose(event); }
+        this.ws.onerror = function(event) { self.onerror(event); }
+    }
+    close()
+    {
+        this.activate = false;
+        if (typeof this.ws != "undefined" && this.ws != null) this.ws.close();
+    }
+    onopen(event) { }
+    onclose(event)
+    {
+        this.ws = null;
+        if (this.activate)
+        {
+            let self = this;
+            setTimeout(function() {self.connect(); }, 2000);
+        }
+    }
+    onmessage(event) { }
+    onerror(event)
+    {
+        console.log(event);
+    }
+    send(data) { this.ws.send(data); }
+    onRecvMessage(data) { }
+    onBroadcastMessage(data) { }
+}
+
+class ffxiv
+{
+    constructor(raw)
+    {
+        this.data = {};
+        if (raw == "." || !raw)
+            this.data = { "type": "pinging", "msgtype": "ping" };
+        try
+        {
+            let data = JSON.parse(raw, (k, v) =>
+            {
+                if (intValues.filter(x => x == k).length > 0)
+                    return v == "0" ? 0 : (isNaN(parseInt(v)) ? 0 : parseInt(v));
+                else if (floatValues.filter(x => x == k).length > 0)
+                    return (v == "0" || v == "0.00") ? 0 : (isNaN(parseFloat(v)) ? 0 : parseFloat(v));
+                else if (percentValues.filter(x => x == k).length > 0)
+                    return (v == "0" ? 0 : parseInt(v)) * 0.01;
+                else
+                    return v;
+            });
+            this.data = data;
+        }
+        catch (err) { this.data = { "type": "processError", "msgtype": "error", "msg": err }; }
+        return this.data;
+    }
+
+    getJson()
+    {
+        return JSON.stringify(this.data);
+    }
+}
+
+const 
+version = new function()
+{
+    let self = this;
+    this.major = 0;
+    this.minor = 1;
+    this.patch = 4;
+    this.label = "beta";
+    this.patchname = "Bayer designation";
+    this.toString = () =>
+    {
+        return [[this.major,this.minor,this.patch].join("."),this.label,this.patchname].join(" ");
+    }
+},
+defaultsvg = "0,8 8,0 $A,0 $B,8 $B,$C $A,$D 8,$D 0,$C 0,8",
+timedisplay = ["hour-a", "min-a", "min-b", "sec-a", "sec-b"],
+healer = ["Cnj", "Whm", "Sch", "Ast"],
+tanker = ["Gla", "Gld", "Mrd", "Pld", "War", "Drk", "Gnb"],
+intValues = ["DURATION","DPS","DPS-k","DPS-m","ENCDPS","ENCDPS-k","ENCDPS-m","ENCHPS","ENCHPS-k","ENCHPS-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","CritDirectHitCount","DirectHitCount","MAXHIT","MAXHEAL","TOHIT","crithits","absorbHeal","critheals","damage","damageShield","damagetaken","deaths","healed","heals","healstaken","hitfailed","hits","kills","cures","misses","overHeal","powerdrain","powerheal","swings","threatdelta"],
+floatValues = ["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","Last10DPS","Last30DPS","Last60DPS","Last180DPS"],
+percentValues = ["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%"],
+_ = function(e, c = window)
+{
+    let init = function(elem)
+    {
+        elem.display = function(style) { elem.style.display = style; }
+        elem.css = function(json)
+        {
+            try
+            {
+                for(let k in json)
+                {
+                    let cfj = k.split("-");
+                    for (let i = 1; i < cfj.length; i++) cfj[i] = cfj[i].charAt(0).toUpperCase() + cfj[i].slice(1);
+                    cfj = cfj.join("");
+                    this.style[cfj] = json[k];
+                }
+            }
+            catch (ex) { }
+        }
+        elem.new = function(type, cls)
+        {
+            let obj = null;
+            if (type) obj = c.document.createElement(type);
+            else obj = c.document.createElement("div");
+
+            if (cls)
+            {
+                if (Array.isArray(cls))
+                {
+                    try
+                    {
+                        for(let i of cls) obj.classList.add(i);
+                    }
+                    catch (ex) { }
+                }
+                else obj.classList.add(cls);
+            }
+            elem.append(obj);
+
+            return init(obj);
+        }
+        elem.find = function(filter) 
+        {
+            return init(elem.querySelector(filter));
+        }
+        return elem;
+    }
+
+    if (e && typeof e === "string")
+    {
+        let obj = c.document.querySelectorAll(e);
+        if (obj == null) return null;
+        if (obj.length > 1)
+        {
+            let org = obj;
+            obj = obj[0];
+            obj.all = org;
+            obj.get = function(i)
+            {
+                if (i < 0)  return init(org[i]);
+                else return init(org[org.length + i]);
+            }
+        }
+        else obj = obj[0];
+        return init(obj);
+    }
+    else if (e.constructor.toString().indexOf("HTML") > -1 && e.constructor.toString().indexOf("Element") > -1)
+    {
+        return init(e);
+    }
+    else console.warn("No Matched Element");
+    return null;
+},
+$ = _,
+lang = new function()
 {
     this.language = "ko";
 
@@ -127,80 +328,6 @@ const lang = new function()
         else return k;
     }
 },
-_ = function(e, c = window)
-{
-    let init = function(elem)
-    {
-        elem.display = function(style) { elem.style.display = style; }
-        elem.css = function(json)
-        {
-            try
-            {
-                for(let k in json)
-                {
-                    let cfj = k.split("-");
-                    for (let i = 1; i < cfj.length; i++) cfj[i] = cfj[i].charAt(0).toUpperCase() + cfj[i].slice(1);
-                    cfj = cfj.join("");
-                    this.style[cfj] = json[k];
-                }
-            }
-            catch (ex) { }
-        }
-        elem.new = function(type, cls)
-        {
-            let obj = null;
-            if (type) obj = c.document.createElement(type);
-            else obj = c.document.createElement("div");
-
-            if (cls)
-            {
-                if (Array.isArray(cls))
-                {
-                    try
-                    {
-                        for(let i of cls) obj.classList.add(i);
-                    }
-                    catch (ex) { }
-                }
-                else obj.classList.add(cls);
-            }
-            elem.append(obj);
-
-            return init(obj);
-        }
-        elem.find = function(filter) 
-        {
-            return init(elem.querySelector(filter));
-        }
-        return elem;
-    }
-
-    if (e && typeof e === "string")
-    {
-        let obj = c.document.querySelectorAll(e);
-        if (obj == null) return null;
-        if (obj.length > 1)
-        {
-            let org = obj;
-            obj = obj[0];
-            obj.all = org;
-            obj.get = function(i)
-            {
-                if (i < 0)  return init(org[i]);
-                else return init(org[org.length + i]);
-            }
-        }
-        else obj = obj[0];
-        return init(obj);
-    }
-    else if (e.constructor.toString().indexOf("HTML") > -1 && e.constructor.toString().indexOf("Element") > -1)
-    {
-        return init(e);
-    }
-    else console.warn("No Matched Element");
-    return null;
-},
-version = {major:0, minor:1, patch:2, label:"beta", patchname:"Bayer designation"},
 svglib = {
     "cover":[
         {
@@ -416,51 +543,51 @@ svglib = {
 },
 elementBuilder = {
     default:() => {
-        let item = _(document.createElement("div"));
         const
-            jobicon =                  item.new("div", "jobicon"),
-            /**/cover =             jobicon.new("div", "cover"),
-            /**/icon =              jobicon.new(  "i", ["job-icon","xiv-Gla"]),
-            tableitems =               item.new("div", "tableitems"),
-            /**/upline =         tableitems.new("div", "upline"),
-            /*    */name =           upline.new("div", "name"),
-            /*    */encdps =         upline.new("div", "mainvalue"),
-            /**/downline =       tableitems.new("div", "downline"),
-            /*    */maxhit =       downline.new("div", "maxvalue"),
-            backguage =                item.new("div", "guage"),
-            /**/barprocess =      backguage.new("div", "guage-process");
+            item = _(document.createElement("div")),
+            /**/jobicon =                  item.new("div", "jobicon"),
+            /*    */cover =             jobicon.new("div", "cover"),
+            /*    */icon =              jobicon.new(  "i", ["job-icon","xiv-Gla"]),
+            /*    */tableitems =               item.new("div", "tableitems"),
+            /*    */upline =         tableitems.new("div", "upline"),
+            /*        */name =           upline.new("div", "name"),
+            /*        */encdps =         upline.new("div", "mainvalue"),
+            /*    */downline =       tableitems.new("div", "downline"),
+            /*        */maxhit =       downline.new("div", "maxvalue"),
+            /**/backguage =                item.new("div", "guage"),
+            /*    */barprocess =      backguage.new("div", "guage-process");
+
         item.classList.add("tanker");
         name.innerHTML = "Laniakea Supercluster";
         return item;
+    },
+    header:() => {
+
+    }
+},
+previewBuilder = {
+    default:(target, role, job) => {
+        let icon = job.charAt(0).toUpperCase() + job.slice(1);
+        let s = elementBuilder.default();
+        let rcase = document.createElement("div");
+        rcase.classList.add("main-list-area");
+        rcase.style.position = "relative";
+        s.setAttribute("class", role);    
+        s.find("i").setAttribute("class", "job-icon");
+        s.find("i").classList.add("xiv-" + icon);
+        s.find(".mainvalue").innerHTML = "12345.67";
+        s.find(".mainvalue").setAttribute("title", "dps");
+        s.find(".maxvalue").innerHTML = "189012";
+        s.find(".maxvalue").setAttribute("title", "최대 대미지 스킬 이름");
+        s.find(".guage").setAttribute("data-width", "100");
+        s.find(".guage-process").setAttribute("style", "right:0%; --dwidth:100%;");
+        s.find(".cover").setAttribute("style", "--cdhit:15%; --dhit:30%; --chit:45%");
+        s.find(".tableitems").setAttribute("data-perc", "50%");
+        s.find(".tableitems").setAttribute("style", "--perc:50%");
+        rcase.append(s);
+        _("." + target).append(rcase);
     }
 }
-
-function createPreview(target, role, job)
-{
-    let icon = job.charAt(0).toUpperCase() + job.slice(1);
-    let s = elementBuilder.default();
-    let rcase = document.createElement("div");
-    rcase.classList.add("main-list-area");
-    rcase.style.position = "relative";
-
-    s.setAttribute("class", role);    
-    s.find("i").setAttribute("class", "job-icon");
-    s.find("i").classList.add("xiv-" + icon);
-    s.find(".mainvalue").innerHTML = "12345.67";
-    s.find(".mainvalue").setAttribute("title", "dps");
-    s.find(".maxvalue").innerHTML = "189012";
-    s.find(".maxvalue").setAttribute("title", "최대 대미지 스킬 이름");
-
-    s.find(".guage").setAttribute("data-width", "100");
-    s.find(".guage-process").setAttribute("style", "right:0%; --dwidth:100%;");
-    s.find(".cover").setAttribute("style", "--cdhit:15%; --dhit:30%; --chit:45%");
-    s.find(".tableitems").setAttribute("data-perc", "50%");
-    s.find(".tableitems").setAttribute("style", "--perc:50%");
-    rcase.append(s);
-
-    _("." + target).append(rcase);
-}
-
 document.addEventListener("DOMContentLoaded", () =>
 {
     for(let i in svglib)
