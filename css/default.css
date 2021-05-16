@@ -46,7 +46,7 @@ i {display:block; color:#FFF; height:28px; line-height:30px; width:28px; text-al
     --color-role-pld-b: rgba(160, 196, 204, .5);
     --color-role-pld-c: rgba(160, 196, 204, .25);
     --color-role-pld-d: rgba(160, 196, 204);
-    
+
     --color-role-war-a: rgba(196, 96, 96, .75);
     --color-role-war-b: rgba(196, 96, 96, .5);
     --color-role-war-c: rgba(196, 96, 96, .25);
@@ -341,3 +341,5 @@ div.main-list-area>.rdm>.guage>.guage-process::after {background:linear-gradient
 div.main-list-area>.blu>.jobicon::before {background:var(--color-role-blu-b);}
 div.main-list-area>.blu>.tableitems::before {background-color:var(--color-role-blu-d);}
 div.main-list-area>.blu>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-blu-a) 0%, var(--color-role-blu-c) 100%);}
+
+i {text-shadow:none !important; filter:drop-shadow(0px 0px 1px var(--color-shadow)) drop-shadow(0px 1px 0px var(--color-shadow));}

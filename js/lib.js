@@ -1,116 +1,10 @@
-class FWebSocket
-{
-    constructor(uri)
-    {
-        this.uri = uri;
-        this.url = uri;
-        this.id  = null;
-        this.activate = false;
-        let self = this;
-        document.addEventListener('onBroadcastMessage', function( callback )
-        {
-            self.onBroadcastMessage(callback);
-        });
-        document.addEventListener('onRecvMessage', function( callback )
-        {
-            self.onRecvMessage(callback);
-        });
-        window.addEventListener('message', function(e)
-        {
-            if (e.data.type === 'onBroadcastMessage') self.onBroadcastMessage( e.data );
-        });
-        window.addEventListener("unload", function()
-        {
-            self.close();
-        }, false);
-        this.connect();
-    }
-    connect()
-    {
-        let self = this;
-        if (typeof this.ws != "undefined" && this.ws != null) this.close();
-        this.activate = true;
-        var url_string = window.location.href;
-        var url = new URL(url_string);
-        var c = url.searchParams.get("HOST_PORT");
-        if (c)
-        {
-            if (window.location.href.indexOf("fake") > -1)
-            {
-                this.uri = c;
-            }
-            else this.uri = this.uri.replace("localhost:20000", c);
-        }
-        this.ws = new WebSocket(this.uri);
-        this.ws.onopen = function(event) { self.onopen(event); }
-        this.ws.onmessage = function(event) { self.onmessage(event); }
-        this.ws.onclose = function(event) { self.onclose(event); }
-        this.ws.onerror = function(event) { self.onerror(event); }
-    }
-    close()
-    {
-        this.activate = false;
-        if (typeof this.ws != "undefined" && this.ws != null) this.ws.close();
-    }
-    onopen(event) { }
-    onclose(event)
-    {
-        this.ws = null;
-        if (this.activate)
-        {
-            let self = this;
-            setTimeout(function() {self.connect(); }, 2000);
-        }
-    }
-    onmessage(event) { }
-    onerror(event)
-    {
-        console.log(event);
-    }
-    send(data) { this.ws.send(data); }
-    onRecvMessage(data) { }
-    onBroadcastMessage(data) { }
-}
-
-class ffxiv
-{
-    constructor(raw)
-    {
-        this.data = {};
-        if (raw == "." || !raw)
-            this.data = { "type": "pinging", "msgtype": "ping" };
-        try
-        {
-            let data = JSON.parse(raw, (k, v) =>
-            {
-                if (intValues.filter(x => x == k).length > 0)
-                    return v == "0" ? 0 : (isNaN(parseInt(v)) ? 0 : parseInt(v));
-                else if (floatValues.filter(x => x == k).length > 0)
-                    return (v == "0" || v == "0.00") ? 0 : (isNaN(parseFloat(v)) ? 0 : parseFloat(v));
-                else if (percentValues.filter(x => x == k).length > 0)
-                    return (v == "0" ? 0 : parseInt(v)) * 0.01;
-                else
-                    return v;
-            });
-            this.data = data;
-        }
-        catch (err) { this.data = { "type": "processError", "msgtype": "error", "msg": err }; }
-        return this.data;
-    }
-
-    getJson()
-    {
-        return JSON.stringify(this.data);
-    }
-}
-
 const 
 version = new function()
 {
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 4;
+    this.patch = 5;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
@@ -120,11 +14,12 @@ version = new function()
 },
 defaultsvg = "0,8 8,0 $A,0 $B,8 $B,$C $A,$D 8,$D 0,$C 0,8",
 timedisplay = ["hour-a", "min-a", "min-b", "sec-a", "sec-b"],
+skipkeys = ["n", "t", "pets", "total", "name", "threatdelta", "threatstr", "crittypes", "Job", "duration", "DURATION", "dps-*", "DPS-*", "DPS-k", "DPS-m", "DAMAGE-*", "DAMAGE-k", "DAMAGE-m", "DAMAGE-b", "ENCDPS", "ENCDPS-k", "ENCDPS-m", "ENCDPS-*", "ENCHPS-k", "ENCHPS-m", "ENCHPS-*", "Last10DPS", "Last30DPS", "Last60DPS", "Last180DPS", "damage-k", "damage-m", "damage-b", "damage-*", "maxhealward", "maxhealward-*", "MAXHEALWARD", "MAXHEALWARD-*"],
 healer = ["Cnj", "Whm", "Sch", "Ast"],
 tanker = ["Gla", "Gld", "Mrd", "Pld", "War", "Drk", "Gnb"],
 intValues = ["DURATION","DPS","DPS-k","DPS-m","ENCDPS","ENCDPS-k","ENCDPS-m","ENCHPS","ENCHPS-k","ENCHPS-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","CritDirectHitCount","DirectHitCount","MAXHIT","MAXHEAL","TOHIT","crithits","absorbHeal","critheals","damage","damageShield","damagetaken","deaths","healed","heals","healstaken","hitfailed","hits","kills","cures","misses","overHeal","powerdrain","powerheal","swings","threatdelta"],
 floatValues = ["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","Last10DPS","Last30DPS","Last60DPS","Last180DPS"],
-percentValues = ["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%"],
+percentValues = ["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%","critheal%", "healed%"],
 _ = function(e, c = window)
 {
     let init = function(elem)
@@ -199,6 +94,108 @@ _ = function(e, c = window)
     return null;
 },
 $ = _,
+petNameData = {
+    ko:[
+        "가루다 에기",
+        "타이탄 에기",
+        "이프리트 에기",
+        "요정 에오스",
+        "요정 셀레네",
+        "세라핌",
+        "카벙클 에메랄드",
+        "카벙클 토파즈",
+        "카벙클 루비",
+        "카벙클 문스톤",
+        "자동포탑 룩",
+        "자동포탑 비숍",
+        "자동인형 퀸",
+        "지상의 별",
+        "분신",
+        "영웅의 환영",
+        "데미바하무트",
+        "데미피닉스"
+    ],
+    ja:[
+        "ガルーダ・エギ",
+        "タイタン・エギ",
+        "イフリート・エギ",
+        "フェアリー・エオス",
+        "フェアリー・セレネ",
+        "セラフィム",
+        "カーバンクル・エメラルド",
+        "カーバンクル・トパーズ",
+        "カーバンクル・ルビー",
+        "カーバンクル・ムーンストーン",
+        "オートタレット・ルーク",
+        "オートタレット・ビショップ",
+        "オートマトン・クイーン",
+        "アーサリースター",
+        "分身",
+        "英雄の影身",
+        "デミ・バハムート",
+        "デミ・フェニックス"
+    ],
+    en:[
+        "garuda-egi",
+        "titan-egi",
+        "ifrit-egi",
+        "eos",
+        "selene",
+        "seraph",
+        "emerald carbuncle",
+        "topaz carbuncle",
+        "ruby carbuncle",
+        "moonstone carbuncle",
+        "rook autoturret",
+        "bishop autoturret",
+        "automaton queen",
+        "earthly star",
+        "bunshin",
+        "esteem",
+        "demi-bahamut",
+        "demi-phoenix"
+    ],
+    fr:[
+        "garuda-egi",
+        "titan-egi",
+        "ifrit-egi",
+        "eos",
+        "selene",
+        "séraphin",
+        "carbuncle émeraude",
+        "carbuncle topaze",
+        "carbuncle rubis",
+        "carbuncle hécatolite",
+        "auto-tourelle tour",
+        "auto-tourelle fou",
+        "automate reine",
+        "étoile terrestre",
+        "ombre",
+        "estime",
+        "demi-bahamut",
+        "demi-phénix"
+    ],
+    de:[
+        "garuda-egi",
+        "titan-egi",
+        "ifrit-egi",
+        "eos",
+        "selene",
+        "seraph",
+        "smaragd-karfunkel",
+        "topas-karfunkel",
+        "rubin-karfunkel",
+        "mondstein-Karfunkel",
+        "selbstschuss-gyrocopter turm",
+        "selbstschuss-gyrocopter läufer",
+        "automaton dame",
+        "irdischer stern",
+        "bunshin",
+        "dunkler schatten",
+        "demi-bahamut",
+        "demi-phönix"
+    ]
+},
 lang = new function()
 {
     this.language = "ko";
@@ -565,6 +562,21 @@ elementBuilder = {
 
     }
 },
+getNumber = (number, float = true) =>
+{
+    if (float)
+    {
+        return (number > 1000000000 ? getFloat(number / 1000000000) + "B" : (number > 1000000 ? getFloat(number / 1000000) + "M" : (number > 1000 ? getFloat(number / 1000) + "K" : number + "")));
+    }
+    else
+    {
+        return (number > 1000000000 ? Math.round(number / 1000000000) + "B" : (number > 1000000 ? Math.round(number / 1000000) + "M" : (number > 1000 ? Math.round(number) + "K" : number + "")));
+    }
+},
+getFloat = (number) =>
+{
+    return Math.round(number * 100) / 100;
+},
 previewBuilder = {
     default:(target, role, job) => {
         let icon = job.charAt(0).toUpperCase() + job.slice(1);
@@ -607,3 +619,232 @@ document.addEventListener("DOMContentLoaded", () =>
         document.querySelector("svg").appendChild(svg);
     }
 });
+
+class FWebSocket
+{
+    constructor(uri)
+    {
+        this.uri = uri;
+        this.url = uri;
+        this.id  = null;
+        this.activate = false;
+        let self = this;
+        document.addEventListener('onBroadcastMessage', function( callback )
+        {
+            self.onBroadcastMessage(callback);
+        });
+        document.addEventListener('onRecvMessage', function( callback )
+        {
+            self.onRecvMessage(callback);
+        });
+        window.addEventListener('message', function(e)
+        {
+            if (e.data.type === 'onBroadcastMessage') self.onBroadcastMessage( e.data );
+        });
+        window.addEventListener("unload", function()
+        {
+            self.close();
+        }, false);
+        this.connect();
+    }
+    connect()
+    {
+        let self = this;
+        if (typeof this.ws != "undefined" && this.ws != null) this.close();
+        this.activate = true;
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("HOST_PORT");
+        if (c)
+        {
+            if (window.location.href.indexOf("fake") > -1)
+            {
+                this.uri = c;
+            }
+            else this.uri = this.uri.replace("localhost:20000", c);
+        }
+        this.ws = new WebSocket(this.uri);
+        this.ws.onopen = function(event) { self.onopen(event); }
+        this.ws.onmessage = function(event) { self.onmessage(event); }
+        this.ws.onclose = function(event) { self.onclose(event); }
+        this.ws.onerror = function(event) { self.onerror(event); }
+    }
+    close()
+    {
+        this.activate = false;
+        if (typeof this.ws != "undefined" && this.ws != null) this.ws.close();
+    }
+    onopen(event) { }
+    onclose(event)
+    {
+        this.ws = null;
+        if (this.activate)
+        {
+            let self = this;
+            setTimeout(function() {self.connect(); }, 2000);
+        }
+    }
+    onmessage(event) { }
+    onerror(event)
+    {
+        console.log(event);
+    }
+    send(data) { this.ws.send(data); }
+    onRecvMessage(data) { }
+    onBroadcastMessage(data) { }
+}
+
+class ffxiv
+{
+    constructor(raw)
+    {
+        this.data = {};
+        if (raw == "." || !raw)
+            this.data = { "type": "pinging", "msgtype": "ping" };
+        try
+        {
+            let data = JSON.parse(raw, (k, v) =>
+            {
+                if (intValues.filter(x => x == k).length > 0)
+                    return v == "0" ? 0 : (isNaN(parseInt(v)) ? 0 : parseInt(v));
+                else if (floatValues.filter(x => x == k).length > 0)
+                    return (v == "0" || v == "0.00") ? 0 : (isNaN(parseFloat(v)) ? 0 : parseFloat(v));
+                else if (percentValues.filter(x => x == k).length > 0)
+                    return (v == "0" ? 0 : parseInt(v)) * 0.01;
+                else
+                    return v;
+            });
+            
+            if (data.msgtype == "CombatData")
+            {
+                try
+                {
+                    for(let p in data.msg.Combatant)
+                    {
+                        let combatant = data.msg.Combatant[p];
+                        let originName = p.replace(/\s\(.*?\)/i,"");
+                        let isPet = Object.values(petNameData).filter(x => x.filter(y => y == originName).length > 0);
+                        let combdata = {};
+
+                        for(let i in data.msg.Combatant[p])
+                        {
+                            if (skipkeys.filter(x => x == i).length > 0) continue;
+                            combdata[i] = data.msg.Combatant[p][i];
+                        }
+
+                        if (data.msg.Combatant[p].total == undefined)
+                        {
+                            data.msg.Combatant[p].total = combdata;
+                        }
+
+                        if (isPet.length > 0)
+                        {
+                            let e = data.msg.Encounter;
+                            let owner = p.replace(/.+\s\((.*?)\)/i,"$1");
+                            let ownplayer = Object.values(data.msg.Combatant).filter(x => x.name == owner);
+                            let combdata = {};
+
+                            if (ownplayer.length == 0) owner = "YOU";
+
+                            for(let i in data.msg.Combatant[owner])
+                            {
+                                if (skipkeys.filter(x => x == i).length > 0) continue;
+                                combdata[i] = data.msg.Combatant[owner][i];
+                            }
+
+                            if (data.msg.Combatant[owner].total == undefined)
+                            {
+                                data.msg.Combatant[owner].total = combdata;
+                            }
+                            
+                            let oc = data.msg.Combatant[owner];
+                            let oct = oc.total;
+
+                            data.msg.Combatant[p].isPet = true;
+                            data.msg.Combatant[p].Job = oc.Job;
+                            
+                            if (data.msg.Combatant[p].maxhit == "") 
+                                data.msg.Combatant[p].maxhit = " -0";
+                            if (data.msg.Combatant[p].maxheal == "") 
+                                data.msg.Combatant[p].maxheal = " -0";
+
+                            if (data.msg.Combatant[owner].pets == undefined)
+                                data.msg.Combatant[owner].pets = [];
+                            data.msg.Combatant[owner].pets.push(combatant);
+
+                            oct.absorbHeal += combatant.absorbHeal;
+                            oct.cures += combatant.cures;
+                            oct.crithits += combatant.crithits;
+                            oct.CritDirectHitCount += combatant.CritDirectHitCount;
+                            oct.damage += combatant.damage;
+                            oct.damageShield += combatant.damageShield;
+                            oct.DirectHitCount += combatant.DirectHitCount;
+                            oct.heals += combatant.heals;
+                            oct.healed += combatant.healed;
+                            oct.healstaken += combatant.healstaken;
+                            oct.hitfailed += combatant.hitfailed;
+                            oct.kills += combatant.kills;
+                            oct.misses += combatant.misses;
+                            oct.overHeal += combatant.overHeal;
+                            oct.powerdrain += combatant.powerdrain;
+                            oct.powerheal += combatant.powerheal;
+                            oct.swings += combatant.swings;
+
+                            oct["crithit%"] = oct.swings ? getFloat(oct.crithits / oct.swings) : 0;
+                            oct["damage%"] = data.msg.Encounter.damage ? getFloat(oct.damage / data.msg.Encounter.damage) : 0;
+                            oct.CritDirectHitPct = oct.swings ? getFloat(oct.CritDirectHitCount / oct.swings) : 0;
+                            oct.DirectHitPct = oct.swings ? getFloat(oct.DirectHitCount / oct.swings) : 0;
+                            oct.OverHealPct = oct.healed ? getFloat(oct.overHeal / oct.healed) : 0;
+                            oct["damage-*"] = getNumber(oct.damage);
+                            oct["DAMAGE-*"] = getNumber(oct.damage, false);
+                            oct["powerdrain-*"] = getNumber(oct.powerdrain);
+                            oct["powerheal-*"] = getNumber(oct.powerheal);
+                            oct["healstaken-*"] = getNumber(oct.healstaken);
+
+                            oct.dps = oc.DURATION ? getFloat(oct.damage / oc.DURATION) : 0;
+                            oct.DPS = Math.round(oct.dps);
+                            oct["dps-*"] = getNumber(oct.dps);
+                            oct["DPS-*"] = getNumber(oct.DPS, false);
+                            oct.encdps = e.DURATION ? getFloat(oct.damage / e.DURATION) : 0;
+                            oct.ENCDPS = Math.round(oct.encdps);
+                            oct["encdps-*"] = getNumber(oct.encdps);
+                            oct["ENCDPS-*"] = getNumber(oct.ENCDPS, false);
+                            oct.enchps = e.DURATION ? getFloat(oct.healed / e.DURATION) : 0;
+                            oct.ENCHPS = Math.round(oct.enchps);
+                            oct["enchps-*"] = getNumber(oct.enchps);
+                            oct["ENCHPS-*"] = getNumber(oct.ENCHPS, false);
+
+                            if (combatant.MAXHEAL > oct.MAXHEAL)
+                            {
+                                oct.maxheal = combatant.maxheal;
+                                oct.MAXHEAL = combatant.MAXHEAL;
+                                oct["maxheal-*"] = combatant["maxheal-*"];
+                                oct["MAXHEAL-*"] = combatant["MAXHEAL-*"];
+                            }
+
+                            if (combatant.MAXHIT > oct.MAXHIT)
+                            {
+                                oct.maxhit = combatant.maxhit;
+                                oct.MAXHIT = combatant.MAXHIT;
+                                oct["maxhit-*"] = combatant["maxhit-*"];
+                                oct["MAXHIT-*"] = combatant["MAXHIT-*"];
+                            }
+                        }
+                    }
+                }
+                catch(ex)
+                {
+                    console.log(ex);
+                }
+            }
+            this.data = data;
+        }
+        catch (err) { this.data = { "type": "processError", "msgtype": "error", "msg": err }; }
+        return this.data;
+    }
+
+    getJson()
+    {
+        return JSON.stringify(this.data);
+    }
+}
