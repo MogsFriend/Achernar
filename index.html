@@ -221,7 +221,7 @@
                         if (person.name == "YOU") container.setAttribute("class", "me");
 
                         container.setAttribute("style", "order:" + person.rank);
-                        container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + ((cdhit / 2) + dhit) + "%; --chit:" + (dhit + chit) + "%");
+                        container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + (cdhit + dhit) + "%; --chit:" + (cdhit + dhit + chit) + "%");
                         container.querySelector(".tableitems").setAttribute("data-perc", (person[ffxiv.sortkey] / m * 100).toFixed(0) + "%");
                         container.querySelector(".tableitems").setAttribute("style", "--perc:" + rp + "%");
                         container.querySelector(".guage").setAttribute("data-width", rp);
