@@ -140,13 +140,39 @@
             function dataProcess(ffxiv, savework = true)
             {
                 const raw = ffxiv.data;
-
                 if (raw == null) return;
                 tick = 0;
+                
                 let combatant = [];
                 if (raw.msgtype == "CombatData")
                 {
+                    if (!ffxiv.data.msg.isActive)
+                    {
+                        /*
+                        // for develop
+                        let loc = localStorage.getItem("lastBattleAct");
+                        if (loc == null || loc == undefined || loc == "null" || loc == "" || loc == "[]")
+                        {
+                            loc = [ffxiv];
+                        }
+                        else
+                        {
+                            try
+                            {
+                                loc = JSON.parse(loc);
+                            }
+                            catch (ex) { loc = []; }
+                            if (loc != undefined && loc.length &&
+                            loc[loc.length-1] != undefined && loc[loc.length-1].data.msg.Encounter.DURATION != ffxiv.data.msg.Encounter.DURATION)
+                            {
+                                loc.push(ffxiv);
+                            }
+                        }
+                        localStorage.setItem("lastBattleAct", JSON.stringify(loc));
+                        */
+                    }
                     if (savework) lastData = JSON.parse(JSON.stringify(ffxiv));
+
                     let rawCombatants = raw.msg.Combatant;
                     let combatants = [];
 
@@ -161,6 +187,15 @@
                             }
                         }
                         combatants.push(item);
+                    }
+
+                    if (combatants.length > 16)
+                    {
+                        $("body").classList.add("allience");
+                    }
+                    else
+                    {
+                        $("body").classList.remove("allience");
                     }
                     
                     let timer = raw.msg.Encounter.duration.replace(/(^0|:)/ig, "").padStart(5,"0");
@@ -196,7 +231,6 @@
 
                     for(const person of combatants)
                     {
-                        console.log(person.max);
                         let container = document.querySelector(".main-list-area>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
                         if (container == null)
                         {
@@ -206,15 +240,14 @@
                         container = document.querySelector(".main-list-area>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
 
                         let
-                            cdhit = Math.round(person.CritDirectHitCount / person.swings * 100),
-                            dhit =  Math.round(person.originDirectHits / person.swings * 100),
-                            chit =  Math.round(person.originCritHits / person.swings * 100),
+                            cdhit = person.swings ? Math.round(person.CritDirectHitCount / person.swings * 100) : 0,
+                            dhit =  person.swings ? Math.round(person.originDirectHits   / person.swings * 100) : 0,
+                            chit =  person.swings ? Math.round(person.originCritHits     / person.swings * 100) : 0,
                             rp = 100 - (person[ffxiv.sortkey] / person.max * 100);
 
                         personClassCheck(person, "tanker", ".main-list-area>div[data-name=\"%PERSON_LDASH%\"]", tanker.filter((x) => x == person.Job).length > 0);
                         personClassCheck(person, "healer", ".main-list-area>div[data-name=\"%PERSON_LDASH%\"]", healer.filter((x) => x == person.Job).length > 0);
                         personClassCheck(person, "me", ".main-list-area>div[data-name=\"%PERSON_LDASH%\"]", person.name == "YOU");
-
 
                         container.querySelector(".name").innerHTML = person.name;
                         container.setAttribute("class", person.Job.toLowerCase());
@@ -223,6 +256,7 @@
                         container.setAttribute("style", "order:" + person.rank);
                         container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + (cdhit + dhit) + "%; --chit:" + (cdhit + dhit + chit) + "%");
                         container.querySelector(".tableitems").setAttribute("data-perc", (person[ffxiv.sortkey] / m * 100).toFixed(0) + "%");
+                        container.querySelector(".tableitems").setAttribute("data-rank", person.rank);
                         container.querySelector(".tableitems").setAttribute("style", "--perc:" + rp + "%");
                         container.querySelector(".guage").setAttribute("data-width", rp);
                         container.querySelector(".guage-process").setAttribute("style", "right:" + rp.toFixed(0) + "%; --dwidth:" + (100 - rp).toFixed(0) + "%");

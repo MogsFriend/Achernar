@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 7;
+    this.patch = 9;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
@@ -13,6 +13,7 @@ version = new function()
     }
 },
 w3="http://www.w3.org/2000/svg",
+roles=["me","tanker","healer","dps",["gla","pld"],["mrd","war"],"drk","gnb",["cnj","whm"],"sch","ast",["pgl","mnk"],["lnc","drg"],["rog","nin"],"sam",["arc","brd"],"mch","dnc",["thm","blm"],["acn","smn"],"rdm","blu",["crp","bsm","arm","gsm","ltw","wvr","alc","cul","doh"],["min","btn","fsh","dol"]],
 defaultsvg="0,8 8,0 $A,0 $B,8 $B,$C $A,$D 8,$D 0,$C 0,8",
 timedisplay=["hour-a","min-a","min-b","sec-a","sec-b"],
 skipkeys=["n","t","pets","total","name","threatdelta","threatstr","crittypes","Job","duration","DURATION","dps-*","DPS-*","DPS-k","DPS-m","DAMAGE-*","DAMAGE-k","DAMAGE-m","DAMAGE-b","ENCDPS","ENCDPS-k","ENCDPS-m","ENCDPS-*","ENCHPS-k","ENCHPS-m","ENCHPS-*","Last10DPS","Last30DPS","Last60DPS","Last180DPS","damage-k","damage-m","damage-b","damage-*","maxhealward","maxhealward-*","MAXHEALWARD","MAXHEALWARD-*"],
@@ -581,7 +582,7 @@ elementBuilder = {
             /**/jobicon =                  item.new("div", "jobicon"),
             /*    */cover =             jobicon.new("div", "cover"),
             /*    */icon =              jobicon.new(  "i", ["job-icon","xiv-Gla"]),
-            /*    */tableitems =               item.new("div", "tableitems"),
+            /*    */tableitems =           item.new("div", "tableitems"),
             /*    */upline =         tableitems.new("div", "upline"),
             /*        */name =           upline.new("div", "name"),
             /*        */encdps =         upline.new("div", "mainvalue"),
@@ -869,7 +870,7 @@ class ffxiv
 
                             if (data.msg.Combatant[owner].pets == undefined)
                                 data.msg.Combatant[owner].pets = [];
-                            data.msg.Combatant[owner].pets.push(combatant);
+                            data.msg.Combatant[owner].pets.push(combatant.name);
 
                             for(let i of addingValues) oct[i] += combatant[i];
 
