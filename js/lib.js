@@ -4,22 +4,39 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 6;
+    this.patch = 7;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
     {
-        return [[this.major,this.minor,this.patch].join("."),this.label,this.patchname].join(" ");
+        return [[self.major,self.minor,self.patch].join("."),self.label,self.patchname].join(" ");
     }
 },
-defaultsvg = "0,8 8,0 $A,0 $B,8 $B,$C $A,$D 8,$D 0,$C 0,8",
-timedisplay = ["hour-a", "min-a", "min-b", "sec-a", "sec-b"],
-skipkeys = ["n", "t", "pets", "total", "name", "threatdelta", "threatstr", "crittypes", "Job", "duration", "DURATION", "dps-*", "DPS-*", "DPS-k", "DPS-m", "DAMAGE-*", "DAMAGE-k", "DAMAGE-m", "DAMAGE-b", "ENCDPS", "ENCDPS-k", "ENCDPS-m", "ENCDPS-*", "ENCHPS-k", "ENCHPS-m", "ENCHPS-*", "Last10DPS", "Last30DPS", "Last60DPS", "Last180DPS", "damage-k", "damage-m", "damage-b", "damage-*", "maxhealward", "maxhealward-*", "MAXHEALWARD", "MAXHEALWARD-*"],
-healer = ["Cnj", "Whm", "Sch", "Ast"],
-tanker = ["Gla", "Gld", "Mrd", "Pld", "War", "Drk", "Gnb"],
-intValues = ["DURATION","DPS","DPS-k","DPS-m","ENCDPS","ENCDPS-k","ENCDPS-m","ENCHPS","ENCHPS-k","ENCHPS-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","CritDirectHitCount","DirectHitCount","MAXHIT","MAXHEAL","TOHIT","crithits","absorbHeal","critheals","damage","damageShield","damagetaken","deaths","healed","heals","healstaken","hitfailed","hits","kills","cures","misses","overHeal","powerdrain","powerheal","swings","threatdelta"],
-floatValues = ["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","Last10DPS","Last30DPS","Last60DPS","Last180DPS"],
-percentValues = ["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%","critheal%", "healed%"],
+w3="http://www.w3.org/2000/svg",
+defaultsvg="0,8 8,0 $A,0 $B,8 $B,$C $A,$D 8,$D 0,$C 0,8",
+timedisplay=["hour-a","min-a","min-b","sec-a","sec-b"],
+skipkeys=["n","t","pets","total","name","threatdelta","threatstr","crittypes","Job","duration","DURATION","dps-*","DPS-*","DPS-k","DPS-m","DAMAGE-*","DAMAGE-k","DAMAGE-m","DAMAGE-b","ENCDPS","ENCDPS-k","ENCDPS-m","ENCDPS-*","ENCHPS-k","ENCHPS-m","ENCHPS-*","Last10DPS","Last30DPS","Last60DPS","Last180DPS","damage-k","damage-m","damage-b","damage-*","maxhealward","maxhealward-*","MAXHEALWARD","MAXHEALWARD-*"],
+healer=["Cnj","Whm","Sch","Ast"],
+tanker=["Gla","Gld","Mrd","Pld","War","Drk","Gnb"],
+intValues=["DURATION","DPS","DPS-k","DPS-m","ENCDPS","ENCDPS-k","ENCDPS-m","ENCHPS","ENCHPS-k","ENCHPS-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","CritDirectHitCount","DirectHitCount","MAXHIT","MAXHEAL","TOHIT","crithits","absorbHeal","critheals","damage","damageShield","damagetaken","deaths","healed","heals","healstaken","hitfailed","hits","kills","cures","misses","overHeal","powerdrain","powerheal","swings","threatdelta"],
+floatValues=["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","Last10DPS","Last30DPS","Last60DPS","Last180DPS"],
+percentValues=["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%","critheal%","healed%"],
+addingValues=["absorbHeal","cures","crithits","CritDirectHitCount","damage","damageShield","DirectHitCount","heals","healed","healstaken","hitfailed","kills","misses","overHeal","powerdrain","powerheal","swings","originCritHits","originDirectHits"],
+sortablekey=["absorbHeal","cures","crithits","CritDirectHitCount","damage","damageShield","DirectHitCount","heals","healed","healstaken","hitfailed","kills","misses","overHeal","powerdrain","powerheal","swings"],
+sortalias={
+    "encdps":"damage",
+    "ENCDPS":"damage",
+    "enchps":"healed",
+    "ENCHPS":"healed",
+    "dps":"damage",
+    "DPS":"damage",
+    "damage%":"damage",
+    "healed%":"healed",
+    "critheal%":"critheals",
+    "crithit%":"crithits",
+    "OverHealPct":"overHeal",
+    "CritDirectHitPct":"CritDirectHitCount"
+},
 _ = function(e, c = window)
 {
     let init = function(elem)
@@ -538,6 +555,25 @@ svglib = {
     "arrow-down":[{type:"polygon", points:"1,9 7,9 4,15 "}],
     "huepicker":[{type:"path", d:"M23.999,0.001L23.999,0.001L-0.001,0v2H0v4v2h24V6L23.999,0.001L23.999,0.001z M2,6l2-2L2,2h20l-2,2l2,2H2z"}]
 },
+getNumber = (number, float = true) =>
+{
+    if (float)
+    {
+        return (number > 1000000000 ? getFloat(number / 1000000000) + "B" : (number > 1000000 ? getFloat(number / 1000000) + "M" : (number > 1000 ? getFloat(number / 1000) + "K" : number + "")));
+    }
+    else
+    {
+        return (number > 1000000000 ? Math.round(number / 1000000000) + "B" : (number > 1000000 ? Math.round(number / 1000000) + "M" : (number > 1000 ? Math.round(number) + "K" : number + "")));
+    }
+},
+getFloat = (number) =>
+{
+    return Math.round(number * 100) / 100;
+},
+createNS = (tag) =>
+{
+    return document.createElementNS(w3, tag);
+},
 elementBuilder = {
     default:() => {
         const
@@ -562,21 +598,6 @@ elementBuilder = {
 
     }
 },
-getNumber = (number, float = true) =>
-{
-    if (float)
-    {
-        return (number > 1000000000 ? getFloat(number / 1000000000) + "B" : (number > 1000000 ? getFloat(number / 1000000) + "M" : (number > 1000 ? getFloat(number / 1000) + "K" : number + "")));
-    }
-    else
-    {
-        return (number > 1000000000 ? Math.round(number / 1000000000) + "B" : (number > 1000000 ? Math.round(number / 1000000) + "M" : (number > 1000 ? Math.round(number) + "K" : number + "")));
-    }
-},
-getFloat = (number) =>
-{
-    return Math.round(number * 100) / 100;
-},
 previewBuilder = {
     default:(target, role, job) => {
         let icon = job.charAt(0).toUpperCase() + job.slice(1);
@@ -589,7 +610,7 @@ previewBuilder = {
         s.find("i").classList.add("xiv-" + icon);
         s.find(".mainvalue").innerHTML = "12345.67";
         s.find(".mainvalue").setAttribute("title", "dps");
-        s.find(".maxvalue").innerHTML = "189012";
+        s.find(".maxvalue").innerHTML = "180923";
         s.find(".maxvalue").setAttribute("title", "최대 대미지 스킬 이름");
         s.find(".guage").setAttribute("data-width", "100");
         s.find(".guage-process").setAttribute("style", "right:0%; --dwidth:100%;");
@@ -599,16 +620,37 @@ previewBuilder = {
         rcase.append(s);
         _("." + target).append(rcase);
     }
+},
+redrawHeader = (elem, svg = defaultsvg) =>
+{
+    let width = elem.clientWidth;
+    let height = elem.clientHeight;
+    let w_a = width - 8;
+    let w_c = height - 8;
+    let svg_line = svg.replace(/\$A/ig, w_a).replace(/\$B/ig, width).replace(/\$C/ig, w_c).replace(/\$D/ig, height);
+    let poly = createNS("polygon");
+    poly.setAttribute("points", svg_line);
+    $("#header_path").innerHTML = "";
+    $("#header_path").append(poly);
 }
+
 document.addEventListener("DOMContentLoaded", () =>
 {
+    const svgbody = createNS("svg"),
+    header_path = createNS("clipPath");
+    svgbody.setAttribute("id", "hiddenlayer");
+    svgbody.setAttribute("version", "1.1");
+    header_path.setAttribute("id", "header_path");
+    svgbody.appendChild(header_path);
+    _("body").prepend(svgbody);
+
     for(let i in svglib)
     {
-        let svg = document.createElementNS('http://www.w3.org/2000/svg', "clipPath");
+        let svg = createNS("clipPath");
         svg.setAttribute("id", i);
         for(let z in svglib[i])
         {
-            let elem = document.createElementNS('http://www.w3.org/2000/svg', svglib[i][z].type);
+            let elem = createNS(svglib[i][z].type);
             for(let obj in svglib[i][z])
             {
                 if (obj == "type") continue;
@@ -616,8 +658,51 @@ document.addEventListener("DOMContentLoaded", () =>
             }
             svg.appendChild(elem);
         }
-        document.querySelector("svg").appendChild(svg);
+        svgbody.appendChild(svg);
     }
+});
+
+
+// code from MDN
+let optRS = (function()
+{
+    let callbacks = [], running = false;
+    function resize()
+    {
+        if (!running)
+        {
+            running = true;
+            if (window.requestAnimationFrame) window.requestAnimationFrame(runCallbacks);
+            else setTimeout(runCallbacks, 66);
+        }
+    }
+
+    function runCallbacks()
+    {
+        callbacks.forEach(function(callback){callback();});
+        running = false;
+    }
+    
+    function addCallback(callback)
+    {
+        if (callback) callbacks.push(callback);
+    }
+
+    return {
+        add: function(callback)
+        {
+            if (!callbacks.length)
+            {
+                window.addEventListener('resize', resize);
+            }
+            addCallback(callback);
+        }
+    }
+}());
+
+document.addEventListener("DOMContentLoaded", () =>
+{
+    redrawHeader(document.querySelector(".header"));
 });
 
 class FWebSocket
@@ -698,6 +783,9 @@ class ffxiv
 {
     constructor(raw)
     {
+        this.sortkey = "damage";
+        this.sortkeyperc = "damage%";
+
         this.data = {};
         if (raw == "." || !raw)
             this.data = { "type": "pinging", "msgtype": "ping" };
@@ -721,6 +809,13 @@ class ffxiv
                 {
                     for(let p in data.msg.Combatant)
                     {
+                        const person = data.msg.Combatant[p];
+                        person.originCritHits = person.crithits - person.CritDirectHitCount;
+                        person.originDirectHits = person.DirectHitCount - person.CritDirectHitCount;
+                    }
+
+                    for(let p in data.msg.Combatant)
+                    {
                         let combatant = data.msg.Combatant[p];
                         let originName = p.replace(/\s\(.*?\)/i,"");
                         let isPet = Object.values(petNameData).filter(x => x.filter(y => y == originName).length > 0);
@@ -740,11 +835,15 @@ class ffxiv
                         if (isPet.length > 0)
                         {
                             let e = data.msg.Encounter;
-                            let owner = p.replace(/.+\s\((.*?)\)/i,"$1");
+                            let owner = p.replace(/.+\s\((.*?)\)/i,"$1").trim();
                             let ownplayer = Object.values(data.msg.Combatant).filter(x => x.name == owner);
                             let combdata = {};
 
-                            if (ownplayer.length == 0) owner = "YOU";
+                            if (ownplayer.length == 0)
+                            {
+                                owner = "YOU";
+                                ownplayer = Object.values(data.msg.Combatant).filter(x => x.name == owner);
+                            }
 
                             for(let i in data.msg.Combatant[owner])
                             {
@@ -772,23 +871,7 @@ class ffxiv
                                 data.msg.Combatant[owner].pets = [];
                             data.msg.Combatant[owner].pets.push(combatant);
 
-                            oct.absorbHeal += combatant.absorbHeal;
-                            oct.cures += combatant.cures;
-                            oct.crithits += combatant.crithits;
-                            oct.CritDirectHitCount += combatant.CritDirectHitCount;
-                            oct.damage += combatant.damage;
-                            oct.damageShield += combatant.damageShield;
-                            oct.DirectHitCount += combatant.DirectHitCount;
-                            oct.heals += combatant.heals;
-                            oct.healed += combatant.healed;
-                            oct.healstaken += combatant.healstaken;
-                            oct.hitfailed += combatant.hitfailed;
-                            oct.kills += combatant.kills;
-                            oct.misses += combatant.misses;
-                            oct.overHeal += combatant.overHeal;
-                            oct.powerdrain += combatant.powerdrain;
-                            oct.powerheal += combatant.powerheal;
-                            oct.swings += combatant.swings;
+                            for(let i of addingValues) oct[i] += combatant[i];
 
                             oct["crithit%"] = oct.swings ? getFloat(oct.crithits / oct.swings) : 0;
                             oct["damage%"] = data.msg.Encounter.damage ? getFloat(oct.damage / data.msg.Encounter.damage) : 0;
@@ -838,13 +921,49 @@ class ffxiv
                 }
             }
             this.data = data;
+            this.sort();
         }
         catch (err) { this.data = { "type": "processError", "msgtype": "error", "msg": err }; }
-        return this.data;
+        // return this.data;
+    }
+
+    sort(key = "damage", combinepet = true)
+    {
+        try
+        {
+            let idx = 1;
+            let combatants = Object.values(this.data.msg.Combatant);
+
+            this.sortkey = sortablekey.filter(x => x == key).length > 0 ? key : "damage";
+
+            delete this.data.msg.Combatant;
+            this.data.msg.Combatant = {};
+
+            if (combinepet)
+                combatants.sort((a, b) => b.total[this.sortkey] - a.total[this.sortkey]);
+            else
+                combatants.sort((a, b) => b[this.sortkey] - a[this.sortkey]);
+
+            for(let i of combatants)
+            {
+                i.max = combinepet ? combatants[0].total[this.sortkey] : combatants[0][this.sortkey];
+                i.rank = idx++;
+                this.data.msg.Combatant[i.name] = i;
+            }
+        }
+        catch(ex)
+        {
+
+        }
+    }
+
+    toString()
+    {
+        return JSON.stringify(this.data);
     }
 
     getJson()
     {
-        return JSON.stringify(this.data);
+        return JSON.parse(this.toString());
     }
 }

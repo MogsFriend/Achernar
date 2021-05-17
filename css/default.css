@@ -196,6 +196,7 @@ i {display:block; color:#FFF; height:28px; line-height:30px; width:28px; text-al
 
 html, body {margin:0; padding:0; border:0; overflow:hidden}
 
+#hiddenlayer {height:0 !important; line-height:0; position:absolute; opacity:0;}
 .background-layer {position:fixed; left:0; top:0; bottom:0; right:0; background-size:100% auto; z-index:-1;}
 
 .header {display:flex; justify-content: space-between; align-items: center; height: 48px; background:var(--color-header); color:var(--color-text); backdrop-filter: blur(10px); padding:0px 8px; clip-path:url(#header_path)}

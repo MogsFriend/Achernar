@@ -28,9 +28,6 @@
         <link rel="apple-touch-icon-precomposed" href="/img/acticon_152x152.png">
     </head>
     <body>
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1" height="1" style="position:absolute;">
-            <clippath id="header_path"></clippath>
-        </svg>
         <div class="resizer"></div>
         <div class="background-layer"></div>
         <div class="header">
@@ -64,58 +61,13 @@
              * License: GPLv3
             */
 
-            // code from MDN
-            let optRS = (function()
+            optRS.add(function()
             {
-                let callbacks = [], running = false;
-                function resize()
-                {
-                    if (!running)
-                    {
-                        running = true;
-                        if (window.requestAnimationFrame) window.requestAnimationFrame(runCallbacks);
-                        else setTimeout(runCallbacks, 66);
-                    }
-                }
-
-                function runCallbacks()
-                {
-                    callbacks.forEach(function(callback){callback();});
-                    running = false;
-                }
-                
-                function addCallback(callback)
-                {
-                    if (callback) callbacks.push(callback);
-                }
-
-                return {
-                    add: function(callback)
-                    {
-                        if (!callbacks.length)
-                        {
-                            window.addEventListener('resize', resize);
-                        }
-                        addCallback(callback);
-                    }
-                }
-            }());
+                redrawHeader(document.querySelector(".header"));
+            });
 
             const f = new FWebSocket("ws://localhost:20000/MiniParse");
             f.onmessage = (e) => { dataProcess(new ffxiv(e.data)); }
-
-            function redrawHeader(elem, svg = defaultsvg)
-            {
-                let width = elem.clientWidth;
-                let height = elem.clientHeight;
-                let w_a = width - 8;
-                let w_c = height - 8;
-                let svg_line = svg.replace(/\$A/ig, w_a).replace(/\$B/ig, width).replace(/\$C/ig, w_c).replace(/\$D/ig, height);
-                let poly = document.createElementNS('http://www.w3.org/2000/svg', "polygon");
-                poly.setAttribute("points", svg_line);
-                document.querySelector("#header_path").innerHTML = "";
-                document.querySelector("#header_path").append(poly);
-            }
 
             let settings = {
                 combinePet: true
@@ -137,15 +89,10 @@
                 }
             }, 1000);
 
-            optRS.add(function()
-            {
-                redrawHeader(document.querySelector(".header"));
-            });
-            redrawHeader(document.querySelector(".header"));
-
             function onOverlayDataUpdate(e)
             {
-                dataProcess(JSON.stringify({"msgtype":"CombatData", "msg":e}));
+                // old version support
+                dataProcess(new ffxiv(JSON.stringify({"msgtype":"CombatData", "msg":e})));
             }
 
             function personClassCheck(person, className, filter, matrix)
@@ -190,18 +137,18 @@
                 if (c != undefined && c == "hide" && person.name != "YOU") name.style.filter = "blur(3px)";
             }
 
-            function dataProcess(data, savework = true)
+            function dataProcess(ffxiv, savework = true)
             {
-                const raw = data;
+                const raw = ffxiv.data;
+
                 if (raw == null) return;
                 tick = 0;
                 let combatant = [];
                 if (raw.msgtype == "CombatData")
                 {
-                    if (savework) lastData = JSON.parse(JSON.stringify(data));
+                    if (savework) lastData = JSON.parse(JSON.stringify(ffxiv));
                     let rawCombatants = raw.msg.Combatant;
                     let combatants = [];
-                    let idx = 1;
 
                     for(const item of Object.values(rawCombatants))
                     {
@@ -238,23 +185,18 @@
                     {
                         $("."+timedisplay[i]).css({"clip-path":"url(#number_" + timer[i] + ")"});
                     }
-
-                    combatants.sort((a, b) => b[sortkey] - a[sortkey]);
-
-                    for(const combatant of combatants)
-                    {
-                        combatant.max = combatants[0][sortkey];
-                        combatant.rank = idx++;
-                    }
-
+                    
                     document.querySelectorAll(".main-list-area>div").forEach((elem) =>
                     {
                         if (combatants.filter(x => x.name.replace("'", "_") == elem.getAttribute("data-name")).length <= 0) elem.remove();
                     });
 
+                    let m = raw.msg.Encounter[ffxiv.sortkey];
+                    if (m == 0) m = 1;
+
                     for(const person of combatants)
                     {
-
+                        console.log(person.max);
                         let container = document.querySelector(".main-list-area>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
                         if (container == null)
                         {
@@ -264,10 +206,10 @@
                         container = document.querySelector(".main-list-area>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
 
                         let
-                            cdhit = (person.CritDirectHitPct * 100),
-                            dhit =  (person.DirectHitPct * 100),
-                            chit =  (person["crithit%"] * 100),
-                            rp = 100 - (person[sortkey] / person.max * 100);
+                            cdhit = Math.round(person.CritDirectHitCount / person.swings * 100),
+                            dhit =  Math.round(person.originDirectHits / person.swings * 100),
+                            chit =  Math.round(person.originCritHits / person.swings * 100),
+                            rp = 100 - (person[ffxiv.sortkey] / person.max * 100);
 
                         personClassCheck(person, "tanker", ".main-list-area>div[data-name=\"%PERSON_LDASH%\"]", tanker.filter((x) => x == person.Job).length > 0);
                         personClassCheck(person, "healer", ".main-list-area>div[data-name=\"%PERSON_LDASH%\"]", healer.filter((x) => x == person.Job).length > 0);
@@ -280,7 +222,7 @@
 
                         container.setAttribute("style", "order:" + person.rank);
                         container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + ((cdhit / 2) + dhit) + "%; --chit:" + (dhit + chit) + "%");
-                        container.querySelector(".tableitems").setAttribute("data-perc", (person[sortkeyperc] * 100).toFixed(0) + "%");
+                        container.querySelector(".tableitems").setAttribute("data-perc", (person[ffxiv.sortkey] / m * 100).toFixed(0) + "%");
                         container.querySelector(".tableitems").setAttribute("style", "--perc:" + rp + "%");
                         container.querySelector(".guage").setAttribute("data-width", rp);
                         container.querySelector(".guage-process").setAttribute("style", "right:" + rp.toFixed(0) + "%; --dwidth:" + (100 - rp).toFixed(0) + "%");
