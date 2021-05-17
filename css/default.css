@@ -45,112 +45,112 @@ i {display:block; color:#FFF; height:28px; line-height:30px; width:28px; text-al
     --color-role-pld-a: rgba(160, 196, 204, .75);
     --color-role-pld-b: rgba(160, 196, 204, .5);
     --color-role-pld-c: rgba(160, 196, 204, .25);
-    --color-role-pld-d: rgba(160, 196, 204);
+    --color-role-pld-d: rgb(160, 196, 204);
 
     --color-role-war-a: rgba(196, 96, 96, .75);
     --color-role-war-b: rgba(196, 96, 96, .5);
     --color-role-war-c: rgba(196, 96, 96, .25);
-    --color-role-war-d: rgba(196, 96, 96);
+    --color-role-war-d: rgb(196, 96, 96);
 
     --color-role-drk-a: rgba(160, 96, 128, .75);
     --color-role-drk-b: rgba(160, 96, 128, .5);
     --color-role-drk-c: rgba(160, 96, 128, .25);
-    --color-role-drk-d: rgba(160, 96, 128);
+    --color-role-drk-d: rgb(160, 96, 128);
 
     --color-role-gnb-a: rgba(196, 160, 96, .75);
     --color-role-gnb-b: rgba(196, 160, 96, .5);
     --color-role-gnb-c: rgba(196, 160, 96, .25);
-    --color-role-gnb-d: rgba(196, 160, 96);
+    --color-role-gnb-d: rgb(196, 160, 96);
 
     --color-role-whm-a: rgba(196, 172, 144, .75);
     --color-role-whm-b: rgba(196, 172, 144, .5);
     --color-role-whm-c: rgba(196, 172, 144, .25);
-    --color-role-whm-d: rgba(196, 172, 144);
+    --color-role-whm-d: rgb(196, 172, 144);
 
     --color-role-sch-a: rgba(72, 64, 196, .75);
     --color-role-sch-b: rgba(72, 64, 196, .5);
     --color-role-sch-c: rgba(72, 64, 196, .25);
-    --color-role-sch-d: rgba(72, 64, 196);
+    --color-role-sch-d: rgb(72, 64, 196);
 
     --color-role-ast-a: rgba(196, 144, 96, .75);
     --color-role-ast-b: rgba(196, 144, 96, .5);
     --color-role-ast-c: rgba(196, 144, 96, .25);
-    --color-role-ast-d: rgba(196, 144, 96);
+    --color-role-ast-d: rgb(196, 144, 96);
 
     --color-role-mnk-a: rgba(196, 160, 64, .75);
     --color-role-mnk-b: rgba(196, 160, 64, .5);
     --color-role-mnk-c: rgba(196, 160, 64, .25);
-    --color-role-mnk-d: rgba(196, 160, 64);
+    --color-role-mnk-d: rgb(196, 160, 64);
 
     --color-role-drg-a: rgba(72, 96, 192, .75);
     --color-role-drg-b: rgba(72, 96, 192, .5);
     --color-role-drg-c: rgba(72, 96, 192, .25);
-    --color-role-drg-d: rgba(72, 96, 192);
+    --color-role-drg-d: rgb(72, 96, 192);
 
     --color-role-nin-a: rgba(128, 128, 144, .75);
     --color-role-nin-b: rgba(128, 128, 144, .5);
     --color-role-nin-c: rgba(196, 96, 128, .25);
-    --color-role-nin-d: rgba(128, 128, 144);
+    --color-role-nin-d: rgb(128, 128, 144);
 
     --color-role-sam-a: rgba(196, 196, 172, .75);
     --color-role-sam-b: rgba(196, 196, 172, .5);
     --color-role-sam-c: rgba(196, 96, 64, .25);
-    --color-role-sam-d: rgba(196, 196, 172);
+    --color-role-sam-d: rgb(196, 196, 172);
 
     --color-role-brd-a: rgba(128, 196, 64, .75);
     --color-role-brd-b: rgba(128, 196, 64, .5);
     --color-role-brd-c: rgba(128, 196, 64, .25);
-    --color-role-brd-d: rgba(128, 196, 64);
+    --color-role-brd-d: rgb(128, 196, 64);
 
-    --color-role-mch-a: rgba(64, 160, 160, .75);
-    --color-role-mch-b: rgba(64, 160, 160, .5);
-    --color-role-mch-c: rgba(64, 160, 160, .25);
-    --color-role-mch-d: rgba(64, 160, 160);
+    --color-role-mch-a: rgba(64, 160, 172, .75);
+    --color-role-mch-b: rgba(64, 160, 172, .5);
+    --color-role-mch-c: rgba(64, 160, 172, .25);
+    --color-role-mch-d: rgb(64, 160, 172);
 
     --color-role-dnc-a: rgba(192, 144, 144, .75);
     --color-role-dnc-b: rgba(192, 144, 144, .5);
     --color-role-dnc-c: rgba(192, 144, 144, .25);
-    --color-role-dnc-d: rgba(192, 144, 144);
+    --color-role-dnc-d: rgb(192, 144, 144);
 
     --color-role-blm-a: rgba(96, 64, 144, .75);
     --color-role-blm-b: rgba(96, 64, 144, .5);
     --color-role-blm-c: rgba(96, 64, 144, .25);
-    --color-role-blm-d: rgba(96, 64, 144);
+    --color-role-blm-d: rgb(96, 64, 144);
 
     --color-role-smn-a: rgba(64, 160, 48, .75);
     --color-role-smn-b: rgba(64, 160, 48, .5);
     --color-role-smn-c: rgba(64, 160, 64, .25);
-    --color-role-smn-d: rgba(64, 160, 48);
+    --color-role-smn-d: rgb(64, 160, 48);
 
     --color-role-rdm-a: rgba(196, 32, 128, .75);
     --color-role-rdm-b: rgba(196, 32, 128, .5);
     --color-role-rdm-c: rgba(160, 32, 96, .25);
-    --color-role-rdm-d: rgba(160, 32, 96);
+    --color-role-rdm-d: rgb(160, 32, 96);
 
     --color-role-blu-a: rgba(64, 128, 196, .75);
     --color-role-blu-b: rgba(64, 128, 196, .5);
     --color-role-blu-c: rgba(64, 128, 196, .25);
-    --color-role-blu-d: rgba(64, 128, 196);
+    --color-role-blu-d: rgb(64, 128, 196);
 
     --color-role-dps-a: rgba(128, 64, 64, .75);
     --color-role-dps-b: rgba(128, 64, 64, .5);
     --color-role-dps-c: rgba(128, 64, 64, .25);
-    --color-role-dps-d: #804040;
+    --color-role-dps-d: rgb(128, 64, 64);
 
     --color-role-tanker-a: rgba(64, 64, 128, .75);
     --color-role-tanker-b: rgba(64, 64, 128, .5);
     --color-role-tanker-c: rgba(64, 64, 128, .25);
-    --color-role-tanker-d: #404080;
+    --color-role-tanker-d: rgb(64, 64, 128);
 
     --color-role-healer-a: rgba(64, 128, 64, .75);
     --color-role-healer-b: rgba(64, 128, 64, .5);
     --color-role-healer-c: rgba(64, 128, 64, .25);
-    --color-role-healer-d: #408040;
+    --color-role-healer-d: rgb(64, 128, 64);
 
-    --color-role-me-a: rgba(160, 192, 160, .75);
-    --color-role-me-b: rgba(160, 192, 160, .5);
-    --color-role-me-c: rgba(160, 192, 160, .25);
-    --color-role-me-d: rgba(160, 192, 160);
+    --color-role-me-a: rgba(192, 255, 192, .75);
+    --color-role-me-b: rgba(192, 255, 192, .5);
+    --color-role-me-c: rgba(192, 255, 192, .25);
+    --color-role-me-d: rgb(192, 255, 192);
 }
 
 /* xivicons SQUARE ENIX all right reserved */
@@ -270,12 +270,18 @@ div.main-list-area>.healer>.jobicon::before {background:var(--color-role-healer-
 div.main-list-area>.healer>.tableitems::before {background-color:var(--color-role-healer-d);}
 div.main-list-area>.healer>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-healer-a) 0%, var(--color-role-healer-c) 100%);}
 
-div.main-list-area>.pld>.jobicon::before {background:var(--color-role-pld-b);}
-div.main-list-area>.pld>.tableitems::before {background-color:var(--color-role-pld-d);}
+div.main-list-area>.pld>.jobicon::before,
+div.main-list-area>.gla>.jobicon::before {background:var(--color-role-pld-b);}
+div.main-list-area>.pld>.tableitems::before,
+div.main-list-area>.gla>.tableitems::before  {background-color:var(--color-role-pld-d);}
+div.main-list-area>.gla>.guage>.guage-process::after,
 div.main-list-area>.pld>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-pld-a) 0%, var(--color-role-pld-c) 100%);}
 
+div.main-list-area>.mrd>.jobicon::before,
 div.main-list-area>.war>.jobicon::before {background:var(--color-role-war-b);}
+div.main-list-area>.mrd>.tableitems::before,
 div.main-list-area>.war>.tableitems::before {background-color:var(--color-role-war-d);}
+div.main-list-area>.mrd>.guage>.guage-process::after,
 div.main-list-area>.war>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-war-a) 0%, var(--color-role-war-c) 100%);}
 
 div.main-list-area>.drk>.jobicon::before {background:var(--color-role-drk-b);}
@@ -286,8 +292,11 @@ div.main-list-area>.gnb>.jobicon::before {background:var(--color-role-gnb-b);}
 div.main-list-area>.gnb>.tableitems::before {background-color:var(--color-role-gnb-d);}
 div.main-list-area>.gnb>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-gnb-a) 0%, var(--color-role-gnb-c) 100%);}
 
+div.main-list-area>.cnj>.jobicon::before,
 div.main-list-area>.whm>.jobicon::before {background:var(--color-role-whm-b);}
+div.main-list-area>.cnj>.tableitems::before,
 div.main-list-area>.whm>.tableitems::before {background-color:var(--color-role-whm-d);}
+div.main-list-area>.cnj>.guage>.guage-process::after,
 div.main-list-area>.whm>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-whm-a) 0%, var(--color-role-whm-c) 100%);}
 
 div.main-list-area>.sch>.jobicon::before {background:var(--color-role-sch-b);}
@@ -298,24 +307,36 @@ div.main-list-area>.ast>.jobicon::before {background:var(--color-role-ast-b);}
 div.main-list-area>.ast>.tableitems::before {background-color:var(--color-role-ast-d);}
 div.main-list-area>.ast>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-ast-a) 0%, var(--color-role-ast-c) 100%);}
 
+div.main-list-area>.pgl>.jobicon::before,
 div.main-list-area>.mnk>.jobicon::before {background:var(--color-role-mnk-b);}
+div.main-list-area>.pgl>.tableitems::before,
 div.main-list-area>.mnk>.tableitems::before {background-color:var(--color-role-mnk-d);}
+div.main-list-area>.pgl>.guage>.guage-process::after,
 div.main-list-area>.mnk>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-mnk-a) 0%, var(--color-role-mnk-c) 100%);}
 
+div.main-list-area>.lnc>.jobicon::before,
 div.main-list-area>.drg>.jobicon::before {background:var(--color-role-drg-b);}
+div.main-list-area>.lnc>.tableitems::before,
 div.main-list-area>.drg>.tableitems::before {background-color:var(--color-role-drg-d);}
+div.main-list-area>.lnc>.guage>.guage-process::after,
 div.main-list-area>.drg>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-drg-a) 0%, var(--color-role-drg-c) 100%);}
 
+div.main-list-area>.rog>.jobicon::before,
 div.main-list-area>.nin>.jobicon::before {background:var(--color-role-nin-b);}
+div.main-list-area>.rog>.tableitems::before,
 div.main-list-area>.nin>.tableitems::before {background-color:var(--color-role-nin-d);}
+div.main-list-area>.rog>.guage>.guage-process::after,
 div.main-list-area>.nin>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-nin-a) 0%, var(--color-role-nin-c) 100%);}
 
 div.main-list-area>.sam>.jobicon::before {background:var(--color-role-sam-b);}
 div.main-list-area>.sam>.tableitems::before {background-color:var(--color-role-sam-d);}
 div.main-list-area>.sam>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-sam-a) 0%, var(--color-role-sam-c) 100%);}
 
+div.main-list-area>.arc>.jobicon::before,
 div.main-list-area>.brd>.jobicon::before {background:var(--color-role-brd-b);}
+div.main-list-area>.arc>.tableitems::before,
 div.main-list-area>.brd>.tableitems::before {background-color:var(--color-role-brd-d);}
+div.main-list-area>.arc>.guage>.guage-process::after,
 div.main-list-area>.brd>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-brd-a) 0%, var(--color-role-brd-c) 100%);}
 
 div.main-list-area>.mch>.jobicon::before {background:var(--color-role-mch-b);}
@@ -326,12 +347,18 @@ div.main-list-area>.dnc>.jobicon::before {background:var(--color-role-dnc-b);}
 div.main-list-area>.dnc>.tableitems::before {background-color:var(--color-role-dnc-d);}
 div.main-list-area>.dnc>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-dnc-a) 0%, var(--color-role-dnc-c) 100%);}
 
+div.main-list-area>.thm>.jobicon::before,
 div.main-list-area>.blm>.jobicon::before {background:var(--color-role-blm-b);}
+div.main-list-area>.thm>.tableitems::before,
 div.main-list-area>.blm>.tableitems::before {background-color:var(--color-role-blm-d);}
+div.main-list-area>.thm>.guage>.guage-process::after,
 div.main-list-area>.blm>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-blm-a) 0%, var(--color-role-blm-c) 100%);}
 
+div.main-list-area>.acn>.jobicon::before,
 div.main-list-area>.smn>.jobicon::before {background:var(--color-role-smn-b);}
+div.main-list-area>.acn>.tableitems::before,
 div.main-list-area>.smn>.tableitems::before {background-color:var(--color-role-smn-d);}
+div.main-list-area>.acn>.guage>.guage-process::after,
 div.main-list-area>.smn>.guage>.guage-process::after {background:linear-gradient(to right, var(--color-role-smn-a) 0%, var(--color-role-smn-c) 100%);}
 
 div.main-list-area>.rdm>.jobicon::before {background:var(--color-role-rdm-b);}

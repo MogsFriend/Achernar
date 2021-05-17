@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 5;
+    this.patch = 6;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>

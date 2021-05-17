@@ -117,6 +117,10 @@
                 document.querySelector("#header_path").append(poly);
             }
 
+            let settings = {
+                combinePet: true
+            }
+
             let lastData = null;
             let sortkey = "encdps";
             let sortkeyperc = "damage%";
@@ -199,7 +203,18 @@
                     let combatants = [];
                     let idx = 1;
 
-                    for(const item of Object.values(rawCombatants)) combatants.push(item);
+                    for(const item of Object.values(rawCombatants))
+                    {
+                        if (settings.combinePet && item.isPet) continue;
+                        if (settings.combinePet)
+                        {
+                            for(let i in item.total)
+                            {
+                                item[i] = item.total[i];
+                            }
+                        }
+                        combatants.push(item);
+                    }
                     
                     let timer = raw.msg.Encounter.duration.replace(/(^0|:)/ig, "").padStart(5,"0");
                     $(".titlename>.title").innerHTML = raw.msg.Encounter.CurrentZoneName;
@@ -239,6 +254,7 @@
 
                     for(const person of combatants)
                     {
+
                         let container = document.querySelector(".main-list-area>div[data-name=\"" + person.name.replace("'", "_") + "\"]");
                         if (container == null)
                         {
@@ -265,9 +281,9 @@
                         container.setAttribute("style", "order:" + person.rank);
                         container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + ((cdhit / 2) + dhit) + "%; --chit:" + (dhit + chit) + "%");
                         container.querySelector(".tableitems").setAttribute("data-perc", (person[sortkeyperc] * 100).toFixed(0) + "%");
-                        container.querySelector(".tableitems").setAttribute("style", "--perc:" + (rp > 90 ? 90 : rp) + "%");
-                        container.querySelector(".guage").setAttribute("data-width", (rp > 90 ? 90 : rp));
-                        container.querySelector(".guage-process").setAttribute("style", "right:" + ((rp > 90 ? 90 : rp)).toFixed(0) + "%; --dwidth:" + (100 - (rp > 90 ? 90 : rp)).toFixed(0) + "%");
+                        container.querySelector(".tableitems").setAttribute("style", "--perc:" + rp + "%");
+                        container.querySelector(".guage").setAttribute("data-width", rp);
+                        container.querySelector(".guage-process").setAttribute("style", "right:" + rp.toFixed(0) + "%; --dwidth:" + (100 - rp).toFixed(0) + "%");
                         container.querySelector(".jobicon>i").classList.add("xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job));
                         container.querySelector(".jobicon>i").setAttribute("title", "CDHit: " + cdhit + "%, DHit: " + dhit + "%, CHit: " + chit + "%");
 
