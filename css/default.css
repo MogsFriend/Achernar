@@ -213,6 +213,20 @@ html, body {margin:0; padding:0; border:0; overflow:hidden}
 .header .menubtn {justify-content: space-between; min-width:32px; cursor:pointer}
 .header .menubtn::before {content:""; display:block; height:32px; background:var(--color-text); clip-path:url(#setting)}
 
+.smallnum {height:10px; position:absolute; left:50%; top:50%; display:flex;}
+.smallnum>div {background:#000; height:10px; width:11px; margin-right:1px;}
+.smallnum>.n-0 {clip-path:url(#smallnum_0);}
+.smallnum>.n-1 {clip-path:url(#smallnum_1);}
+.smallnum>.n-2 {clip-path:url(#smallnum_2);}
+.smallnum>.n-3 {clip-path:url(#smallnum_3);}
+.smallnum>.n-4 {clip-path:url(#smallnum_4);}
+.smallnum>.n-5 {clip-path:url(#smallnum_5);}
+.smallnum>.n-6 {clip-path:url(#smallnum_6);}
+.smallnum>.n-7 {clip-path:url(#smallnum_7);}
+.smallnum>.n-8 {clip-path:url(#smallnum_8);}
+.smallnum>.n-9 {clip-path:url(#smallnum_9);}
+.smallnum>.colon {clip-path:url(#smallcolon); width:5px}
+
 @media screen and (max-width:320px)
 {
     .header section.timer {transform:scale(0.56); transform-origin:0% 50%; width:50px}
@@ -432,6 +446,9 @@ div.main-list-area>.dol>.guage>.guage-process::after {background:linear-gradient
 
 i {text-shadow:none !important; filter:drop-shadow(0px 0px 1px var(--color-shadow)) drop-shadow(0px 1px 0px var(--color-shadow));}
 
+div.main-list-area>div .tableitems::before { background:linear-gradient(to bottom, var(--instance-d) 0px, var(--instance-d) 18px, #303030 18px, #202020 100%);}
+div.main-list-area>div .tableitems::after { padding-left:0px; letter-spacing: 0.1em; left:4px}
+
 body.allience div.main-list-area {display:flex; flex-direction:unset; flex-wrap:wrap}
 body.allience div.main-list-area>div {box-sizing:border-box; min-width:20%; max-width:20%; flex-grow:1; flex-basis: 0;}
 body.allience div.main-list-area>div .guage-process::after {transform:scaleY(-1); clip-path:url(#barclip); padding-left:18px; height: 14px; top:14px}
@@ -439,7 +456,6 @@ body.allience div.main-list-area>div .maxhit,
 body.allience div.main-list-area>div .maxvalue {display:none;}
 body.allience div.main-list-area>div .encdps,
 body.allience div.main-list-area>div .mainvalue {position:absolute; right:0px; bottom:-15px; font-weight:500; z-index:10000; border-radius:3px;}
-body.allience div.main-list-area>div .tableitems::before {background:linear-gradient(to bottom, var(--instance-d) 0px, var(--instance-d) 18px, #303030 18px);}
 body.allience div.main-list-area>div .tableitems::after { color:var(--color-maxhittext); padding-left:0px; content:attr(data-rank); left:-8px}
 
 @media screen and (max-width:999px)

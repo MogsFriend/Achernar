@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 9;
+    this.patch = 10;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
@@ -554,7 +554,41 @@ svglib = {
         {type:"path", d:"M28,5c-1.104,0-2,0.896-2,2v18c0,1.104,0.896,2,2,2s2-0.896,2-2V7C30,5.896,29.104,5,28,5z M28,10c-0.553,0-1-0.448-1-1 s0.447-1,1-1s1,0.448,1,1S28.553,10,28,10z"},
     ],
     "arrow-down":[{type:"polygon", points:"1,9 7,9 4,15 "}],
-    "huepicker":[{type:"path", d:"M23.999,0.001L23.999,0.001L-0.001,0v2H0v4v2h24V6L23.999,0.001L23.999,0.001z M2,6l2-2L2,2h20l-2,2l2,2H2z"}]
+    "huepicker":[{type:"path", d:"M23.999,0.001L23.999,0.001L-0.001,0v2H0v4v2h24V6L23.999,0.001L23.999,0.001z M2,6l2-2L2,2h20l-2,2l2,2H2z"}],
+    "smallnum_5":[
+        {type:"path", d:"M7.75,4H2.9L3.1,2h7.15V0.5h-7h-1.5h-0.5l-0.5,5h0.5h1.5h4.5c0.828,0,1.5,0.448,1.5,1V7 c0,0.552-0.672,1-1.5,1h-3.5c-0.828,0-1.5-0.448-1.5-1h-1.5h-0.5c0,1.381,1.344,2.5,3,2.5h4.5c1.656,0,3-1.119,3-2.5V6.5 C10.75,5.12,9.406,4,7.75,4z"},
+    ],
+    "smallnum_8":[
+        {type:"path", d:"M9.891,4.75C10.422,4.299,10.75,3.682,10.75,3c0-1.38-1.344-2.5-3-2.5h-4.5c-1.656,0-3,1.12-3,2.5 c0,0.682,0.328,1.299,0.859,1.75C0.578,5.201,0.25,5.818,0.25,6.5V7c0,1.381,1.344,2.5,3,2.5h4.5c1.656,0,3-1.119,3-2.5V6.5 C10.75,5.818,10.422,5.201,9.891,4.75z M7.25,2c0.828,0,1.5,0.448,1.5,1s-0.672,1-1.5,1h-3.5c-0.828,0-1.5-0.448-1.5-1 s0.672-1,1.5-1H7.25z M7.25,8h-3.5c-0.828,0-1.5-0.448-1.5-1V6.5c0-0.552,0.672-1,1.5-1h3.5c0.828,0,1.5,0.448,1.5,1V7 C8.75,7.552,8.078,8,7.25,8z"},
+    ],
+    "smallnum_0":[
+        {type:"path", d:"M7.75,0.5h-4.5c-1.656,0-3,1.12-3,2.5v4c0,1.381,1.344,2.5,3,2.5h4.5c1.656,0,3-1.119,3-2.5V3 C10.75,1.62,9.406,0.5,7.75,0.5z M8.75,7c0,0.552-0.672,1-1.5,1h-3.5c-0.828,0-1.5-0.448-1.5-1V3c0-0.552,0.672-1,1.5-1h3.5 c0.828,0,1.5,0.448,1.5,1V7z"},
+    ],
+    "smallnum_6":[
+        {type:"path", d:"M7.75,4h-4c-0.547,0-1.059,0.124-1.5,0.337V3c0-0.552,0.672-1,1.5-1h6V0.5h-6.5c-1.656,0-3,1.12-3,2.5v4 c0,1.381,1.344,2.5,3,2.5h4.5c1.656,0,3-1.119,3-2.5V6.5C10.75,5.12,9.406,4,7.75,4z M8.75,7c0,0.552-0.672,1-1.5,1h-3.5 c-0.828,0-1.5-0.448-1.5-1V6.5c0-0.552,0.672-1,1.5-1h3.5c0.828,0,1.5,0.448,1.5,1V7z"},
+    ],
+    "smallnum_9":[
+        {type:"path", d:"M7.75,0.5h-4.5c-1.656,0-3,1.12-3,2.5v1c0,1.38,1.344,2.5,3,2.5h4c0.547,0,1.059-0.124,1.5-0.337V7 c0,0.552-0.672,1-1.5,1h-3.5c-0.828,0-1.5-0.448-1.5-1h-2c0,1.381,1.344,2.5,3,2.5h4.5c1.656,0,3-1.119,3-2.5V3 C10.75,1.62,9.406,0.5,7.75,0.5z M8.75,4c0,0.552-0.672,1-1.5,1h-3.5c-0.828,0-1.5-0.448-1.5-1V3c0-0.552,0.672-1,1.5-1h3.5 c0.828,0,1.5,0.448,1.5,1V4z"},
+    ],
+    "smallnum_1":[
+        {type:"path", d:"M6.25,0.5c0,0.829-1.344,1.5-3,1.5h-0.5v2h0.5c1.127,0,2.164-0.227,3-0.604V9.5h2v-9H6.25z"},
+    ],
+    "smallnum_4":[
+        {type:"path", d:"M10.75,6.5h-1.5v-6h-2l-7,6V8h7v1.5h2V8h1.5V6.5z M2.75,6.5l4.5-4v4H2.75z"},
+    ],
+    "smallnum_2":[
+        {type:"path", d:"M2.25,7.5c0-0.828,1.344-1.5,3-1.5h0.5c2.762,0,5-1.343,5-3c0-1.381-1.344-2.5-3-2.5h-4 c-1.656,0-3,1.119-3,2.5h2c0-0.552,0.672-1,1.5-1h3c0.828,0,1.5,0.448,1.5,1c0,0.828-1.344,1.5-3,1.5h-0.5c-2.762,0-5,1.343-5,3V8 v1.5h10.5V8h-8.5V7.5z"},
+    ],
+    "smallnum_3":[
+        {type:"path", d:"M9.609,4.541C10.01,4.116,10.25,3.582,10.25,3c0-1.381-1.344-2.5-3-2.5h-3.5c-1.656,0-3,1.119-3,2.5h2 c0-0.552,0.672-1,1.5-1h2.5c0.828,0,1.5,0.448,1.5,1s-0.672,1-1.5,1h-2.5v1.5h3c0.828,0,1.5,0.448,1.5,1V7c0,0.552-0.672,1-1.5,1 h-3.5c-0.828,0-1.5-0.448-1.5-1V6.5h-2V7c0,1.381,1.344,2.5,3,2.5h4.5c1.656,0,3-1.119,3-2.5V6.5 C10.75,5.705,10.303,4.999,9.609,4.541z"},
+    ],
+    "smallnum_7":[
+        {type:"path", d:"M10.624,0.5H0.25V2h8.031C6.696,3.228,5.17,4.86,3.877,6.834C3.303,7.713,2.814,8.607,2.397,9.5h2.519 c0.393-0.894,0.879-1.799,1.462-2.69C7.67,4.838,9.215,3.265,10.75,2.229V0.5H10.624z"}, 
+    ],
+    "smallcolon":[
+        {type:"rect", x:"1.25", y:"2.25", width:"2.25", height:"1.5"},
+        {type:"rect", x:"1.25", y:"6.75", width:"2.25", height:"1.5"}, 
+    ]
 },
 getNumber = (number, float = true) =>
 {
@@ -633,40 +667,10 @@ redrawHeader = (elem, svg = defaultsvg) =>
     poly.setAttribute("points", svg_line);
     $("#header_path").innerHTML = "";
     $("#header_path").append(poly);
-}
-
-document.addEventListener("DOMContentLoaded", () =>
+},
+optRS = (function()
 {
-    const svgbody = createNS("svg"),
-    header_path = createNS("clipPath");
-    svgbody.setAttribute("id", "hiddenlayer");
-    svgbody.setAttribute("version", "1.1");
-    header_path.setAttribute("id", "header_path");
-    svgbody.appendChild(header_path);
-    _("body").prepend(svgbody);
-
-    for(let i in svglib)
-    {
-        let svg = createNS("clipPath");
-        svg.setAttribute("id", i);
-        for(let z in svglib[i])
-        {
-            let elem = createNS(svglib[i][z].type);
-            for(let obj in svglib[i][z])
-            {
-                if (obj == "type") continue;
-                elem.setAttribute(obj, svglib[i][z][obj]);
-            }
-            svg.appendChild(elem);
-        }
-        svgbody.appendChild(svg);
-    }
-});
-
-
-// code from MDN
-let optRS = (function()
-{
+    // code from MDN
     let callbacks = [], running = false;
     function resize()
     {
@@ -700,6 +704,38 @@ let optRS = (function()
         }
     }
 }());
+
+document.addEventListener("DOMContentLoaded", () =>
+{
+    const svgbody = createNS("svg"),
+    header_path = createNS("clipPath");
+    svgbody.setAttribute("id", "hiddenlayer");
+    svgbody.setAttribute("version", "1.1");
+    header_path.setAttribute("id", "header_path");
+    svgbody.appendChild(header_path);
+    _("body").prepend(svgbody);
+
+    for(let i in svglib)
+    {
+        let svg = createNS("clipPath");
+        svg.setAttribute("id", i);
+        for(let z in svglib[i])
+        {
+            let elem = createNS(svglib[i][z].type);
+            for(let obj in svglib[i][z])
+            {
+                if (obj == "type") continue;
+                elem.setAttribute(obj, svglib[i][z][obj]);
+            }
+            svg.appendChild(elem);
+        }
+        svgbody.appendChild(svg);
+    }
+    console.info("[INFO] Achernar Overlay Initalized");
+    console.info("[INFO] " + version.toString());
+});
+
+
 
 document.addEventListener("DOMContentLoaded", () =>
 {
