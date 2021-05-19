@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 10;
+    this.patch = 11;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
@@ -12,6 +12,7 @@ version = new function()
         return [[self.major,self.minor,self.patch].join("."),self.label,self.patchname].join(" ");
     }
 },
+url = new URL(window.location.href),
 w3="http://www.w3.org/2000/svg",
 roles=["me","tanker","healer","dps",["gla","pld"],["mrd","war"],"drk","gnb",["cnj","whm"],"sch","ast",["pgl","mnk"],["lnc","drg"],["rog","nin"],"sam",["arc","brd"],"mch","dnc",["thm","blm"],["acn","smn"],"rdm","blu",["crp","bsm","arm","gsm","ltw","wvr","alc","cul","doh"],["min","btn","fsh","dol"]],
 defaultsvg="0,8 8,0 $A,0 $B,8 $B,$C $A,$D 8,$D 0,$C 0,8",
@@ -19,6 +20,7 @@ timedisplay=["hour-a","min-a","min-b","sec-a","sec-b"],
 skipkeys=["n","t","pets","total","name","threatdelta","threatstr","crittypes","Job","duration","DURATION","dps-*","DPS-*","DPS-k","DPS-m","DAMAGE-*","DAMAGE-k","DAMAGE-m","DAMAGE-b","ENCDPS","ENCDPS-k","ENCDPS-m","ENCDPS-*","ENCHPS-k","ENCHPS-m","ENCHPS-*","Last10DPS","Last30DPS","Last60DPS","Last180DPS","damage-k","damage-m","damage-b","damage-*","maxhealward","maxhealward-*","MAXHEALWARD","MAXHEALWARD-*"],
 healer=["Cnj","Whm","Sch","Ast"],
 tanker=["Gla","Gld","Mrd","Pld","War","Drk","Gnb"],
+removeValues=["t","n","maxhealward","maxhealward-*","MAXHEALWARD","MAXHEALWARD-*","crittypes","damage-b","damage-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","DPS-m","DPS-k","ENCDPS-m","ENCDPS-k","ENCHPS-m","ENCHPS-k","threatdelta","threatstr"],
 intValues=["DURATION","DPS","DPS-k","DPS-m","ENCDPS","ENCDPS-k","ENCDPS-m","ENCHPS","ENCHPS-k","ENCHPS-m","DAMAGE-b","DAMAGE-k","DAMAGE-m","CritDirectHitCount","DirectHitCount","MAXHIT","MAXHEAL","TOHIT","crithits","absorbHeal","critheals","damage","damageShield","damagetaken","deaths","healed","heals","healstaken","hitfailed","hits","kills","cures","misses","overHeal","powerdrain","powerheal","swings","threatdelta"],
 floatValues=["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","Last10DPS","Last30DPS","Last60DPS","Last180DPS"],
 percentValues=["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%","critheal%","healed%"],
@@ -668,6 +670,12 @@ redrawHeader = (elem, svg = defaultsvg) =>
     $("#header_path").innerHTML = "";
     $("#header_path").append(poly);
 },
+getParam = function(e)
+{
+    let c = url.searchParams.get(e);
+    if (e != undefined && c == "" && c == null) return "";
+    else return c;
+},
 optRS = (function()
 {
     // code from MDN
@@ -714,7 +722,6 @@ document.addEventListener("DOMContentLoaded", () =>
     header_path.setAttribute("id", "header_path");
     svgbody.appendChild(header_path);
     _("body").prepend(svgbody);
-
     for(let i in svglib)
     {
         let svg = createNS("clipPath");
@@ -733,13 +740,6 @@ document.addEventListener("DOMContentLoaded", () =>
     }
     console.info("[INFO] Achernar Overlay Initalized");
     console.info("[INFO] " + version.toString());
-});
-
-
-
-document.addEventListener("DOMContentLoaded", () =>
-{
-    redrawHeader(document.querySelector(".header"));
 });
 
 class FWebSocket
@@ -830,14 +830,20 @@ class ffxiv
         {
             let data = JSON.parse(raw, (k, v) =>
             {
-                if (intValues.filter(x => x == k).length > 0)
-                    return v == "0" ? 0 : (isNaN(parseInt(v)) ? 0 : parseInt(v));
-                else if (floatValues.filter(x => x == k).length > 0)
-                    return (v == "0" || v == "0.00") ? 0 : (isNaN(parseFloat(v)) ? 0 : parseFloat(v));
-                else if (percentValues.filter(x => x == k).length > 0)
-                    return (v == "0" ? 0 : parseInt(v)) * 0.01;
+                if (removeValues.filter(x => x == k).length > 0) return undefined;
                 else
-                    return v;
+                {
+                    if (v == "---") v = 0;
+
+                    if (intValues.filter(x => x == k).length > 0)
+                        return v == "0" ? 0 : (isNaN(parseInt(v)) ? 0 : parseInt(v));
+                    else if (floatValues.filter(x => x == k).length > 0)
+                        return (v == "0" || v == "0.00") ? 0 : (isNaN(parseFloat(v)) ? 0 : parseFloat(v));
+                    else if (percentValues.filter(x => x == k).length > 0)
+                        return (v == "0" ? 0 : parseInt(v)) * 0.01;
+                    else
+                        return v;
+                }
             });
             
             if (data.msgtype == "CombatData")
@@ -984,7 +990,9 @@ class ffxiv
             for(let i of combatants)
             {
                 i.max = combinepet ? combatants[0].total[this.sortkey] : combatants[0][this.sortkey];
-                i.rank = idx++;
+                i.rank = 0;
+                if (combinepet && !i.isPet) i.rank = idx++;
+                else if (!combinepet) i.rank = idx++;
                 this.data.msg.Combatant[i.name] = i;
             }
         }
@@ -1004,3 +1012,42 @@ class ffxiv
         return JSON.parse(this.toString());
     }
 }
+
+/*
+let x = ["div.main-list-area>.$>.jobicon::before {background:var(--instance-b)}", "div.main-list-area>.$>.tableitems::before {background-color:var(--instance-d);}", "div.main-list-area>.$>.guage>.guage-process::after {background:linear-gradient(to right, var(--instance-a) 0%, var(--instance-c) 100%);}"];
+let roles = ["me","tanker","healer","dps",["gla","pld"],["mrd","war"],"drk","gnb",["cnj","whm"],"sch","ast",["pgl","mnk"],["lnc","drg"],["rog","nin"],"sam",["arc","brd"],"mch","dnc",["thm","blm"],["acn","smn"],"rdm","blu",["crp","bsm","arm","gsm","ltw","wvr","alc","cul","doh"],["min","btn","fsh","dol"]];
+let c = "";
+for(let i in roles)
+{
+    let role = roles[i];
+    let css_head = "{--instance-a:var(--color-role-%-a); --instance-b:var(--color-role-%-b); --instance-c:var(--color-role-%-c); --incstance-d:var(--color-role-%-d);}";
+    let css_role_tmpl = "div.main-list-area>.%";
+    let css_role = "";
+    
+    if (typeof role === "object")
+    {
+        for(let j = 0; j < role.length; j++)
+        {
+            css_role += css_role_tmpl.replace(/%/g, role[j]);
+            if (j + 1 < role.length) css_role += ",\n";
+        }
+        role = role[role.length - 1];
+    }
+    else
+    {
+        css_role = css_role_tmpl.replace(/%/g, role);
+    }
+
+    css_head = css_head.replace(/%/g, role);
+
+    c += css_role + " " + css_head + "\n";
+    c += "\n";
+    for(let d in x)
+    {
+        c += x[d].replace(/\$/g, role);
+        c += "\n";
+    }
+    c += "\n";
+}
+console.log(c);
+*/

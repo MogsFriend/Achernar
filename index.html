@@ -61,6 +61,11 @@
              * License: GPLv3
             */
 
+            document.addEventListener("DOMContentLoaded", () =>
+            {
+                redrawHeader(document.querySelector(".header"));
+            });
+
             optRS.add(function()
             {
                 redrawHeader(document.querySelector(".header"));
@@ -112,9 +117,8 @@
 
             function initCombatent(person)
             {
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var c = url.searchParams.get("name");
+                let c = getParam("name");
+
                 /* elements */
                 const 
                 job_ico_class = "xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job),
@@ -134,7 +138,7 @@
                 container.setAttribute("data-name", person.name.replace("'", "_"));
                 encdps.setAttribute("title", "dps");
 
-                if (c != undefined && c == "hide" && person.name != "YOU") name.style.filter = "blur(3px)";
+                if (c == "hide" && person.name != "YOU") name.style.filter = "blur(3px)";
             }
 
             function dataProcess(ffxiv, savework = true)
@@ -146,9 +150,8 @@
                 let combatant = [];
                 if (raw.msgtype == "CombatData")
                 {
-                    if (!ffxiv.data.msg.isActive)
+                    if (!ffxiv.data.msg.isActive && getParam("dev"))
                     {
-                        /*
                         // for develop
                         let loc = localStorage.getItem("lastBattleAct");
                         if (loc == null || loc == undefined || loc == "null" || loc == "" || loc == "[]")
@@ -169,9 +172,13 @@
                             }
                         }
                         localStorage.setItem("lastBattleAct", JSON.stringify(loc));
-                        */
                     }
+
                     if (savework) lastData = JSON.parse(JSON.stringify(ffxiv));
+                    if (getParam("dev"))
+                    {
+                        console.log(lastData);
+                    }
 
                     let rawCombatants = raw.msg.Combatant;
                     let combatants = [];
@@ -200,10 +207,10 @@
                     
                     let timer = raw.msg.Encounter.duration.replace(/(^0|:)/ig, "").padStart(5,"0");
                     $(".titlename>.title").innerHTML = raw.msg.Encounter.CurrentZoneName;
-                    if (raw.msg.Encounter["encdps"] > 1000) $(".pdps").innerHTML = raw.msg.Encounter["ENCDPS-k"] + "k DPS";
+                    if (raw.msg.Encounter["encdps"] > 1000) $(".pdps").innerHTML = raw.msg.Encounter["ENCDPS-*"] + " DPS";
                     else $(".pdps").innerHTML = raw.msg.Encounter["ENCDPS"] + " DPS";
 
-                    if (raw.msg.Encounter["enchps"] > 1000) $(".phps").innerHTML = raw.msg.Encounter["ENCHPS-k"] + "k HPS";
+                    if (raw.msg.Encounter["enchps"] > 1000) $(".phps").innerHTML = raw.msg.Encounter["ENCHPS-*"] + " HPS";
                     else $(".phps").innerHTML = raw.msg.Encounter["ENCHPS"] + " HPS";
 
                     if (timer[0] == "0")
