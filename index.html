@@ -61,6 +61,22 @@
              * License: GPLv3
             */
 
+            if (getParam("view"))
+            {
+                switch(getParam("view"))
+                {
+                    case "horizon":
+                        _("body").classList.add(getParam("view"));
+                        break;
+                    default:
+                        _("body").classList.add("default");
+                }
+            }
+            else
+            {
+                _("body").classList.add("default");
+            }
+
             document.addEventListener("DOMContentLoaded", () =>
             {
                 redrawHeader(document.querySelector(".header"));
@@ -119,26 +135,14 @@
             {
                 let c = getParam("name");
 
-                /* elements */
-                const 
-                job_ico_class = "xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job),
-                container          = buildElement("div", ""               , document.querySelector(".main-list-area")),
-                    jobicon        = buildElement("div", "jobicon"        , container),
-                    /**/cover      = buildElement("div", "cover"          , jobicon),
-                    /**/icon       = buildElement(  "i", job_ico_class, jobicon),
-                    tableitems     = buildElement("div", "tableitems"     , container),
-                    /**/upline     = buildElement("div", "upline"         , tableitems),
-                    /*    */name   = buildElement("div", "name"           , upline),
-                    /**/downline   = buildElement("div", "downline"       , tableitems),
-                    backguage      = buildElement("div", "guage"          , container),
-                    /**/barprocess = buildElement("div", "guage-process"  , backguage),
-                    /*    */encdps = buildElement("div", "encdps"         , upline),
-                    /*    */maxhit = buildElement("div", "maxhit"         , downline);
-
+                const container = elementBuilder.default();
                 container.setAttribute("data-name", person.name.replace("'", "_"));
-                encdps.setAttribute("title", "dps");
+                container.find(".mainvalue").setAttribute("title", "dps");
+                
+                _(".main-list-area").appendChild(container);
 
-                if (c == "hide" && person.name != "YOU") name.style.filter = "blur(3px)";
+
+                if (c == "hide" && person.name != "YOU") container.find(".name").style.filter = "blur(3px)";
             }
 
             function dataProcess(ffxiv, savework = true)
@@ -171,7 +175,7 @@
                                 loc.push(ffxiv);
                             }
                         }
-                        localStorage.setItem("lastBattleAct", JSON.stringify(loc));
+                        if (savework) localStorage.setItem("lastBattleAct", JSON.stringify(loc));
                     }
 
                     if (savework) lastData = JSON.parse(JSON.stringify(ffxiv));
@@ -270,9 +274,28 @@
                         container.querySelector(".jobicon>i").classList.add("xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job));
                         container.querySelector(".jobicon>i").setAttribute("title", "CDHit: " + cdhit + "%, DHit: " + dhit + "%, CHit: " + chit + "%");
 
-                        container.querySelector(".encdps").innerHTML = person.encdps.toFixed(2);
-                        container.querySelector(".maxhit").innerHTML = person.maxhit.split('-')[1];
-                        container.querySelector(".maxhit").setAttribute("title", person.maxhit.split('-')[0]);
+                        container.querySelector(".mainvalue").innerHTML = person.encdps.toFixed(2);
+                        container.querySelector(".maxvalue").innerHTML = person.maxhit.split('-')[1];
+                        container.querySelector(".maxvalue").setAttribute("title", person.maxhit.split('-')[0]);
+
+                        for(let x of defaultTableValues)
+                        {
+                            let c = container.find(".detail").new("div", x);
+                            c.innerHTML = person[x];
+                            if (percentValues.filter(y => y == x).length > 0)
+                            {
+                                c.innerHTML = Math.round(person[x] * 100) + "%";
+                                c.css({"min-width":"40px"})
+                            }
+                            if (valueTitle.hasOwnProperty(x))
+                            {
+                                c.setAttribute("title", valueTitle[x]);
+                            }
+                            else
+                            {
+                                c.setAttribute("title", x);
+                            }
+                        }
                     }
                 }
             }

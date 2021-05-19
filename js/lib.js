@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 11;
+    this.patch = 13;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
@@ -26,6 +26,14 @@ floatValues=["damage-b","damage-k","damage-m","dps","encdps","enchps","tohit","L
 percentValues=["BlockPct","CritDirectHitPct","DirectHitPct","OverHealPct","ParryPct","crithit%","damage%","critheal%","healed%"],
 addingValues=["absorbHeal","cures","crithits","CritDirectHitCount","damage","damageShield","DirectHitCount","heals","healed","healstaken","hitfailed","kills","misses","overHeal","powerdrain","powerheal","swings","originCritHits","originDirectHits"],
 sortablekey=["absorbHeal","cures","crithits","CritDirectHitCount","damage","damageShield","DirectHitCount","heals","healed","healstaken","hitfailed","kills","misses","overHeal","powerdrain","powerheal","swings"],
+defaultTableValues=["encdps","damage","CritDirectHitPct","DirectHitPct","crithit%","swings","deaths"],
+valueTitle={
+    "encdps":"dps",
+    "damage":"dmg",
+    "CritDirectHitPct":"!!%",
+    "DirectHitPct":"DH%",
+    "crithit%":"CH%"
+},
 sortalias={
     "encdps":"damage",
     "ENCDPS":"damage",
@@ -622,6 +630,7 @@ elementBuilder = {
             /*    */upline =         tableitems.new("div", "upline"),
             /*        */name =           upline.new("div", "name"),
             /*        */encdps =         upline.new("div", "mainvalue"),
+            /*        */detail =         upline.new("div", "detail"),
             /*    */downline =       tableitems.new("div", "downline"),
             /*        */maxhit =       downline.new("div", "maxvalue"),
             /**/backguage =                item.new("div", "guage"),
@@ -967,7 +976,6 @@ class ffxiv
             this.sort();
         }
         catch (err) { this.data = { "type": "processError", "msgtype": "error", "msg": err }; }
-        // return this.data;
     }
 
     sort(key = "damage", combinepet = true)
