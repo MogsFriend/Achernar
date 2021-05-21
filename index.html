@@ -264,8 +264,7 @@
                         container.setAttribute("class", person.Job.toLowerCase());
                         if (person.name == "YOU") container.setAttribute("class", "me");
 
-                        container.setAttribute("style", "order:" + person.rank);
-                        container.querySelector(".cover").setAttribute("style", "--cdhit:" + cdhit + "%; --dhit:" + (cdhit + dhit) + "%; --chit:" + (cdhit + dhit + chit) + "%");
+                        container.setAttribute("style", "order:" + person.rank + "; --cdhit:" + cdhit + "%; --dhit:" + (cdhit + dhit) + "%; --chit:" + (cdhit + dhit + chit) + "%");
                         container.querySelector(".tableitems").setAttribute("data-perc", (person[ffxiv.sortkey] / m * 100).toFixed(0) + "%");
                         container.querySelector(".tableitems").setAttribute("data-rank", person.rank);
                         container.querySelector(".tableitems").setAttribute("style", "--perc:" + rp + "%");

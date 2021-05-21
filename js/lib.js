@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 1;
-    this.patch = 13;
+    this.patch = 14;
     this.label = "beta";
     this.patchname = "Bayer designation";
     this.toString = () =>
@@ -598,6 +598,9 @@ svglib = {
     "smallcolon":[
         {type:"rect", x:"1.25", y:"2.25", width:"2.25", height:"1.5"},
         {type:"rect", x:"1.25", y:"6.75", width:"2.25", height:"1.5"}, 
+    ],
+    "min-bar-cdhit":[
+        {type:"polygon", points:"0,13.999 8,0 10,0 2,13.999 10,28 8,28"}
     ]
 },
 getNumber = (number, float = true) =>
@@ -648,6 +651,7 @@ previewBuilder = {
     default:(target, role, job) => {
         let icon = job.charAt(0).toUpperCase() + job.slice(1);
         let s = elementBuilder.default();
+        let def = document.createElement("div");
         let rcase = document.createElement("div");
         rcase.classList.add("main-list-area");
         rcase.style.position = "relative";
@@ -664,7 +668,9 @@ previewBuilder = {
         s.find(".tableitems").setAttribute("data-perc", "50%");
         s.find(".tableitems").setAttribute("style", "--perc:50%");
         rcase.append(s);
-        _("." + target).append(rcase);
+        def.classList.add("default");
+        def.appendChild(rcase);
+        _("." + target).append(def);
     }
 },
 redrawHeader = (elem, svg = defaultsvg) =>
