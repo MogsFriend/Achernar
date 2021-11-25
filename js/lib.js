@@ -3,14 +3,12 @@ version = new function()
 {
     let self = this;
     this.major = 0;
-    this.minor = 1;
-    this.patch = 15;
+    this.minor = 2;
+    this.patch = 1;
     this.label = "beta";
-    this.patchname = "Bayer designation";
-    this.toString = () =>
-    {
-        return [[self.major,self.minor,self.patch].join("."),self.label,self.patchname].join(" ");
-    }
+    this.patchname = "Astromaterial";
+    this.author = "Sharlayan.io - Arc Turus";
+    this.toString = () => {return [[self.major,self.minor,self.patch].join("."),self.label,self.patchname].join(" ");}
 },
 url = new URL(window.location.href),
 w3="http://www.w3.org/2000/svg",
@@ -50,75 +48,237 @@ sortalias={
 },
 _ = function(e, c = window)
 {
-    let init = function(elem)
+    let w = c != undefined ? (c.constructor === Window ? c : window) : window,
+    init = function(elem)
     {
-        elem.display = function(style) { elem.style.display = style; }
-        elem.css = function(json)
+        if (elem == null) return null;
+        elem.html = function(html)
         {
-            try
+            this.innerHTML = html;
+            return this;
+        };
+        elem.css = function(a, b)
+        {
+            let attr = "", keys = {}, res = [];
+            if (this.getAttribute("style") == undefined) this.setAttribute("style", "");
+            if (typeof a === "string") a = JSON.parse("{\"" + a + "\":\"" + b + "\"}");
+            attr = this.getAttribute("style");
+            if (attr.indexOf(";") > -1)
             {
-                for(let k in json)
+                let datas = attr.split(";");
+                for(const att in datas)
                 {
-                    let cfj = k.split("-");
-                    for (let i = 1; i < cfj.length; i++) cfj[i] = cfj[i].charAt(0).toUpperCase() + cfj[i].slice(1);
-                    cfj = cfj.join("");
-                    this.style[cfj] = json[k];
+                    if (datas[att].indexOf(":") > -1)
+                    {
+                        let dat = datas[att].split(":");
+                        keys[dat[0]] = dat[1];
+                    }
                 }
             }
-            catch (ex) { }
+            else
+            {
+                if (attr.indexOf(":") > -1)
+                {
+                    let dat = attr.split(":");
+                    keys[dat[0]] = dat[1];
+                }
+            }
+            for(const key in a) keys[key] = a[key];
+            for(const key in keys) res.push(key+":"+keys[key]);
+            this.setAttribute("style", res.join("; "));
+            return this;
+        };
+        elem.removeStyle = function(key)
+        {
+            if (this.getAttribute("style") == undefined) return;
+            
+            let attr = this.getAttribute("style");
+            if (attr.indexOf(";") > -1)
+            {
+                let datas = attr.split(";");
+                for(const att in datas)
+                {
+                    if (datas[att].indexOf(":") > -1)
+                    {
+                        let dat = datas[att].split(":");
+                        if (dat[0] == key) continue;
+                        keys[dat[0]] = dat[1];
+                    }
+                }
+            }
+            else
+            {
+                if (attr.indexOf(":") > -1)
+                {
+                    let dat = attr.split(":");
+                    if (dat[0] != key)
+                    {
+                        keys[dat[0]] = dat[1];
+                    }
+                }
+            }
+            for(const key in keys) res.push(key+":"+keys[key]);
+            this.setAttribute("style", res.join("; "));
+            return this;
         }
-        elem.new = function(type, cls)
+        elem.new = function(type, cls, data)
         {
             let obj = null;
-            if (type) obj = c.document.createElement(type);
-            else obj = c.document.createElement("div");
-
+            obj = w.document.createElement(type ? type : "div");
             if (cls)
             {
-                if (Array.isArray(cls))
+                if (cls.constructor === Array)
                 {
                     try
                     {
-                        for(let i of cls) obj.classList.add(i);
+                        for(let i of cls) if (i) obj.classList.add(i);
                     }
                     catch (ex) { }
                 }
                 else obj.classList.add(cls);
             }
             elem.append(obj);
+            if (data != undefined && data.constructor && (data.constructor === String || data.constructor === Number))
+                obj.innerHTML = data;
+            else if (data != undefined)
+            {
+                try
+                {
+                    if (data.innerHTML != undefined)
+                    {
+                        obj.innerHTML = data.innerHTML;
+                    }
 
+                    for(const key in data)
+                    {
+                        if (key == "innerHTML") continue;
+                        else
+                        {
+                            obj.setAttribute(key, data[key]);
+                        }
+                    }
+                }
+                catch (ex)
+                {
+                    console.error(ex);
+                }
+            }
             return init(obj);
-        }
+        };
         elem.find = function(filter) 
         {
             return init(elem.querySelector(filter));
+        };
+        elem.findAll = function(filter)
+        {
+            let NodeList = elem.querySelectorAll(filter);
+            NodeList.forEach = function(callback, thisArg)
+            {
+                thisArg = thisArg || w;
+                for(let i=0; i<NodeList.length; i++)
+                {
+                    callback.call(thisArg, init(NodeList[i]), i, NodeList);
+                }
+            }
+            return NodeList;
         }
+        elem.display = function(style)
+        {
+            elem.style.display = style;
+            return this;
+        };
+        elem.buildFromJson = function(obj)
+        {
+            try
+            {
+                if (obj.constructor && obj.constructor === Array)
+                {
+                    for(const ch of obj)
+                    {
+                        if (typeof ch === "object") elem.buildFromJson(ch);
+                    }
+                }
+                else
+                {
+                    function isSingleClass(target)
+                    {
+                        if (target && target.constructor && target.constructor === Array)
+                            return target;
+                        else if (target && typeof target === "string")
+                            return [target];
+                        else
+                            return [];
+                    }
+
+                    let child = null;
+                    if (obj.hasOwnProperty("type"))
+                    {
+                        child = elem.new(obj.type, isSingleClass(obj.classList), (obj.hasOwnProperty("attr") && typeof obj.attr === "object" ? obj.attr : {}));
+                    }
+                    else
+                    {
+                        child = elem.new("div", isSingleClass(obj.classList), (obj.hasOwnProperty("attr") && typeof obj.attr === "object" ? obj.attr : {}));
+                    }
+
+                    if (obj.hasOwnProperty("events") && typeof obj.events === "object")
+                    {
+                        for(const eventName in obj.events)
+                        {
+                            try
+                            {
+                                child.addEventListener(eventName, obj.events[eventName]);
+                            }
+                            catch(ex)
+                            {
+                                console.error(ex.message);
+                                console.error(ex.stack);
+                            }
+                        }
+                    }
+    
+                    if (obj.hasOwnProperty("childNodes") && obj.childNodes.constructor && obj.childNodes.constructor === Array)
+                    {
+                        for(const ch of obj.childNodes)
+                        {
+                            if (typeof ch === "object") child.buildFromJson(ch);
+                        }
+                    }
+                }
+                return elem;
+            }
+            catch(ex)
+            {
+                console.error(ex.message);
+                console.error(ex.stack);
+            }
+        };
         return elem;
     }
-
     if (e && typeof e === "string")
     {
-        let obj = c.document.querySelectorAll(e);
+        let obj = w.document.querySelectorAll(e);
+        let org = obj;
+        obj = init(obj[0]);
         if (obj == null) return null;
-        if (obj.length > 1)
+        obj.forEach = function(callback, thisArg)
         {
-            let org = obj;
-            obj = obj[0];
-            obj.all = org;
-            obj.get = function(i)
+            thisArg = thisArg || w;
+            for(let i=0; i<org.length; i++)
             {
-                if (i < 0)  return init(org[i]);
-                else return init(org[org.length + i]);
+                callback.call(thisArg, init(org[i]), i, org);
             }
         }
-        else obj = obj[0];
-        return init(obj);
+
+        return obj;
     }
     else if (e.constructor.toString().indexOf("HTML") > -1 && e.constructor.toString().indexOf("Element") > -1)
     {
         return init(e);
     }
-    else console.warn("No Matched Element");
+    else
+    {
+        console.warn("No Matched Element");
+    }
     return null;
 },
 $ = _,
