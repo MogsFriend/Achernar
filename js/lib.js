@@ -4,7 +4,7 @@ version = new function()
     let self = this;
     this.major = 0;
     this.minor = 2;
-    this.patch = 1;
+    this.patch = 2;
     this.label = "beta";
     this.patchname = "Astromaterial";
     this.author = "Sharlayan.io - Arc Turus";
@@ -46,7 +46,7 @@ sortalias={
     "OverHealPct":"overHeal",
     "CritDirectHitPct":"CritDirectHitCount"
 },
-_ = function(e, c = window)
+_ = function(e, c)
 {
     let w = c != undefined ? (c.constructor === Window ? c : window) : window,
     init = function(elem)

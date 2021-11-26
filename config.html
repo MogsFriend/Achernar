@@ -621,8 +621,8 @@
         {
             e.addEventListener("click", (elm) =>
             {
-                $("nav>ul>li[data-langcode]").all.forEach((elem) => {elem.classList.remove("on")});
-                $("section.setting-main>section").all.forEach((elem) => {elem.classList.remove("on")});
+                $("nav>ul>li[data-langcode]").forEach((elem) => {elem.classList.remove("on")});
+                $("section.setting-main>section").forEach((elem) => {elem.classList.remove("on")});
                 $("section.setting-main>section." + e.getAttribute("data-langcode")).classList.add("on");
                 e.classList.add("on");
             });
