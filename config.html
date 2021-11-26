@@ -600,7 +600,7 @@
                 color_name.innerHTML = lang.get(v);
             }
         }
-        $(".setting-item[class*=role-]").all.forEach((e) =>
+        $(".setting-item[class*=role-]").forEach((e) =>
         {
             let self = $(e);
             let tag = Object.values(self.classList).filter(x => x.indexOf("role") > -1)[0];
@@ -617,7 +617,7 @@
         
         $("header>section.content-area>.head").innerHTML = lang.get("setting");
 
-        $("nav>ul>li[data-langcode]").all.forEach((e) =>
+        $("nav>ul>li[data-langcode]").forEach((e) =>
         {
             e.addEventListener("click", (elm) =>
             {
