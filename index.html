@@ -261,7 +261,7 @@
                         personClassCheck(person, "me", ".main-list-area>div[data-name=\"%PERSON_LDASH%\"]", person.name == "YOU");
 
                         container.querySelector(".name").innerHTML = person.name;
-                        container.setAttribute("class", person.Job.toLowerCase());
+                        if (person.Job) container.setAttribute("class", person.Job.toLowerCase());
                         if (person.name == "YOU") container.setAttribute("class", "me");
 
                         container.setAttribute("style", "order:" + person.rank + "; --cdhit:" + cdhit + "%; --dhit:" + (cdhit + dhit) + "%; --chit:" + (cdhit + dhit + chit) + "%");
