@@ -2,10 +2,10 @@
 FFXIV HTML Damage parse Overlay
 
 ## support overlays
-Ngld overlay plugin
-- needed fake ws feature
+OverlayPlugin by ngld
+- require `fake websocket` feature
 
 Actwebsocket overlay
 
-Dalamud (browser host)
-- needed actwebsocket ws server
+Dalamud Plugin (browserhost by ackwell)
+- needed actwebsocket ws server (overlayplugin or actwebsocket)
