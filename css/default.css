@@ -43,111 +43,145 @@
     --color-role-pld-b: rgba(160, 196, 204, .5);
     --color-role-pld-c: rgba(160, 196, 204, .25);
     --color-role-pld-d: rgb(160, 196, 204);
+    --color-role-pld-font: rgb(255, 255, 255);
 
     --color-role-war-a: rgba(196, 96, 96, .75);
     --color-role-war-b: rgba(196, 96, 96, .5);
     --color-role-war-c: rgba(196, 96, 96, .25);
     --color-role-war-d: rgb(196, 96, 96);
+    --color-role-war-font: rgb(255, 255, 255);
 
     --color-role-drk-a: rgba(160, 96, 128, .75);
     --color-role-drk-b: rgba(160, 96, 128, .5);
     --color-role-drk-c: rgba(160, 96, 128, .25);
     --color-role-drk-d: rgb(160, 96, 128);
+    --color-role-drk-font: rgb(255, 255, 255);
 
     --color-role-gnb-a: rgba(196, 160, 96, .75);
     --color-role-gnb-b: rgba(196, 160, 96, .5);
     --color-role-gnb-c: rgba(196, 160, 96, .25);
     --color-role-gnb-d: rgb(196, 160, 96);
+    --color-role-gnb-font: rgb(255, 255, 255);
 
     --color-role-whm-a: rgba(196, 172, 144, .75);
     --color-role-whm-b: rgba(196, 172, 144, .5);
     --color-role-whm-c: rgba(196, 172, 144, .25);
     --color-role-whm-d: rgb(196, 172, 144);
+    --color-role-whm-font: rgb(255, 255, 255);
 
     --color-role-sch-a: rgba(72, 64, 196, .75);
     --color-role-sch-b: rgba(72, 64, 196, .5);
     --color-role-sch-c: rgba(72, 64, 196, .25);
     --color-role-sch-d: rgb(72, 64, 196);
+    --color-role-sch-font: rgb(255, 255, 255);
 
     --color-role-ast-a: rgba(196, 144, 96, .75);
     --color-role-ast-b: rgba(196, 144, 96, .5);
     --color-role-ast-c: rgba(196, 144, 96, .25);
     --color-role-ast-d: rgb(196, 144, 96);
+    --color-role-ast-font: rgb(255, 255, 255);
+
+    --color-role-sge-a: rgba(160, 160, 160, .75);
+    --color-role-sge-b: rgba(160, 160, 160, .5);
+    --color-role-sge-c: rgba(160, 160, 160, .25);
+    --color-role-sge-d: rgba(160, 160, 160);
+    --color-role-sge-font: rgb(192, 255, 255);
 
     --color-role-mnk-a: rgba(196, 160, 64, .75);
     --color-role-mnk-b: rgba(196, 160, 64, .5);
     --color-role-mnk-c: rgba(196, 160, 64, .25);
     --color-role-mnk-d: rgb(196, 160, 64);
+    --color-role-mnk-font: rgb(255, 255, 255);
 
     --color-role-drg-a: rgba(72, 96, 192, .75);
     --color-role-drg-b: rgba(72, 96, 192, .5);
     --color-role-drg-c: rgba(72, 96, 192, .25);
     --color-role-drg-d: rgb(72, 96, 192);
+    --color-role-drg-font: rgb(255, 255, 255);
 
     --color-role-nin-a: rgba(128, 128, 144, .75);
     --color-role-nin-b: rgba(128, 128, 144, .5);
     --color-role-nin-c: rgba(196, 96, 128, .25);
     --color-role-nin-d: rgb(128, 128, 144);
+    --color-role-nin-font: rgb(255, 255, 255);
 
     --color-role-sam-a: rgba(196, 196, 172, .75);
     --color-role-sam-b: rgba(196, 196, 172, .5);
     --color-role-sam-c: rgba(196, 96, 64, .25);
     --color-role-sam-d: rgb(196, 196, 172);
+    --color-role-sam-font: rgb(255, 255, 255);
+
+    --color-role-rpr-a: rgba(32, 32, 32, .75);
+    --color-role-rpr-b: rgba(32, 32, 32, .5);
+    --color-role-rpr-c: rgba(32, 32, 32, .25);
+    --color-role-rpr-d: rgb(32, 32, 32);
+    --color-role-rpr-font: rgb(255, 255, 192);
 
     --color-role-brd-a: rgba(128, 196, 64, .75);
     --color-role-brd-b: rgba(128, 196, 64, .5);
     --color-role-brd-c: rgba(128, 196, 64, .25);
     --color-role-brd-d: rgb(128, 196, 64);
+    --color-role-brd-font: rgb(255, 255, 255);
 
     --color-role-mch-a: rgba(64, 160, 172, .75);
     --color-role-mch-b: rgba(64, 160, 172, .5);
     --color-role-mch-c: rgba(64, 160, 172, .25);
     --color-role-mch-d: rgb(64, 160, 172);
+    --color-role-mch-font: rgb(255, 255, 255);
 
     --color-role-dnc-a: rgba(192, 144, 144, .75);
     --color-role-dnc-b: rgba(192, 144, 144, .5);
     --color-role-dnc-c: rgba(192, 144, 144, .25);
     --color-role-dnc-d: rgb(192, 144, 144);
+    --color-role-dnc-font: rgb(255, 255, 255);
 
     --color-role-blm-a: rgba(96, 64, 144, .75);
     --color-role-blm-b: rgba(96, 64, 144, .5);
     --color-role-blm-c: rgba(96, 64, 144, .25);
     --color-role-blm-d: rgb(96, 64, 144);
+    --color-role-blm-font: rgb(255, 255, 255);
 
     --color-role-smn-a: rgba(64, 160, 48, .75);
     --color-role-smn-b: rgba(64, 160, 48, .5);
     --color-role-smn-c: rgba(64, 160, 64, .25);
     --color-role-smn-d: rgb(64, 160, 48);
+    --color-role-smn-font: rgb(255, 255, 255);
 
     --color-role-rdm-a: rgba(196, 32, 128, .75);
     --color-role-rdm-b: rgba(196, 32, 128, .5);
     --color-role-rdm-c: rgba(160, 32, 96, .25);
     --color-role-rdm-d: rgb(160, 32, 96);
+    --color-role-rdm-font: rgb(255, 255, 255);
 
     --color-role-blu-a: rgba(64, 128, 196, .75);
     --color-role-blu-b: rgba(64, 128, 196, .5);
     --color-role-blu-c: rgba(64, 128, 196, .25);
     --color-role-blu-d: rgb(64, 128, 196);
+    --color-role-blu-font: rgb(255, 255, 255);
 
     --color-role-dps-a: rgba(128, 64, 64, .75);
     --color-role-dps-b: rgba(128, 64, 64, .5);
     --color-role-dps-c: rgba(128, 64, 64, .25);
     --color-role-dps-d: rgb(128, 64, 64);
+    --color-role-dps-font: rgb(255, 255, 255);
 
     --color-role-tanker-a: rgba(64, 64, 128, .75);
     --color-role-tanker-b: rgba(64, 64, 128, .5);
     --color-role-tanker-c: rgba(64, 64, 128, .25);
     --color-role-tanker-d: rgb(64, 64, 128);
+    --color-role-tanker-font: rgb(255, 255, 255);
 
     --color-role-healer-a: rgba(64, 128, 64, .75);
     --color-role-healer-b: rgba(64, 128, 64, .5);
     --color-role-healer-c: rgba(64, 128, 64, .25);
     --color-role-healer-d: rgb(64, 128, 64);
+    --color-role-healer-font: rgb(255, 255, 255);
 
     --color-role-me-a: rgba(160, 160, 160, .75);
     --color-role-me-b: rgba(160, 160, 160, .5);
     --color-role-me-c: rgba(160, 160, 160, .25);
     --color-role-me-d: rgb(160, 160, 160);
+    --color-role-me-font: ;
 }
 
 /* xivicons SQUARE ENIX all right reserved */
@@ -189,6 +223,8 @@
 .xiv-Blu:before{content:'\f036';}
 .xiv-Gnb:before{content:'\f037';}
 .xiv-Dnc:before{content:'\f038';}
+.xiv-Rpr:before{content:'\f039';}
+.xiv-Sge:before{content:'\f040';}
 .xiv-lb_icon:before {clip-path:url(#limitbreak); content:""; background:var(--color-text); display:block; margin:2px; width:24px; height:24px;}
 
 * {font-family:'Noto Sans JP', 'Noto Sans KR'; font-size:12px; font-weight:300;}
@@ -342,124 +378,134 @@ div.main-list-area>div {--instance-a:rgba(128,128,128,.75); --instance-b:rgba(12
 div.main-list-area>div>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>div>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.me {--instance-a:var(--color-role-me-a); --instance-b:var(--color-role-me-b); --instance-c:var(--color-role-me-c); --instance-d:var(--color-role-me-d); --color-role-dps-a:var(--color-role-me-a); --color-role-dps-b:var(--color-role-me-b); --color-role-dps-c:var(--color-role-me-c); --color-role-dps-d:var(--color-role-me-d);}
+div.main-list-area>.me {filter:var(--color-role-me-filter, none); --instance-a:var(--color-role-me-a); --instance-b:var(--color-role-me-b); --instance-c:var(--color-role-me-c); --instance-d:var(--color-role-me-d); --color-role-dps-a:var(--color-role-me-a); --color-role-dps-b:var(--color-role-me-b); --color-role-dps-c:var(--color-role-me-c); --color-role-dps-d:var(--color-role-me-d);}
 
 div.main-list-area>.me>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.me>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.tanker {--instance-a:var(--color-role-tanker-a); --instance-b:var(--color-role-tanker-b); --instance-c:var(--color-role-tanker-c); --instance-d:var(--color-role-tanker-d); --color-role-dps-a:var(--color-role-tanker-a); --color-role-dps-b:var(--color-role-tanker-b); --color-role-dps-c:var(--color-role-tanker-c); --color-role-dps-d:var(--color-role-tanker-d);}
+div.main-list-area>.tanker {filter:var(--color-role-tanker-filter, none); --color-text:var(--color-role-tanker-font); --instance-a:var(--color-role-tanker-a); --instance-b:var(--color-role-tanker-b); --instance-c:var(--color-role-tanker-c); --instance-d:var(--color-role-tanker-d); --color-role-dps-a:var(--color-role-tanker-a); --color-role-dps-b:var(--color-role-tanker-b); --color-role-dps-c:var(--color-role-tanker-c); --color-role-dps-d:var(--color-role-tanker-d);}
 
 div.main-list-area>.tanker>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.tanker>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.healer {--instance-a:var(--color-role-healer-a); --instance-b:var(--color-role-healer-b); --instance-c:var(--color-role-healer-c); --instance-d:var(--color-role-healer-d); --color-role-dps-a:var(--color-role-healer-a); --color-role-dps-b:var(--color-role-healer-b); --color-role-dps-c:var(--color-role-healer-c); --color-role-dps-d:var(--color-role-healer-d);}
+div.main-list-area>.healer {filter:var(--color-role-healer-filter, none); --color-text:var(--color-role-healer-font); --instance-a:var(--color-role-healer-a); --instance-b:var(--color-role-healer-b); --instance-c:var(--color-role-healer-c); --instance-d:var(--color-role-healer-d); --color-role-dps-a:var(--color-role-healer-a); --color-role-dps-b:var(--color-role-healer-b); --color-role-dps-c:var(--color-role-healer-c); --color-role-dps-d:var(--color-role-healer-d);}
 
 div.main-list-area>.healer>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.healer>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.dps {--instance-a:var(--color-role-dps-a); --instance-b:var(--color-role-dps-b); --instance-c:var(--color-role-dps-c); --instance-d:var(--color-role-dps-d);}
+div.main-list-area>.dps {filter:var(--color-role-dps-filter, none); --color-text:var(--color-role-dps-font); --instance-a:var(--color-role-dps-a); --instance-b:var(--color-role-dps-b); --instance-c:var(--color-role-dps-c); --instance-d:var(--color-role-dps-d);}
 
 div.main-list-area>.dps>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.dps>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.gla,
-div.main-list-area>.pld {--instance-a:var(--color-role-pld-a); --instance-b:var(--color-role-pld-b); --instance-c:var(--color-role-pld-c); --instance-d:var(--color-role-pld-d); --color-role-dps-a:var(--color-role-pld-a); --color-role-dps-b:var(--color-role-pld-b); --color-role-dps-c:var(--color-role-pld-c); --color-role-dps-d:var(--color-role-pld-d);}
+div.main-list-area>.pld {filter:var(--color-role-pld-filter, none); --color-text:var(--color-role-pld-font); --instance-a:var(--color-role-pld-a); --instance-b:var(--color-role-pld-b); --instance-c:var(--color-role-pld-c); --instance-d:var(--color-role-pld-d); --color-role-dps-a:var(--color-role-pld-a); --color-role-dps-b:var(--color-role-pld-b); --color-role-dps-c:var(--color-role-pld-c); --color-role-dps-d:var(--color-role-pld-d);}
 
 div.main-list-area>.pld>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.pld>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.mrd,
-div.main-list-area>.war {--instance-a:var(--color-role-war-a); --instance-b:var(--color-role-war-b); --instance-c:var(--color-role-war-c); --instance-d:var(--color-role-war-d); --color-role-dps-a:var(--color-role-war-a); --color-role-dps-b:var(--color-role-war-b); --color-role-dps-c:var(--color-role-war-c); --color-role-dps-d:var(--color-role-war-d);}
+div.main-list-area>.war {filter:var(--color-role-war-filter, none); --color-text:var(--color-role-war-font); --instance-a:var(--color-role-war-a); --instance-b:var(--color-role-war-b); --instance-c:var(--color-role-war-c); --instance-d:var(--color-role-war-d); --color-role-dps-a:var(--color-role-war-a); --color-role-dps-b:var(--color-role-war-b); --color-role-dps-c:var(--color-role-war-c); --color-role-dps-d:var(--color-role-war-d);}
 
 div.main-list-area>.war>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.war>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.drk {--instance-a:var(--color-role-drk-a); --instance-b:var(--color-role-drk-b); --instance-c:var(--color-role-drk-c); --instance-d:var(--color-role-drk-d); --color-role-dps-a:var(--color-role-drk-a); --color-role-dps-b:var(--color-role-drk-b); --color-role-dps-c:var(--color-role-drk-c); --color-role-dps-d:var(--color-role-drk-d);}
+div.main-list-area>.drk {filter:var(--color-role-drk-filter, none); --color-text:var(--color-role-drk-font); --instance-a:var(--color-role-drk-a); --instance-b:var(--color-role-drk-b); --instance-c:var(--color-role-drk-c); --instance-d:var(--color-role-drk-d); --color-role-dps-a:var(--color-role-drk-a); --color-role-dps-b:var(--color-role-drk-b); --color-role-dps-c:var(--color-role-drk-c); --color-role-dps-d:var(--color-role-drk-d);}
 
 div.main-list-area>.drk>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.drk>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.gnb {--instance-a:var(--color-role-gnb-a); --instance-b:var(--color-role-gnb-b); --instance-c:var(--color-role-gnb-c); --instance-d:var(--color-role-gnb-d); --color-role-dps-a:var(--color-role-gnb-a); --color-role-dps-b:var(--color-role-gnb-b); --color-role-dps-c:var(--color-role-gnb-c); --color-role-dps-d:var(--color-role-gnb-d);}
+div.main-list-area>.gnb {filter:var(--color-role-gnb-filter, none); --color-text:var(--color-role-gnb-font); --instance-a:var(--color-role-gnb-a); --instance-b:var(--color-role-gnb-b); --instance-c:var(--color-role-gnb-c); --instance-d:var(--color-role-gnb-d); --color-role-dps-a:var(--color-role-gnb-a); --color-role-dps-b:var(--color-role-gnb-b); --color-role-dps-c:var(--color-role-gnb-c); --color-role-dps-d:var(--color-role-gnb-d);}
 
 div.main-list-area>.gnb>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.gnb>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.cnj,
-div.main-list-area>.whm {--instance-a:var(--color-role-whm-a); --instance-b:var(--color-role-whm-b); --instance-c:var(--color-role-whm-c); --instance-d:var(--color-role-whm-d); --color-role-dps-a:var(--color-role-whm-a); --color-role-dps-b:var(--color-role-whm-b); --color-role-dps-c:var(--color-role-whm-c); --color-role-dps-d:var(--color-role-whm-d);}
+div.main-list-area>.whm {filter:var(--color-role-whm-filter, none); --color-text:var(--color-role-whm-font); --instance-a:var(--color-role-whm-a); --instance-b:var(--color-role-whm-b); --instance-c:var(--color-role-whm-c); --instance-d:var(--color-role-whm-d); --color-role-dps-a:var(--color-role-whm-a); --color-role-dps-b:var(--color-role-whm-b); --color-role-dps-c:var(--color-role-whm-c); --color-role-dps-d:var(--color-role-whm-d);}
 
 div.main-list-area>.whm>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.whm>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.sch {--instance-a:var(--color-role-sch-a); --instance-b:var(--color-role-sch-b); --instance-c:var(--color-role-sch-c); --instance-d:var(--color-role-sch-d); --color-role-dps-a:var(--color-role-sch-a); --color-role-dps-b:var(--color-role-sch-b); --color-role-dps-c:var(--color-role-sch-c); --color-role-dps-d:var(--color-role-sch-d);}
+div.main-list-area>.sch {filter:var(--color-role-sch-filter, none); --color-text:var(--color-role-sch-font); --instance-a:var(--color-role-sch-a); --instance-b:var(--color-role-sch-b); --instance-c:var(--color-role-sch-c); --instance-d:var(--color-role-sch-d); --color-role-dps-a:var(--color-role-sch-a); --color-role-dps-b:var(--color-role-sch-b); --color-role-dps-c:var(--color-role-sch-c); --color-role-dps-d:var(--color-role-sch-d);}
 
 div.main-list-area>.sch>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.sch>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.ast {--instance-a:var(--color-role-ast-a); --instance-b:var(--color-role-ast-b); --instance-c:var(--color-role-ast-c); --instance-d:var(--color-role-ast-d); --color-role-dps-a:var(--color-role-ast-a); --color-role-dps-b:var(--color-role-ast-b); --color-role-dps-c:var(--color-role-ast-c); --color-role-dps-d:var(--color-role-ast-d);}
+div.main-list-area>.ast {filter:var(--color-role-ast-filter, none); --color-text:var(--color-role-ast-font); --instance-a:var(--color-role-ast-a); --instance-b:var(--color-role-ast-b); --instance-c:var(--color-role-ast-c); --instance-d:var(--color-role-ast-d); --color-role-dps-a:var(--color-role-ast-a); --color-role-dps-b:var(--color-role-ast-b); --color-role-dps-c:var(--color-role-ast-c); --color-role-dps-d:var(--color-role-ast-d);}
 
 div.main-list-area>.ast>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.ast>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.pgl,
-div.main-list-area>.mnk {--instance-a:var(--color-role-mnk-a); --instance-b:var(--color-role-mnk-b); --instance-c:var(--color-role-mnk-c); --instance-d:var(--color-role-mnk-d); --color-role-dps-a:var(--color-role-mnk-a); --color-role-dps-b:var(--color-role-mnk-b); --color-role-dps-c:var(--color-role-mnk-c); --color-role-dps-d:var(--color-role-mnk-d);}
+div.main-list-area>.mnk {filter:var(--color-role-mnk-filter, none); --color-text:var(--color-role-mnk-font); --instance-a:var(--color-role-mnk-a); --instance-b:var(--color-role-mnk-b); --instance-c:var(--color-role-mnk-c); --instance-d:var(--color-role-mnk-d); --color-role-dps-a:var(--color-role-mnk-a); --color-role-dps-b:var(--color-role-mnk-b); --color-role-dps-c:var(--color-role-mnk-c); --color-role-dps-d:var(--color-role-mnk-d);}
 
 div.main-list-area>.mnk>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.mnk>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.lnc,
-div.main-list-area>.drg {--instance-a:var(--color-role-drg-a); --instance-b:var(--color-role-drg-b); --instance-c:var(--color-role-drg-c); --instance-d:var(--color-role-drg-d); --color-role-dps-a:var(--color-role-drg-a); --color-role-dps-b:var(--color-role-drg-b); --color-role-dps-c:var(--color-role-drg-c); --color-role-dps-d:var(--color-role-drg-d);}
+div.main-list-area>.drg {filter:var(--color-role-drg-filter, none); --color-text:var(--color-role-drg-font); --instance-a:var(--color-role-drg-a); --instance-b:var(--color-role-drg-b); --instance-c:var(--color-role-drg-c); --instance-d:var(--color-role-drg-d); --color-role-dps-a:var(--color-role-drg-a); --color-role-dps-b:var(--color-role-drg-b); --color-role-dps-c:var(--color-role-drg-c); --color-role-dps-d:var(--color-role-drg-d);}
 
 div.main-list-area>.drg>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.drg>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.rog,
-div.main-list-area>.nin {--instance-a:var(--color-role-nin-a); --instance-b:var(--color-role-nin-b); --instance-c:var(--color-role-nin-c); --instance-d:var(--color-role-nin-d); --color-role-dps-a:var(--color-role-nin-a); --color-role-dps-b:var(--color-role-nin-b); --color-role-dps-c:var(--color-role-nin-c); --color-role-dps-d:var(--color-role-nin-d);}
+div.main-list-area>.nin {filter:var(--color-role-nin-filter, none); --color-text:var(--color-role-nin-font); --instance-a:var(--color-role-nin-a); --instance-b:var(--color-role-nin-b); --instance-c:var(--color-role-nin-c); --instance-d:var(--color-role-nin-d); --color-role-dps-a:var(--color-role-nin-a); --color-role-dps-b:var(--color-role-nin-b); --color-role-dps-c:var(--color-role-nin-c); --color-role-dps-d:var(--color-role-nin-d);}
 
 div.main-list-area>.nin>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.nin>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.sam {--instance-a:var(--color-role-sam-a); --instance-b:var(--color-role-sam-b); --instance-c:var(--color-role-sam-c); --instance-d:var(--color-role-sam-d); --color-role-dps-a:var(--color-role-sam-a); --color-role-dps-b:var(--color-role-sam-b); --color-role-dps-c:var(--color-role-sam-c); --color-role-dps-d:var(--color-role-sam-d);}
+div.main-list-area>.sam {filter:var(--color-role-sam-filter, none); --color-text:var(--color-role-sam-font); --instance-a:var(--color-role-sam-a); --instance-b:var(--color-role-sam-b); --instance-c:var(--color-role-sam-c); --instance-d:var(--color-role-sam-d); --color-role-dps-a:var(--color-role-sam-a); --color-role-dps-b:var(--color-role-sam-b); --color-role-dps-c:var(--color-role-sam-c); --color-role-dps-d:var(--color-role-sam-d);}
 
 div.main-list-area>.sam>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.sam>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.arc,
-div.main-list-area>.brd {--instance-a:var(--color-role-brd-a); --instance-b:var(--color-role-brd-b); --instance-c:var(--color-role-brd-c); --instance-d:var(--color-role-brd-d); --color-role-dps-a:var(--color-role-brd-a); --color-role-dps-b:var(--color-role-brd-b); --color-role-dps-c:var(--color-role-brd-c); --color-role-dps-d:var(--color-role-brd-d);}
+div.main-list-area>.brd {filter:var(--color-role-brd-filter, none); --color-text:var(--color-role-brd-font); --instance-a:var(--color-role-brd-a); --instance-b:var(--color-role-brd-b); --instance-c:var(--color-role-brd-c); --instance-d:var(--color-role-brd-d); --color-role-dps-a:var(--color-role-brd-a); --color-role-dps-b:var(--color-role-brd-b); --color-role-dps-c:var(--color-role-brd-c); --color-role-dps-d:var(--color-role-brd-d);}
 
 div.main-list-area>.brd>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.brd>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.mch {--instance-a:var(--color-role-mch-a); --instance-b:var(--color-role-mch-b); --instance-c:var(--color-role-mch-c); --instance-d:var(--color-role-mch-d); --color-role-dps-a:var(--color-role-mch-a); --color-role-dps-b:var(--color-role-mch-b); --color-role-dps-c:var(--color-role-mch-c); --color-role-dps-d:var(--color-role-mch-d);}
+div.main-list-area>.mch {filter:var(--color-role-mch-filter, none); --color-text:var(--color-role-mch-font); --instance-a:var(--color-role-mch-a); --instance-b:var(--color-role-mch-b); --instance-c:var(--color-role-mch-c); --instance-d:var(--color-role-mch-d); --color-role-dps-a:var(--color-role-mch-a); --color-role-dps-b:var(--color-role-mch-b); --color-role-dps-c:var(--color-role-mch-c); --color-role-dps-d:var(--color-role-mch-d);}
 
 div.main-list-area>.mch>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.mch>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.dnc {--instance-a:var(--color-role-dnc-a); --instance-b:var(--color-role-dnc-b); --instance-c:var(--color-role-dnc-c); --instance-d:var(--color-role-dnc-d); --color-role-dps-a:var(--color-role-dnc-a); --color-role-dps-b:var(--color-role-dnc-b); --color-role-dps-c:var(--color-role-dnc-c); --color-role-dps-d:var(--color-role-dnc-d);}
+div.main-list-area>.dnc {filter:var(--color-role-dnc-filter, none); --color-text:var(--color-role-dnc-font); --instance-a:var(--color-role-dnc-a); --instance-b:var(--color-role-dnc-b); --instance-c:var(--color-role-dnc-c); --instance-d:var(--color-role-dnc-d); --color-role-dps-a:var(--color-role-dnc-a); --color-role-dps-b:var(--color-role-dnc-b); --color-role-dps-c:var(--color-role-dnc-c); --color-role-dps-d:var(--color-role-dnc-d);}
 
 div.main-list-area>.dnc>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.dnc>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.thm,
-div.main-list-area>.blm {--instance-a:var(--color-role-blm-a); --instance-b:var(--color-role-blm-b); --instance-c:var(--color-role-blm-c); --instance-d:var(--color-role-blm-d); --color-role-dps-a:var(--color-role-blm-a); --color-role-dps-b:var(--color-role-blm-b); --color-role-dps-c:var(--color-role-blm-c); --color-role-dps-d:var(--color-role-blm-d);}
+div.main-list-area>.blm {filter:var(--color-role-blm-filter, none); --color-text:var(--color-role-blm-font); --instance-a:var(--color-role-blm-a); --instance-b:var(--color-role-blm-b); --instance-c:var(--color-role-blm-c); --instance-d:var(--color-role-blm-d); --color-role-dps-a:var(--color-role-blm-a); --color-role-dps-b:var(--color-role-blm-b); --color-role-dps-c:var(--color-role-blm-c); --color-role-dps-d:var(--color-role-blm-d);}
 
 div.main-list-area>.blm>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.blm>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.acn,
-div.main-list-area>.smn {--instance-a:var(--color-role-smn-a); --instance-b:var(--color-role-smn-b); --instance-c:var(--color-role-smn-c); --instance-d:var(--color-role-smn-d); --color-role-dps-a:var(--color-role-smn-a); --color-role-dps-b:var(--color-role-smn-b); --color-role-dps-c:var(--color-role-smn-c); --color-role-dps-d:var(--color-role-smn-d);}
+div.main-list-area>.smn {filter:var(--color-role-smn-filter, none); --color-text:var(--color-role-smn-font); --instance-a:var(--color-role-smn-a); --instance-b:var(--color-role-smn-b); --instance-c:var(--color-role-smn-c); --instance-d:var(--color-role-smn-d); --color-role-dps-a:var(--color-role-smn-a); --color-role-dps-b:var(--color-role-smn-b); --color-role-dps-c:var(--color-role-smn-c); --color-role-dps-d:var(--color-role-smn-d);}
 
 div.main-list-area>.smn>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.smn>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.rdm {--instance-a:var(--color-role-rdm-a); --instance-b:var(--color-role-rdm-b); --instance-c:var(--color-role-rdm-c); --instance-d:var(--color-role-rdm-d); --color-role-dps-a:var(--color-role-rdm-a); --color-role-dps-b:var(--color-role-rdm-b); --color-role-dps-c:var(--color-role-rdm-c); --color-role-dps-d:var(--color-role-rdm-d);}
+div.main-list-area>.rdm {filter:var(--color-role-rdm-filter, none); --color-text:var(--color-role-rdm-font); --instance-a:var(--color-role-rdm-a); --instance-b:var(--color-role-rdm-b); --instance-c:var(--color-role-rdm-c); --instance-d:var(--color-role-rdm-d); --color-role-dps-a:var(--color-role-rdm-a); --color-role-dps-b:var(--color-role-rdm-b); --color-role-dps-c:var(--color-role-rdm-c); --color-role-dps-d:var(--color-role-rdm-d);}
 
 div.main-list-area>.rdm>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.rdm>.tableitems::before {background-color:var(--instance-d);}
 
-div.main-list-area>.blu {--instance-a:var(--color-role-blu-a); --instance-b:var(--color-role-blu-b); --instance-c:var(--color-role-blu-c); --instance-d:var(--color-role-blu-d); --color-role-dps-a:var(--color-role-blu-a); --color-role-dps-b:var(--color-role-blu-b); --color-role-dps-c:var(--color-role-blu-c); --color-role-dps-d:var(--color-role-blu-d);}
+div.main-list-area>.blu {filter:var(--color-role-blu-filter, none); --color-text:var(--color-role-blu-font); --instance-a:var(--color-role-blu-a); --instance-b:var(--color-role-blu-b); --instance-c:var(--color-role-blu-c); --instance-d:var(--color-role-blu-d); --color-role-dps-a:var(--color-role-blu-a); --color-role-dps-b:var(--color-role-blu-b); --color-role-dps-c:var(--color-role-blu-c); --color-role-dps-d:var(--color-role-blu-d);}
 
 div.main-list-area>.blu>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.blu>.tableitems::before {background-color:var(--instance-d);}
+
+div.main-list-area>.rpr {filter:var(--color-role-rpr-filter, none); --color-text:var(--color-role-rpr-font); --instance-a:var(--color-role-rpr-a); --instance-b:var(--color-role-rpr-b); --instance-c:var(--color-role-rpr-c); --instance-d:var(--color-role-rpr-d); --color-role-dps-a:var(--color-role-rpr-a); --color-role-dps-b:var(--color-role-rpr-b); --color-role-dps-c:var(--color-role-rpr-c); --color-role-dps-d:var(--color-role-rpr-d);}
+
+div.main-list-area>.rpr>.jobicon::before {background:var(--instance-b)}
+div.main-list-area>.rpr>.tableitems::before {background-color:var(--instance-d);}
+
+div.main-list-area>.sge {filter:var(--color-role-sge-filter, none); --color-text:var(--color-role-sge-font); --instance-a:var(--color-role-sge-a); --instance-b:var(--color-role-sge-b); --instance-c:var(--color-role-sge-c); --instance-d:var(--color-role-sge-d); --color-role-dps-a:var(--color-role-sge-a); --color-role-dps-b:var(--color-role-sge-b); --color-role-dps-c:var(--color-role-sge-c); --color-role-dps-d:var(--color-role-sge-d);}
+
+div.main-list-area>.sge>.jobicon::before {background:var(--instance-b)}
+div.main-list-area>.sge>.tableitems::before {background-color:var(--instance-d);}
 
 div.main-list-area>.crp,
 div.main-list-area>.bsm,
@@ -469,7 +515,7 @@ div.main-list-area>.ltw,
 div.main-list-area>.wvr,
 div.main-list-area>.alc,
 div.main-list-area>.cul,
-div.main-list-area>.doh {--instance-a:var(--color-role-doh-a); --instance-b:var(--color-role-doh-b); --instance-c:var(--color-role-doh-c); --instance-d:var(--color-role-doh-d); --color-role-dps-a:var(--color-role-doh-a); --color-role-dps-b:var(--color-role-doh-b); --color-role-dps-c:var(--color-role-doh-c); --color-role-dps-d:var(--color-role-doh-d);}
+div.main-list-area>.doh {filter:var(--color-role-doh-filter, none); --color-text:var(--color-role-doh-font); --instance-a:var(--color-role-doh-a); --instance-b:var(--color-role-doh-b); --instance-c:var(--color-role-doh-c); --instance-d:var(--color-role-doh-d); --color-role-dps-a:var(--color-role-doh-a); --color-role-dps-b:var(--color-role-doh-b); --color-role-dps-c:var(--color-role-doh-c); --color-role-dps-d:var(--color-role-doh-d);}
 
 div.main-list-area>.doh>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.doh>.tableitems::before {background-color:var(--instance-d);}
@@ -477,7 +523,7 @@ div.main-list-area>.doh>.tableitems::before {background-color:var(--instance-d);
 div.main-list-area>.min,
 div.main-list-area>.btn,
 div.main-list-area>.fsh,
-div.main-list-area>.dol {--instance-a:var(--color-role-dol-a); --instance-b:var(--color-role-dol-b); --instance-c:var(--color-role-dol-c); --instance-d:var(--color-role-dol-d); --color-role-dps-a:var(--color-role-dol-a); --color-role-dps-b:var(--color-role-dol-b); --color-role-dps-c:var(--color-role-dol-c); --color-role-dps-d:var(--color-role-dol-d);}
+div.main-list-area>.dol {filter:var(--color-role-dol-filter, none); --color-text:var(--color-role-dol-font); --instance-a:var(--color-role-dol-a); --instance-b:var(--color-role-dol-b); --instance-c:var(--color-role-dol-c); --instance-d:var(--color-role-dol-d); --color-role-dps-a:var(--color-role-dol-a); --color-role-dps-b:var(--color-role-dol-b); --color-role-dps-c:var(--color-role-dol-c); --color-role-dps-d:var(--color-role-dol-d);}
 
 div.main-list-area>.dol>.jobicon::before {background:var(--instance-b)}
 div.main-list-area>.dol>.tableitems::before {background-color:var(--instance-d);}
