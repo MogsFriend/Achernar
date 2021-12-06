@@ -111,10 +111,10 @@
     --color-role-sam-d: rgb(196, 196, 172);
     --color-role-sam-font: rgb(255, 255, 255);
 
-    --color-role-rpr-a: rgba(32, 32, 32, .75);
-    --color-role-rpr-b: rgba(32, 32, 32, .5);
-    --color-role-rpr-c: rgba(32, 32, 32, .25);
-    --color-role-rpr-d: rgb(32, 32, 32);
+    --color-role-rpr-a: rgba(96, 96, 112, .75);
+    --color-role-rpr-b: rgba(96, 96, 112, .5);
+    --color-role-rpr-c: rgba(96, 96, 112, .25);
+    --color-role-rpr-d: rgb(96, 96, 112);
     --color-role-rpr-font: rgb(255, 255, 192);
 
     --color-role-brd-a: rgba(128, 196, 64, .75);
