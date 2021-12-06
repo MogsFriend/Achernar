@@ -270,7 +270,7 @@
                         container.querySelector(".tableitems").setAttribute("style", "--perc:" + rp + "%");
                         container.querySelector(".guage").setAttribute("data-width", rp);
                         container.querySelector(".guage-process").setAttribute("style", "right:" + rp.toFixed(0) + "%; --dwidth:" + (100 - rp).toFixed(0) + "%");
-                        container.querySelector(".jobicon>i").classList.add("xiv-" + ((person.name == "Limit Break" && person.Job == "") ? "lb_icon" : person.Job));
+                        container.querySelector(".jobicon>i").classList.add("xiv-" + (person.Job == "Limit Break" ? "lb_icon" : person.Job));
                         container.querySelector(".jobicon>i").setAttribute("title", "CDHit: " + cdhit + "%, DHit: " + dhit + "%, CHit: " + chit + "%");
 
                         container.querySelector(".mainvalue").innerHTML = person.encdps.toFixed(2);
