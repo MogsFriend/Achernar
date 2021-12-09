@@ -280,6 +280,7 @@
                         container.querySelector(".maxvalue").innerHTML = person.maxhit.split('-')[1];
                         container.querySelector(".maxvalue").setAttribute("title", person.maxhit.split('-')[0]);
 
+                        container.find(".detail").innerHTML = ""; // fix
                         for(let x of defaultTableValues)
                         {
                             let c = container.find(".detail").new("div", x);
