@@ -184,6 +184,36 @@
     --color-role-me-font: ;
 }
 
+body.fflogs
+{
+    --color-role-pld-d: #a8d2e6;
+    --color-role-war-d: #cf2621;
+    --color-role-drk-d: #d126cc;
+    --color-role-gnb-d: #998d50;
+
+    --color-role-whm-d: #fff0dc;
+    --color-role-sch-d: #8657ff;
+    --color-role-ast-d: #ffe74a;
+    --color-role-sge-d: #80a0f0;
+
+    --color-role-mnk-d: #d69c00;
+    --color-role-drg-d: #4164cd;
+    --color-role-nin-d: #af1964;
+    --color-role-sam-d: #e46d04;
+    --color-role-rpr-d: #965a90;
+
+    --color-role-brd-d: #91ba5e;
+    --color-role-mch-d: #6ee1d6;
+    --color-role-dnc-d: #e2b0af;
+
+    --color-role-blm-d: #a579d6;
+    --color-role-smn-d: #2d9b78;
+    --color-role-rdm-d: #e87b7b;
+    --color-role-blu-d: #2459ff;
+
+    --color-role-dps-d: #2599be;
+}
+
 /* xivicons SQUARE ENIX all right reserved */
 .xiv-Gla:before{content:'\f001';}
 .xiv-Pgl:before{content:'\f002';}
@@ -203,7 +233,7 @@
 .xiv-Min:before{content:'\f016';}
 .xiv-Btn:before{content:'\f017';}
 .xiv-Fsh:before{content:'\f018';}
-.xiv-Pld:before{content:'\f019'; margin-top:0.05em;}
+.xiv-Pld:before{content:'\f019';}
 .xiv-Mnk:before{content:'\f020';}
 .xiv-War:before{content:'\f021';}
 .xiv-Drg:before{content:'\f022';}
@@ -214,12 +244,12 @@
 .xiv-Smn:before{content:'\f027';}
 .xiv-Sch:before{content:'\f028';}
 .xiv-Rog:before{content:'\f029';}
-.xiv-Nin:before{content:'\f030'; margin-left:0.12em;}
+.xiv-Nin:before{content:'\f030';}
 .xiv-Mch:before{content:'\f031';}
 .xiv-Drk:before{content:'\f032';}
 .xiv-Ast:before{content:'\f033';}
 .xiv-Sam:before{content:'\f034';}
-.xiv-Rdm:before{content:'\f035'; margin-left:-0.18em;}
+.xiv-Rdm:before{content:'\f035';}
 .xiv-Blu:before{content:'\f036';}
 .xiv-Gnb:before{content:'\f037';}
 .xiv-Dnc:before{content:'\f038';}
@@ -268,51 +298,79 @@ html, body {margin:0; padding:0; border:0; overflow:hidden}
     .header section.timer {transform:scale(0.56); transform-origin:0% 50%; width:50px}
 }
 
-/* 기본 */
+/* style (default) */
 
 div.main-list-area .detail {display:none;}
 
-.default>div.main-list-area {display:flex; flex-direction: column; margin-top:1px; width:100%; padding:2px; transition:.5s;}
-.default>div.main-list-area>div {height:28px; display:flex; margin-bottom:2px; position:relative; padding-right:8px; transition:.5s; filter:drop-shadow(0px 1px 1px var(--color-shadow));}
-.default>div.main-list-area>div * {text-shadow:0px 1px 1px var(--color-textshadow), 0px 1px 1px var(--color-textshadow);}
-.default>div.main-list-area>div>div {margin-right:2px; color:var(--color-text); line-height:14px; position:relative; text-overflow:ellipsis}
-.default>div.main-list-area>div>div:last-child {margin:0;}
+body.default>div.main-list-area {display:flex; flex-direction: column; margin-top:1px; width:100%; padding:2px; transition:.5s;}
+body.default>div.main-list-area>div {height:28px; display:flex; margin-bottom:2px; position:relative; padding-right:8px; transition:.5s; filter:drop-shadow(0px 1px 1px var(--color-shadow));}
+body.default>div.main-list-area>div * {text-shadow:0px 1px 1px var(--color-textshadow), 0px 1px 1px var(--color-textshadow);}
+body.default>div.main-list-area>div>div {margin-right:2px; color:var(--color-text); line-height:14px; position:relative; text-overflow:ellipsis}
+body.default>div.main-list-area>div>div:last-child {margin:0;}
 
-.default>div.main-list-area>div>.tableitems {flex-grow:1; display:flex; flex-direction: column; position:relative;}
-.default>div.main-list-area>div>.tableitems::before {clip-path:url(#coverright); position:relative; z-index:1; background:var(--color-role-dps-d); content:""; height:28px; width:50px; display:block; position:absolute; left:-29px;}
-.default>div.main-list-area>div>.tableitems::after {content:attr(data-perc); padding-left:26px; position:relative; z-index:1; display:block; position:absolute; left:-4px; top:16px; text-shadow:1px 1px 0px #000; font-size:10px; text-align:right; width:22px;}
+body.default>div.main-list-area>div>.tableitems {flex-grow:1; display:flex; flex-direction: column; position:relative;}
+body.default>div.main-list-area>div>.tableitems::before {clip-path:url(#coverright); position:relative; z-index:1; background:var(--color-role-dps-d); content:""; height:28px; width:50px; display:block; position:absolute; left:-29px;}
+body.default>div.main-list-area>div>.tableitems::after {content:attr(data-perc); padding-left:26px; position:relative; z-index:1; display:block; position:absolute; left:-4px; top:16px; text-shadow:1px 1px 0px #000; font-size:10px; text-align:right; width:22px;}
 
-.default>div.main-list-area>div>.tableitems>div {flex-grow:1; display:flex; position:relative; z-index:1; height:14px}
-.default>div.main-list-area>div>.tableitems>div>div[title] {padding:0px 4px}
-.default>div.main-list-area>div>.tableitems>div>div[title]::after {content:attr(title); font-size:9px; margin-left:4px;}
-.default>div.main-list-area>div>.tableitems>.upline *,
-.default>div.main-list-area>div>.tableitems>.downline * {font-size:12px;}
-.default>div.main-list-area>div>.tableitems>.upline>.name {flex-grow:1; font-size:13px; padding-left:14px; overflow:hidden; height:14px;}
-.default>div.main-list-area>div>.tableitems>.downline {text-align:right; padding-right:8px;}
-.default>div.main-list-area>div>.tableitems>div>.maxhit,
-.default>div.main-list-area>div>.tableitems>div>.maxvalue {color:var(--color-maxhittext); flex-grow:1; text-align:right;}
-.default>div.main-list-area>div>.tableitems>div>.maxhit::after,
-.default>div.main-list-area>div>.tableitems>div>.maxvalue::after {display:none;}
-.default>div.main-list-area>div>.tableitems>div>.maxhit::before,
-.default>div.main-list-area>div>.tableitems>div>.maxvalue::before {content:attr(title); font-size:9px; margin-right:4px;}
+body.default>div.main-list-area>div>.tableitems>div {flex-grow:1; display:flex; position:relative; z-index:1; height:14px}
+body.default>div.main-list-area>div>.tableitems>div>div[title] {padding:0px 4px}
+body.default>div.main-list-area>div>.tableitems>div>div[title]::after {content:attr(title); font-size:9px; margin-left:4px;}
+body.default>div.main-list-area>div>.tableitems>.upline *,
+body.default>div.main-list-area>div>.tableitems>.downline * {font-size:12px;}
+body.default>div.main-list-area>div>.tableitems>.upline>.name {flex-grow:1; font-size:13px; padding-left:14px; overflow:hidden; height:14px;}
+body.default>div.main-list-area>div>.tableitems>.downline {text-align:right; padding-right:8px;}
+body.default>div.main-list-area>div>.tableitems>div>.maxhit,
+body.default>div.main-list-area>div>.tableitems>div>.maxvalue {color:var(--color-maxhittext); flex-grow:1; text-align:right;}
+body.default>div.main-list-area>div>.tableitems>div>.maxhit::after,
+body.default>div.main-list-area>div>.tableitems>div>.maxvalue::after {display:none;}
+body.default>div.main-list-area>div>.tableitems>div>.maxhit::before,
+body.default>div.main-list-area>div>.tableitems>div>.maxvalue::before {content:attr(title); font-size:9px; margin-right:4px;}
 
-.default>div.main-list-area>div>.guage {position:Absolute; left:32px; right:4px; top:0; bottom:0; z-index:0; overflow:hidden}
-.default>div.main-list-area>div>.guage::before {content:""; display:block; height:28px; background:var(--color-bg-bar); position:absolute; right:0; left:0; top:0; clip-path:url(#barclip); transform:scaleX(-1)}
-.default>div.main-list-area>div>.guage::after {content:attr(data-perc); position:absolute; right:var(--perc); bottom:0; line-height:10px; font-weight:300; font-size:9px; z-index:2;}
-.default>div.main-list-area>div>.guage>.guage-process {height:28px; position:absolute; right:50%; width:100%; top:0; clip-path:url(#barclip); transition:.5s; transform:scaleX(-1)}
-.default>div.main-list-area>div>.guage>.guage-process::after {content:""; height:28px; width:var(--dwidth, 50%); position:absolute; top:0px; left:0px; display:block; background:linear-gradient(to right, var(--color-role-dps-a) 0%, var(--color-role-dps-c) 100%); padding-left:2px;}
+body.default>div.main-list-area>div>.guage {position:Absolute; left:32px; right:4px; top:0; bottom:0; z-index:0; overflow:hidden}
+body.default>div.main-list-area>div>.guage::before {content:""; display:block; height:28px; background:var(--color-bg-bar); position:absolute; right:0; left:0; top:0; clip-path:url(#barclip); transform:scaleX(-1)}
+body.default>div.main-list-area>div>.guage::after {content:attr(data-perc); position:absolute; right:var(--perc); bottom:0; line-height:10px; font-weight:300; font-size:9px; z-index:2;}
+body.default>div.main-list-area>div>.guage>.guage-process {height:28px; position:absolute; right:50%; width:100%; top:0; clip-path:url(#barclip); transition:.5s; transform:scaleX(-1)}
+body.default>div.main-list-area>div>.guage>.guage-process::after {content:""; height:28px; width:var(--dwidth, 50%); position:absolute; top:0px; left:0px; display:block; background:linear-gradient(to right, var(--color-role-dps-a) 0%, var(--color-role-dps-c) 100%); padding-left:2px;}
 
-.default>div.main-list-area>div>.jobicon {display:block; position:relative; z-index:1; min-width:28px}
-.default>div.main-list-area>div>.jobicon>.cover {height:28px; width:28px; position:absolute; z-index:1;}
+body.default>div.main-list-area>div>.jobicon {display:block; position:relative; z-index:1; min-width:28px}
+body.default>div.main-list-area>div>.jobicon>.cover {height:28px; width:28px; position:absolute; z-index:1;}
 
-.default>div.main-list-area>div>.jobicon>.cover::after {content:""; height:28px; width:28px; display:block; clip-path:url(#cover); background:conic-gradient(from 0deg, var(--color-cdhit) 0%, var(--color-cdhit) var(--cdhit, 0%), var(--color-dhit) var(--cdhit, 0%), var(--color-dhit) var(--dhit, 0%), var(--color-chit) var(--dhit, 0%), var(--color-chit) var(--chit, 0%), var(--color-common) var(--chit, 0%), var(--color-common) 100%); position:absolute; left:0; top:0;}
-.default>div.main-list-area>div>.jobicon>i {position:absolute; z-index:2; line-height:30px; width:28px; height:28px; left:0px; font-size:24px; padding-top:1px; clip-path:url(#coverbg)}
-.default>div.main-list-area>div>.jobicon::before {clip-path:url(#coverbg); position:absolute; background:var(--color-role-dps-a); display:block; content:""; width:28px; height:28px;}
+body.default>div.main-list-area>div>.jobicon>.cover::after {content:""; height:28px; width:28px; display:block; clip-path:url(#cover); background:conic-gradient(from 0deg, var(--color-cdhit) 0%, var(--color-cdhit) var(--cdhit, 0%), var(--color-dhit) var(--cdhit, 0%), var(--color-dhit) var(--dhit, 0%), var(--color-chit) var(--dhit, 0%), var(--color-chit) var(--chit, 0%), var(--color-common) var(--chit, 0%), var(--color-common) 100%); position:absolute; left:0; top:0;}
+body.default>div.main-list-area>div>.jobicon>i {position:absolute; z-index:2; line-height:30px; width:28px; height:28px; left:0px; font-size:24px; padding-top:1px; clip-path:url(#coverbg)}
+body.default>div.main-list-area>div>.jobicon::before {clip-path:url(#coverbg); position:absolute; background:var(--color-role-dps-a); display:block; content:""; width:28px; height:28px;}
 
 i {text-shadow:none !important; filter:drop-shadow(0px 0px 1px var(--color-shadow)) drop-shadow(0px 1px 0px var(--color-shadow));}
 
-.default>div.main-list-area>div .tableitems::before { background:linear-gradient(to bottom, var(--instance-d) 0px, var(--instance-d) 17.75px, #303030 17.75px, #202020 100%);}
-.default>div.main-list-area>div .tableitems::after { padding-left:0px; letter-spacing: 0.1em; left:4px}
+body.default>div.main-list-area>div .tableitems::before { background:linear-gradient(to bottom, var(--instance-d) 0px, var(--instance-d) 17.75px, #303030 17.75px, #202020 100%);}
+body.default>div.main-list-area>div .tableitems::after { padding-left:0px; letter-spacing: 0.1em; left:4px}
+
+/* fflogs */
+
+body.fflogs>div.main-list-area {display:flex; flex-direction: column;}
+body.fflogs>div.main-list-area>div {border:1px solid #555; display:flex; margin-top:-1px; color:var(--color-role-dps-d); background:#000; position:relative}
+body.fflogs>div.main-list-area>div * {font-weight:400 !important; font-size:14px}
+body.fflogs>div.main-list-area>div>.jobicon { border:1px solid #555; width:22px; height:22px; margin:2px; box-sizing:border-box; margin-right:8px; order:0;}
+body.fflogs>div.main-list-area>div>.jobicon>i {font-size:20px; filter:drop-shadow(0 0 1px #FF8000); width:20px; height:20px; line-height:22px;}
+body.fflogs>div.main-list-area>div>.jobicon>i.xiv-lb_icon {display:block; background:url(../resources/icons/limitbreak.png) no-repeat; background-size:100%; width:20px; height:20px;}
+body.fflogs>div.main-list-area>div>.jobicon>i.xiv-lb_icon::before {display:none;}
+body.fflogs>div.main-list-area>div>.tableitems {display:flex; line-height:26px; order:1; flex-grow:1;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline {display:flex; flex-grow:1; align-content: space-between;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.name {flex-grow:1;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.mainvalue {margin-right:8px}
+body.fflogs>div.main-list-area>div>.tableitems>.downline {display:none;}
+body.fflogs>div.main-list-area>div>.tableitems>.downline {display:none;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail {display:flex !important; }
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div {display:none; margin-right:4px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div.deaths {display:block; position:relative; padding-left:18px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div.deaths::after {content:""; width:16px; top:5px; height:16px; background:url(../resources/icons/raise.png); background-size:100%; position:absolute; left:-2px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="crithit%"] {display:block; position:relative; text-align:right; padding-left:14px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="crithit%"]::after {content:"!"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="DirectHitPct"] {display:block; position:relative; text-align:right; padding-left:14px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="DirectHitPct"]::after {content:"D"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="CritDirectHitPct"] {display:block; position:relative; text-align:right; padding-left:14px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="CritDirectHitPct"]::after {content:"!!"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
+body.fflogs>div.main-list-area>div>.guage {position:absolute; left: 12em; right:20em; height:16px; top:5px}
+body.fflogs>div.main-list-area>div>.guage>.guage-process {height:16px; background:var(--color-role-dps-d); width:var(--dwidth)}
 
 /* 기타 표시 CSS */
 .resizer {position:fixed; right:1px; bottom:1px; width:16px; height:16px; background:var(--color-resizer); clip-path:url(#resizer)}
@@ -320,40 +378,40 @@ i {text-shadow:none !important; filter:drop-shadow(0px 0px 1px var(--color-shado
 
 /* 가로 모드 */
 
-.horizon>.header>.left {align-items: flex-start;}
-.horizon>.header .titlename {display:flex; flex-direction: row;}
-.horizon>.header .titlename>.title {margin-right:10px;}
-.horizon>div.main-list-area {display:flex; flex-direction: row; margin-top:1px; width:calc(100% - 160px); padding:2px; transition:.5s; justify-content: center; position:fixed; align-content: flex-start; left:80px; top:24px; bottom:0; right:80px; z-index:10; flex-wrap:wrap;}
-.horizon>div.main-list-area>div {height:28px; display:flex; flex-basis: 0; margin-bottom:4px; position:relative; padding-right:8px; transition:.5s; filter:drop-shadow(0px 1px 1px var(--color-shadow)); min-width:120px !important; max-width:120px !important;}
-.horizon>div.main-list-area>div>.tableitems {flex-grow:1; display:flex; flex-direction: column; position:relative;}
-.horizon>div.main-list-area>div .tableitems::after {position:absolute; z-index:10000; bottom:0px; margin-left:32px; line-height:10px;}
-.horizon>div.main-list-area>div>.tableitems>div {flex-grow:1; position:relative; z-index:1; line-height:14px; height:14px}
-.horizon>div.main-list-area>div>.tableitems>div * {color:var(--color-text);}
-.horizon>div.main-list-area>div::before {content:""; display:block; width:10px; height:28px; position:absolute; left:1px; background:linear-gradient(to bottom, var(--color-cdhit) 0%, var(--color-cdhit) var(--cdhit, 0%), var(--color-dhit) var(--cdhit, 0%), var(--color-dhit) var(--dhit, 0%), var(--color-chit) var(--dhit, 0%), var(--color-chit) var(--chit, 0%), var(--color-common) var(--chit, 0%), var(--color-common) 100%); z-index:1000; clip-path:url(#min-bar-cdhit); opacity:0.8;}
-.horizon>div.main-list-area>div>.guage {position:Absolute; left:5px; right:1px; top:0; bottom:0; z-index:0; overflow:hidden; border-radius:4px; clip-path:url(#barclip);}
-.horizon>div.main-list-area>div>.guage>.guage-process {clip-path:url(#barclip); transform:scaleX(-1);}
-.horizon>div.main-list-area>div>.guage>.guage-process::before {content:""; display:block; width:100%; height:28px; background:var(--color-bg-bar);}
-.horizon>div.main-list-area>div>.guage>.guage-process::after {content:""; height:28px; width:var(--dwidth, 50%); position:absolute; top:0px; right:0px; display:block; background:linear-gradient(to right, var(--color-role-dps-a) 0%, var(--color-role-dps-c) 100%); clip-path:url(#barclip); padding-left:8px}
-.horizon>div.main-list-area>div>.jobicon>i {position:absolute; z-index:2; line-height:30px; width:28px; height:28px; left:4px; font-size:24px; padding-top:1px; clip-path:url(#coverbg)}
-.horizon>div.main-list-area>div>.tableitems>div>.mainvalue,
-.horizon>div.main-list-area>div>.tableitems>div>.name {flex-grow:1; text-align:right;}
-.horizon>div.main-list-area>div>.tableitems>div>.maxvalue {display:none;}
-.horizon>div.main-list-area>div>.tableitems>div>.maxhit::after,
-.horizon>div.main-list-area>div>.tableitems>div>.maxvalue::after {display:none;}
-.horizon>div.main-list-area>div>.tableitems>div>.maxhit::before,
-.horizon>div.main-list-area>div>.tableitems>div>.maxvalue::before {display:none;}
-.horizon>.header {display:flex; justify-content: space-between; align-items: center; height: 48px; background:transparent; filter:drop-shadow(0px 0px 1px #000) drop-shadow(0px 0px 3px #000); padding:0px 8px; clip-path:url(#header_path)}
+body.horizon>.header>.left {align-items: flex-start;}
+body.horizon>.header .titlename {display:flex; flex-direction: row;}
+body.horizon>.header .titlename>.title {margin-right:10px;}
+body.horizon>div.main-list-area {display:flex; flex-direction: row; margin-top:1px; width:calc(100% - 160px); padding:2px; transition:.5s; justify-content: center; position:fixed; align-content: flex-start; left:80px; top:24px; bottom:0; right:80px; z-index:10; flex-wrap:wrap;}
+body.horizon>div.main-list-area>div {height:28px; display:flex; flex-basis: 0; margin-bottom:4px; position:relative; padding-right:8px; transition:.5s; filter:drop-shadow(0px 1px 1px var(--color-shadow)); min-width:120px !important; max-width:120px !important;}
+body.horizon>div.main-list-area>div>.tableitems {flex-grow:1; display:flex; flex-direction: column; position:relative;}
+body.horizon>div.main-list-area>div .tableitems::after {position:absolute; z-index:10000; bottom:0px; margin-left:32px; line-height:10px;}
+body.horizon>div.main-list-area>div>.tableitems>div {flex-grow:1; position:relative; z-index:1; line-height:14px; height:14px}
+body.horizon>div.main-list-area>div>.tableitems>div * {color:var(--color-text);}
+body.horizon>div.main-list-area>div::before {content:""; display:block; width:10px; height:28px; position:absolute; left:1px; background:linear-gradient(to bottom, var(--color-cdhit) 0%, var(--color-cdhit) var(--cdhit, 0%), var(--color-dhit) var(--cdhit, 0%), var(--color-dhit) var(--dhit, 0%), var(--color-chit) var(--dhit, 0%), var(--color-chit) var(--chit, 0%), var(--color-common) var(--chit, 0%), var(--color-common) 100%); z-index:1000; clip-path:url(#min-bar-cdhit); opacity:0.8;}
+body.horizon>div.main-list-area>div>.guage {position:Absolute; left:5px; right:1px; top:0; bottom:0; z-index:0; overflow:hidden; border-radius:4px; clip-path:url(#barclip);}
+body.horizon>div.main-list-area>div>.guage>.guage-process {clip-path:url(#barclip); transform:scaleX(-1);}
+body.horizon>div.main-list-area>div>.guage>.guage-process::before {content:""; display:block; width:100%; height:28px; background:var(--color-bg-bar);}
+body.horizon>div.main-list-area>div>.guage>.guage-process::after {content:""; height:28px; width:var(--dwidth, 50%); position:absolute; top:0px; right:0px; display:block; background:linear-gradient(to right, var(--color-role-dps-a) 0%, var(--color-role-dps-c) 100%); clip-path:url(#barclip); padding-left:8px}
+body.horizon>div.main-list-area>div>.jobicon>i {position:absolute; z-index:2; line-height:30px; width:28px; height:28px; left:4px; font-size:24px; padding-top:1px; clip-path:url(#coverbg)}
+body.horizon>div.main-list-area>div>.tableitems>div>.mainvalue,
+body.horizon>div.main-list-area>div>.tableitems>div>.name {flex-grow:1; text-align:right;}
+body.horizon>div.main-list-area>div>.tableitems>div>.maxvalue {display:none;}
+body.horizon>div.main-list-area>div>.tableitems>div>.maxhit::after,
+body.horizon>div.main-list-area>div>.tableitems>div>.maxvalue::after {display:none;}
+body.horizon>div.main-list-area>div>.tableitems>div>.maxhit::before,
+body.horizon>div.main-list-area>div>.tableitems>div>.maxvalue::before {display:none;}
+body.horizon>.header {display:flex; justify-content: space-between; align-items: center; height: 48px; background:transparent; filter:drop-shadow(0px 0px 1px #000) drop-shadow(0px 0px 3px #000); padding:0px 8px; clip-path:url(#header_path)}
 
 /* 연합 모드 (자동 전환) */
 
-.allience>div.main-list-area {display:flex; flex-direction:unset; flex-wrap:wrap}
-.allience>div.main-list-area>div {box-sizing:border-box; min-width:20%; max-width:20%; flex-grow:1; flex-basis: 0;}
-.allience>div.main-list-area>div .guage-process::after {clip-path:url(#barclip); padding-left:18px; height: 14px !important; top:14px}
-.allience>div.main-list-area>div .maxhit,
-.allience>div.main-list-area>div .maxvalue {display:none;}
-.allience>div.main-list-area>div .encdps,
-.allience>div.main-list-area>div .mainvalue {position:absolute; right:0px; bottom:-15px; font-weight:500; z-index:10000; border-radius:3px;}
-.allience>div.main-list-area>div .tableitems::after { color:var(--color-maxhittext); padding-left:0px; content:attr(data-rank); left:-8px}
+body.allience>div.main-list-area {display:flex; flex-direction:unset; flex-wrap:wrap}
+body.allience>div.main-list-area>div {box-sizing:border-box; min-width:20%; max-width:20%; flex-grow:1; flex-basis: 0;}
+body.allience>div.main-list-area>div .guage-process::after {clip-path:url(#barclip); padding-left:18px; height: 14px !important; top:14px}
+body.allience>div.main-list-area>div .maxhit,
+body.allience>div.main-list-area>div .maxvalue {display:none;}
+body.allience>div.main-list-area>div .encdps,
+body.allience>div.main-list-area>div .mainvalue {position:absolute; right:0px; bottom:-15px; font-weight:500; z-index:10000; border-radius:3px;}
+body.allience>div.main-list-area>div .tableitems::after { color:var(--color-maxhittext); padding-left:0px; content:attr(data-rank); left:-8px}
 
 /* 연합 모드 자동 넓이 조정 */
 
