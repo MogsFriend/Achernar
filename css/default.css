@@ -344,33 +344,6 @@ i {text-shadow:none !important; filter:drop-shadow(0px 0px 1px var(--color-shado
 body.default>div.main-list-area>div .tableitems::before { background:linear-gradient(to bottom, var(--instance-d) 0px, var(--instance-d) 17.75px, #303030 17.75px, #202020 100%);}
 body.default>div.main-list-area>div .tableitems::after { padding-left:0px; letter-spacing: 0.1em; left:4px}
 
-/* fflogs */
-
-body.fflogs>div.main-list-area {display:flex; flex-direction: column;}
-body.fflogs>div.main-list-area>div {border:1px solid #555; display:flex; margin-top:-1px; color:var(--color-role-dps-d); background:#000; position:relative}
-body.fflogs>div.main-list-area>div * {font-weight:400 !important; font-size:14px}
-body.fflogs>div.main-list-area>div>.jobicon { border:1px solid #555; width:22px; height:22px; margin:2px; box-sizing:border-box; margin-right:8px; order:0;}
-body.fflogs>div.main-list-area>div>.jobicon>i {font-size:20px; filter:drop-shadow(0 0 1px #FF8000); width:20px; height:20px; line-height:22px;}
-body.fflogs>div.main-list-area>div>.jobicon>i.xiv-lb_icon {display:block; background:url(../resources/icons/limitbreak.png) no-repeat; background-size:100%; width:20px; height:20px;}
-body.fflogs>div.main-list-area>div>.jobicon>i.xiv-lb_icon::before {display:none;}
-body.fflogs>div.main-list-area>div>.tableitems {display:flex; line-height:26px; order:1; flex-grow:1;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline {display:flex; flex-grow:1; align-content: space-between;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.name {flex-grow:1;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.mainvalue {margin-right:8px}
-body.fflogs>div.main-list-area>div>.tableitems>.downline {display:none;}
-body.fflogs>div.main-list-area>div>.tableitems>.downline {display:none;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail {display:flex !important; }
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div {display:none; margin-right:4px;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div.deaths {display:block; position:relative; padding-left:18px}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div.deaths::after {content:""; width:16px; top:5px; height:16px; background:url(../resources/icons/raise.png); background-size:100%; position:absolute; left:-2px;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="crithit%"] {display:block; position:relative; text-align:right; padding-left:14px}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="crithit%"]::after {content:"!"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="DirectHitPct"] {display:block; position:relative; text-align:right; padding-left:14px}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="DirectHitPct"]::after {content:"D"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="CritDirectHitPct"] {display:block; position:relative; text-align:right; padding-left:14px}
-body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="CritDirectHitPct"]::after {content:"!!"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
-body.fflogs>div.main-list-area>div>.guage {position:absolute; left: 12em; right:20em; height:16px; top:5px}
-body.fflogs>div.main-list-area>div>.guage>.guage-process {height:16px; background:var(--color-role-dps-d); width:var(--dwidth)}
 
 /* 기타 표시 CSS */
 .resizer {position:fixed; right:1px; bottom:1px; width:16px; height:16px; background:var(--color-resizer); clip-path:url(#resizer)}
@@ -429,6 +402,37 @@ body.allience>div.main-list-area>div .tableitems::after { color:var(--color-maxh
 {
     .allience>div.main-list-area>div {box-sizing:border-box; min-width:50%; max-width:50%; flex-grow:1; flex-basis: 0;}
 }
+
+/* fflogs */
+
+body.fflogs, 
+body.fflogs>div.main-list-area {overflow:auto;}
+body.allience.fflogs>div.main-list-area,
+body.fflogs>div.main-list-area {display:flex; flex-direction: column !important;}
+body.fflogs>div.main-list-area>div {border:1px solid #555; display:flex; min-width:100%; margin-top:-1px; color:var(--color-role-dps-d); background:#000; position:relative}
+body.fflogs>div.main-list-area>div * {font-weight:400 !important; font-size:14px}
+body.fflogs>div.main-list-area>div>.jobicon { border:1px solid #555; width:22px; height:22px; margin:2px; box-sizing:border-box; margin-right:8px; order:0;}
+body.fflogs>div.main-list-area>div>.jobicon>i {font-size:20px; filter:drop-shadow(0 0 1px #FF8000); width:20px; height:20px; line-height:22px;}
+body.fflogs>div.main-list-area>div>.jobicon>i.xiv-lb_icon {display:block; background:url(../resources/icons/limitbreak.png) no-repeat; background-size:100%; width:20px; height:20px;}
+body.fflogs>div.main-list-area>div>.jobicon>i.xiv-lb_icon::before {display:none;}
+body.fflogs>div.main-list-area>div>.tableitems {display:flex; line-height:26px; order:1; flex-grow:1;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline {display:flex; flex-grow:1; align-content: space-between;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.name {flex-grow:1;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.mainvalue {margin-right:8px}
+body.fflogs>div.main-list-area>div>.tableitems>.downline {display:none;}
+body.fflogs>div.main-list-area>div>.tableitems>.downline {display:none;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail {display:flex !important; }
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div {display:none; margin-right:4px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div.deaths {display:block; position:relative; padding-left:18px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div.deaths::after {content:""; width:16px; top:5px; height:16px; background:url(../resources/icons/raise.png); background-size:100%; position:absolute; left:-2px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="crithit%"] {display:block; position:relative; text-align:right; padding-left:14px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="crithit%"]::after {content:"!"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="DirectHitPct"] {display:block; position:relative; text-align:right; padding-left:14px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="DirectHitPct"]::after {content:"D"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="CritDirectHitPct"] {display:block; position:relative; text-align:right; padding-left:14px}
+body.fflogs>div.main-list-area>div>.tableitems>.upline>.detail>div[class="CritDirectHitPct"]::after {content:"!!"; color:#FFF; background:#333; width:16px; top:5px; height:16px; line-height:16px; position:absolute; left:2px; text-align:center; font-weight:bold; border-radius:3px;}
+body.fflogs>div.main-list-area>div>.guage {position:absolute; left: 12em; right:20em; height:16px; top:5px}
+body.fflogs>div.main-list-area>div>.guage>.guage-process {height:16px; background:var(--color-role-dps-d); width:var(--dwidth)}
 
 /* 직업 색상값 */
 
