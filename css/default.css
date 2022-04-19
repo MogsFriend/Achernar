@@ -351,6 +351,7 @@ body.default>div.main-list-area>div .tableitems::after { padding-left:0px; lette
 
 /* 가로 모드 */
 
+body.horizon>.header {backdrop-filter:unset}
 body.horizon>.header>.left {align-items: flex-start;}
 body.horizon>.header .titlename {display:flex; flex-direction: row;}
 body.horizon>.header .titlename>.title {margin-right:10px;}
